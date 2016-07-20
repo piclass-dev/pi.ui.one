@@ -1,0 +1,21 @@
+.piTopNavBase{
+	position:fixed;
+	height:0.5rem;
+	width:100%;
+	top:0rem;
+	background-color:$UIdark;
+	>ul{
+		width:9.6rem;
+		margin:auto;
+		>li{
+			list-style: none;
+			font-size: 0.2rem;
+			float: left;
+		}
+	}
+}
+
+.piTopNavMain{
+	@extend .piTopNavBase;
+
+}

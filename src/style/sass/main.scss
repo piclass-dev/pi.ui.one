@@ -1,0 +1,27 @@
+@import "normalize.scss";
+
+body{
+	background-image: url(../img/bodyBack.png);
+	background-size:1rem 1rem;
+}
+
+//colors
+$UIdark:#424147;
+$UIsuperlight:#f5f5f5;
+$UIline:#ebebeb;
+$UIborder:#c4c4c4;
+$UIgrey:#818181;
+$UIpurple:#5b557a;
+$UIpurplelight:#f7f5f7;
+$UIorange:#ff6f62;
+$UIgreen:#a7dd7f;
+
+//fonts
+$fontSizeAll:0.16rem;
+
+::selection {color:#FFFFFF;background-color:$UIpurple;}
+
+@import "grid.scss";
+@import "card.scss";
+@import "form.scss";
+@import "nav.scss";

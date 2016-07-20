@@ -1,0 +1,107 @@
+//表单 内嵌在栅格之中
+.piForm{
+	@include cardBase;
+	width:100%;
+	margin-bottom:$gutter;
+}
+
+$piFormFontSize:0.2rem;//表单文字大小
+$piFormRowHeight:0.45rem;
+$piFormEleHeight:0.35rem;
+$piFormEleCorner:0.1rem;
+$piFormSep:0.05rem;
+//表单行，内嵌在表单之中
+.piFormRow{
+	width:100%;
+	height:$piFormRowHeight;
+    font-size:$piFormFontSize;
+
+	box-sizing:border-box;
+	border-top:0.01rem solid $UIline;
+	//border-bottom:1px solid $UIline;
+    padding-top: ($piFormRowHeight - $piFormEleHeight) / 2;
+    padding-bottom: ($piFormRowHeight - $piFormEleHeight) / 2;
+
+    overflow: hidden;
+    &:first-child{
+        border:none;
+    }
+}
+
+.piFormRowHead{
+	@extend .piFormRow;
+	background-color:$UIsuperlight;
+	border-radius:0.05rem;
+}
+
+
+//表单内按键
+.piFormBtn{
+	//float:left;
+	font-size:$piFormFontSize;
+
+	height:$piFormEleHeight;
+	line-height:$piFormEleHeight ;
+
+	display:inline-block;
+	box-sizing:border-box;
+    
+    margin-left: $piFormSep;
+    margin-right: $piFormSep;
+    padding-top:0rem;
+    padding-left:($piFormEleHeight - $piFormFontSize) / 2;
+    padding-right:($piFormEleHeight - $piFormFontSize) / 2;
+	
+	min-width:0.7rem;
+	background-color:#fff;
+	border:0.01rem solid $UIborder;
+	border-radius:$piFormEleCorner;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    color:$UIdark;
+    box-shadow:inset 0rem -0.01rem 0rem 0rem rgba(0,0,0,0.2);
+
+    outline: none;
+    &:hover{
+    	border: 0.01rem solid $UIgrey;
+    }
+    &:active{
+        box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.50);
+        
+    }
+}
+
+.piFormText{
+	display:inline-block;
+	font-size:$piFormFontSize;
+	height:$piFormEleHeight;
+	line-height:$piFormEleHeight ;
+	margin-top:0rem;
+	margin-bottom:0rem;
+	margin-left: $piFormSep * 2;
+    margin-right: $piFormSep * 2;
+
+}
+
+.piFormTextInput{
+	display:inline-block;
+	height:$piFormEleHeight - 0.03rem;
+	width:1.5rem;
+	box-sizing:border-box;
+	margin:0px;
+	background-color:#fcfcfc;
+	//border-radius:$piFormEleCorner;
+	outline:none;
+	border:0px;
+	border-bottom:0.02rem solid $UIborder;
+	padding-left:$piFormSep * 2;
+}
+
+
+.pullright{
+	float:right;
+}
+.center{
+	text-align:center;
+}
