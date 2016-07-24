@@ -1,0 +1,19 @@
+
+
+.piPanel{
+	@extend .cardBase;
+    width:100%;
+    min-height:0.5rem;
+
+}
+
+.piPanelHead{
+    height:0.45rem;
+    width: 100%;
+    
+    border-bottom: 0.01rem solid $UIline;
+}
+
+.piPanelBody{
+    //height:300px;//#
+}

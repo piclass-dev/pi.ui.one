@@ -31,14 +31,14 @@ gulp.task('style', function() {
 
 // 脚本
 gulp.task('scripts', function() {  
-  return gulp.src('src/scripts/**/*.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/scripts'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
-    .pipe(gulp.dest('dist/scripts'))
+  return gulp.src('src/scripts/js/*.js')
+   //  .pipe(jshint('.jshintrc'))
+   // .pipe(jshint.reporter('default'))
+    .pipe(concat('piScript.js'))
+    .pipe(gulp.dest('debug/static/js'))
+    // .pipe(rename({ suffix: '.min' }))
+    // .pipe(uglify())
+    // .pipe(gulp.dest('debug/static/js'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
@@ -76,7 +76,7 @@ gulp.task('watch', function() {
   gulp.watch('src/style/**/*.scss', ['style']);
 
   // 看守所有.js档
-  //gulp.watch('src/scripts/**/*.js', ['scripts']);
+  gulp.watch('src/scripts/**/*.js', ['scripts']);
 
   // 看守所有图片档
   //gulp.watch('src/images/**/*', ['images']);

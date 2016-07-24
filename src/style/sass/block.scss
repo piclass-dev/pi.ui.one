@@ -1,0 +1,327 @@
+.piHomeworkBlock{
+	@extend .cardBase;
+	float:left;
+	width:2rem;
+	height:2rem;
+	margin:0.1rem;
+	padding-left:0.1rem;
+	padding-right:0.1rem;
+    box-sizing:border-box;
+	//作业块标题
+	>h3{
+		width:100%;
+		height:0.37rem;
+		line-height: 0.37rem;
+		margin:0rem;
+		border-bottom: 0.01rem solid $UIline;
+		font-size: 0.16rem;
+		text-align: center;
+		color:$UIgrey;
+
+	}
+	//进度栏
+	>ul{
+		width:100%;
+		height:1rem;
+		margin:0rem;
+		padding:0rem;
+		border-bottom: 0.01rem solid $UIline;
+        box-sizing:border-box;
+        list-style: none;
+        padding-top:0.1rem;
+        //单条进度
+        >li{
+        	width:100%;
+        	height:0.3rem;
+        	>span{
+        		display: block;
+        		float:left;
+        		font-size: 0.16rem;
+        		font-size: 0.16rem;
+        		height:0.22rem;
+        		line-height: 0.22rem;
+		        color:$UIgrey;
+        	}
+        	>div{
+        		width:1.25rem;
+        		height:0.22rem;
+        		border:0.01rem solid $UIgrey;
+        		border-radius: 10rem;
+        		float:right;
+        		padding-right:0.03rem;
+        		padding-left:0.03rem;
+
+        		>span{
+        			display: block;
+        			float: left;
+        			width:40%;
+        			margin:0rem;
+        			font-size: 0.16rem;
+        			height:0.22rem;
+        			line-height:0.22rem;
+	             	color:$UIgrey;
+        		}
+        		>div{
+        			float:right;
+        			width:50%;
+        			height:0.15rem;
+        			background-color: $UIgreen;
+        			border-radius: 10rem;
+        			margin-top: 0.03rem;
+                    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.07);
+
+        		}
+        	}
+        }
+	}
+	//提交按键
+	>button{
+		@extend .piButton;
+		display: block;
+		font-size: 0.18rem;
+		height:0.4rem;
+		width:1.4rem;
+		margin:auto;
+		margin-top: 0.10rem;
+		
+	}
+}
+
+
+.piFileBlock{
+	@extend .cardBase;
+    box-sizing:border-box;
+	float:left;
+	width:2rem;
+	height:2rem;
+	margin:0.1rem;
+	padding:0.08rem;
+    >div{
+    	width:100%;
+    	height:0.1rem;
+    	>img{
+    		@extend .cardBase;
+    		width: 1rem;
+    		height: 1rem;
+    		background-size:100% 100%;
+    		border-radius:0.1rem;
+    		box-sizing:border-box;
+    	}
+    	>div{
+    		width:0.8rem;
+    		height:1rem;
+    		float: right;
+    		>div{
+    			
+    			>canvas{
+    				float:left;
+    				@extend .cardBase;
+    				width:0.3rem;
+    				height:0.3rem;
+    				border-radius:0.1rem;
+    				margin-left: 0.05rem;
+    				box-sizing:border-box;
+    			}
+    			>div{
+    				float: right;
+    			    @extend .cardBase;
+    			    background-color:$UIgreen;
+    				border-radius:0.1rem;
+    			    border:0rem;
+    			    font-size: 0.12rem;
+    			    width:0.4rem;
+    				height:0.3rem;
+    				line-height: 0.3rem;
+    				text-align: center;
+    				color:#fff;
+    				box-sizing:border-box;
+    				//text-shadow: 0rem 0.01rem 0rem 0rem rgba(0,0,0,1);
+    			}
+    		}
+    		>p{
+    		display: block;
+    		font-size: 0.18rem;
+    		text-align: right;
+    		margin:0rem;
+    		float: right;
+            height:0.3rem;
+            line-height: 0.3rem;
+    		}
+    		>span{
+    		display: block;
+    		font-size: 0.12rem;
+    		text-align: right;
+    		float: right;
+    		height: 0.2rem;
+    		line-height: 0.2rem;
+            color:$UIgrey;
+
+    		}
+    	}
+    }
+}
+
+.piFileABlock{
+   @extend .piFileBlock !optional;
+   >h3{
+   	   font-size:0.18rem;
+   	   margin:0rem;
+   	   margin-top: 0.9rem;
+   	   height:0.4rem;
+   	   line-height: 0.4rem;
+   	   text-align: center;
+   	   overflow: hidden;
+   }
+   >button{
+   	   @extend .piButton;
+   	   display: block;
+   	   font-size:0.2rem;
+   	   width:100%;
+   	   height:0.4rem;
+
+   }
+
+}
+
+.piFileBBlock{
+   @extend .piFileBlock !optional;
+   >h3{
+   	   font-size:0.18rem;
+   	   margin:0rem;
+   	   margin-top: 0.9rem;
+   	   height:0.4rem;
+   	   line-height: 0.4rem;
+   	   text-align: center;
+   	   overflow: hidden;
+   }
+   >.download{
+   	   @extend .piButton;
+   	   display: block;
+   	   font-size:0.2rem;
+   	   width:55%;
+   	   height:0.4rem;
+   	   float: left;
+   	   margin-right:0.08rem;
+
+   }
+   >.delete{
+   	   @extend .piButton;
+   	   display: block;
+   	   font-size:0.2rem;
+   	   width:40%;
+   	   height:0.4rem;
+   	   float: left;
+
+   }
+
+}
+
+
+.piCourseBlock{
+    background-color:#888;
+    width:7.1rem;
+    height:1rem;
+    margin:auto;
+    margin-top:0.1rem;
+    margin-bottom:0.1rem;
+    background: #FFFFFF;
+    border: 0.01rem solid $UIborder;
+    border-radius: 0.1rem;
+    box-sizing:border-box;
+    overflow: hidden;
+    >canvas{
+        border: 0.01rem solid #979797;
+        box-shadow: inset 0px -0.02rem 0rem 0rem rgba(0,0,0,0.30);
+        border-radius: 10px;
+        width:0.99rem;
+        height: 0.99rem;
+        box-sizing:border-box;
+        float: left;
+    }
+    >button{
+    	@extend .piButton;
+        font-size:0.24rem;
+        width: 2.4rem;
+        height: 0.8rem;
+        float: left;
+        margin-top: 0.09rem;
+        margin-left: 0.1rem;
+    }
+    :nth-child(3){
+    	width:2.4rem;
+    	height: 1rem;
+    	box-sizing:border-box;
+    	float: left;
+    	padding-left:0.2rem;
+    	padding-top:0.2rem;
+    	>span{
+    		display: block;
+    	    font-size: 0.18rem;
+    	    color: $UIgrey;
+    	    margin:0rem;
+    	    width:100%;
+    	    height:0.3rem;
+    	    line-height: 0.3rem;
+    	}
+    }
+    :nth-child(4){
+    	width:1.14rem;
+    	float: right;
+    	>div{
+    		float: left;
+    		background-color:#fff;
+    		width:0.57rem;
+    		height:0.28rem;
+    		box-sizing:border-box;
+	        border-left:0.01rem solid $UIline;
+	        border-bottom:0.01rem solid $UIline;
+
+    		padding:0rem;
+    		>span{
+    		text-align: center;
+    		display: block;
+    		font-size: 0.16rem;
+    		height:0.28rem;
+    		line-height: 0.28rem;
+    		color:$UIpurple;
+    		padding:0rem;
+    		&:hover{
+	        	background-color:$UIsuperlight;
+	        }
+	        &:active{
+
+        box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.50);
+	        }
+    		}
+    		>.changed{
+    			color: $UIorange;
+    		}
+
+    	}
+    	>button{
+    			font-size: 0.18rem;
+    			width:100%;
+    			height:0.45rem;
+    			float: left;
+    			background-color:#fff;
+    			color:$UIgrey;
+    			border:0rem;
+	            border-left:0.01rem solid $UIline;
+	            outline: none;
+	            &:hover{
+	        	background-color:$UIsuperlight;
+	            }
+	            &:active{
+                 box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.50);
+	            }
+    	}
+    }
+}
+
+
+
+
+
+
+
+

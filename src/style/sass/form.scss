@@ -1,6 +1,6 @@
 //表单 内嵌在栅格之中
 .piForm{
-	@include cardBase;
+	@extend .cardBase;
 	width:100%;
 	margin-bottom:$gutter;
 }
@@ -38,6 +38,7 @@ $piFormSep:0.05rem;
 //表单内按键
 .piFormBtn{
 	//float:left;
+	@extend .piButton;
 	font-size:$piFormFontSize;
 
 	height:$piFormEleHeight;
@@ -57,19 +58,9 @@ $piFormSep:0.05rem;
 	border:0.01rem solid $UIborder;
 	border-radius:$piFormEleCorner;
     text-align: center;
-    text-decoration: none;
     white-space: nowrap;
-    color:$UIdark;
-    box-shadow:inset 0rem -0.01rem 0rem 0rem rgba(0,0,0,0.2);
-
-    outline: none;
-    &:hover{
-    	border: 0.01rem solid $UIgrey;
-    }
-    &:active{
-        box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.50);
-        
-    }
+    
+    
 }
 
 .piFormText{

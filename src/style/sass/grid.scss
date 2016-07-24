@@ -36,7 +36,7 @@ $gridNum:12;
 	padding-left: $gutter/2;
     padding-right: $gutter/2;
 	// width:$gridWidth * $bNum + $gutter * ($bNum - 1);
-	width:8.33% * $bNum;
+	width:100% / $gridNum * $bNum;
 	box-sizing:border-box;
 	//background-color:#666;
 	min-height:1px;

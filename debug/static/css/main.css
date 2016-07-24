@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Change the default font family in all browsers (opinionated).
@@ -414,6 +415,82 @@ body {
   background-color: #5b557a;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* 这是针对缺省样式 (必须的) */
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* 滚动条的滑轨背景颜色 */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 10rem;
+}
+
+/* 滑块颜色 */
+::-webkit-scrollbar-button {
+  background-color: #7c2929;
+}
+
+/* 滑轨两头的监听按钮颜色 */
+::-webkit-scrollbar-corner {
+  background-color: black;
+}
+
+/* 横向滚动条和纵向滚动条相交处尖角的颜色 */
+.piButton, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button {
+  border: 0.01rem solid #c4c4c4;
+  background-color: #fff;
+  border-radius: 0.1rem;
+  outline: none;
+  text-decoration: none;
+  color: #424147;
+  box-shadow: inset 0rem -0.01rem 0rem 0rem rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+.piButton:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .piCourseBlock > button:hover {
+  border: 0.01rem solid #818181;
+}
+.piButton:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .piCourseBlock > button:active {
+  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("../fonts/icomoon.eot?jjw17a");
+  src: url("../fonts/icomoon.eot?jjw17a#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?jjw17a") format("truetype"), url("../fonts/icomoon.woff?jjw17a") format("woff"), url("../fonts/icomoon.svg?jjw17a#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-message:before {
+  content: "\e901";
+}
+
+.icon-homework:before {
+  content: "\e902";
+}
+
+.icon-file:before {
+  content: "\e900";
+}
+
 #test {
   background-color: #e0e;
   color: #440;
@@ -443,7 +520,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 8.33%;
+  width: 8.33333%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -452,7 +529,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 16.66%;
+  width: 16.66667%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -461,7 +538,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 24.99%;
+  width: 25%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -470,7 +547,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 33.32%;
+  width: 33.33333%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -479,7 +556,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 41.65%;
+  width: 41.66667%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -488,7 +565,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 49.98%;
+  width: 50%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -497,7 +574,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 58.31%;
+  width: 58.33333%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -506,7 +583,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 66.64%;
+  width: 66.66667%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -515,7 +592,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 74.97%;
+  width: 75%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -524,7 +601,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 83.3%;
+  width: 83.33333%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -533,7 +610,7 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 91.63%;
+  width: 91.66667%;
   box-sizing: border-box;
   min-height: 1px;
 }
@@ -542,26 +619,25 @@ body {
   float: left;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-  width: 99.96%;
+  width: 100%;
   box-sizing: border-box;
   min-height: 1px;
 }
 
-.cardMain {
+.cardBase, .cardMain, .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas {
   background-color: #fff;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
   border-radius: 0.05rem;
+}
+
+.cardMain {
   width: 100%;
   height: 1rem;
   margin-bottom: 0.1rem;
 }
 
 .piForm {
-  background-color: #fff;
-  border: 1px solid #C4C4C4;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
-  border-radius: 0.05rem;
   width: 100%;
   margin-bottom: 0.1rem;
 }
@@ -601,17 +677,7 @@ body {
   border: 0.01rem solid #c4c4c4;
   border-radius: 0.1rem;
   text-align: center;
-  text-decoration: none;
   white-space: nowrap;
-  color: #424147;
-  box-shadow: inset 0rem -0.01rem 0rem 0rem rgba(0, 0, 0, 0.2);
-  outline: none;
-}
-.piFormBtn:hover {
-  border: 0.01rem solid #818181;
-}
-.piFormBtn:active {
-  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
 }
 
 .piFormText {
@@ -654,11 +720,493 @@ body {
   background-color: #424147;
 }
 .piTopNavBase > ul, .piTopNavMain > ul {
-  width: 9.6rem;
+  width: 9.0rem;
   margin: auto;
 }
 .piTopNavBase > ul > li, .piTopNavMain > ul > li {
   list-style: none;
   font-size: 0.2rem;
   float: left;
+  width: 1rem;
+  line-height: .5rem;
+  text-align: center;
+}
+.piTopNavBase > ul > li > a, .piTopNavMain > ul > li > a {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  color: #c4c4c4;
+}
+.piTopNavBase > ul > li > a:hover, .piTopNavMain > ul > li > a:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.piTopNavBase > ul > li > a:active, .piTopNavMain > ul > li > a:active {
+  background-color: #000;
+  color: #fff;
+}
+.piTopNavBase > ul > li .new, .piTopNavMain > ul > li .new {
+  width: 0.26rem;
+  height: 0.1rem;
+  background-image: url(../img/new.png);
+  background-size: 100% 100%;
+  position: relative;
+  margin-right: -0.26rem;
+  right: 0.29rem;
+  top: -0.45rem;
+  float: right;
+}
+.piTopNavBase > ul .current, .piTopNavMain > ul .current {
+  background-color: #000;
+  color: #fff;
+}
+
+.piTopNavAvatar {
+  float: right;
+  height: 0.4rem;
+  width: 0.4rem;
+  border-radius: 0.03rem;
+  border: 0.01rem solid #ebebeb;
+  box-sizing: border-box;
+  margin-top: 0.05rem;
+}
+
+.piTopNavLogo {
+  width: 0.72rem;
+  height: 0.67rem;
+  background-image: url(../img/navLogo.png);
+  background-size: 100% 100%;
+  position: fixed;
+}
+
+.piPanel {
+  width: 100%;
+  min-height: 0.5rem;
+}
+
+.piPanelHead {
+  height: 0.45rem;
+  width: 100%;
+  border-bottom: 0.01rem solid #ebebeb;
+}
+
+.piHomeworkBlock {
+  float: left;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.1rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  box-sizing: border-box;
+}
+.piHomeworkBlock > h3 {
+  width: 100%;
+  height: 0.37rem;
+  line-height: 0.37rem;
+  margin: 0rem;
+  border-bottom: 0.01rem solid #ebebeb;
+  font-size: 0.16rem;
+  text-align: center;
+  color: #818181;
+}
+.piHomeworkBlock > ul {
+  width: 100%;
+  height: 1rem;
+  margin: 0rem;
+  padding: 0rem;
+  border-bottom: 0.01rem solid #ebebeb;
+  box-sizing: border-box;
+  list-style: none;
+  padding-top: 0.1rem;
+}
+.piHomeworkBlock > ul > li {
+  width: 100%;
+  height: 0.3rem;
+}
+.piHomeworkBlock > ul > li > span {
+  display: block;
+  float: left;
+  font-size: 0.16rem;
+  font-size: 0.16rem;
+  height: 0.22rem;
+  line-height: 0.22rem;
+  color: #818181;
+}
+.piHomeworkBlock > ul > li > div {
+  width: 1.25rem;
+  height: 0.22rem;
+  border: 0.01rem solid #818181;
+  border-radius: 10rem;
+  float: right;
+  padding-right: 0.03rem;
+  padding-left: 0.03rem;
+}
+.piHomeworkBlock > ul > li > div > span {
+  display: block;
+  float: left;
+  width: 40%;
+  margin: 0rem;
+  font-size: 0.16rem;
+  height: 0.22rem;
+  line-height: 0.22rem;
+  color: #818181;
+}
+.piHomeworkBlock > ul > li > div > div {
+  float: right;
+  width: 50%;
+  height: 0.15rem;
+  background-color: #a7dd7f;
+  border-radius: 10rem;
+  margin-top: 0.03rem;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
+}
+.piHomeworkBlock > button {
+  display: block;
+  font-size: 0.18rem;
+  height: 0.4rem;
+  width: 1.4rem;
+  margin: auto;
+  margin-top: 0.10rem;
+}
+
+.piFileBlock, .piFileABlock, .piFileBBlock {
+  box-sizing: border-box;
+  float: left;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.1rem;
+  padding: 0.08rem;
+}
+.piFileBlock > div, .piFileABlock > div, .piFileBBlock > div {
+  width: 100%;
+  height: 0.1rem;
+}
+.piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img {
+  width: 1rem;
+  height: 1rem;
+  background-size: 100% 100%;
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+}
+.piFileBlock > div > div, .piFileABlock > div > div, .piFileBBlock > div > div {
+  width: 0.8rem;
+  height: 1rem;
+  float: right;
+}
+.piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas {
+  float: left;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 0.1rem;
+  margin-left: 0.05rem;
+  box-sizing: border-box;
+}
+.piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div {
+  float: right;
+  background-color: #a7dd7f;
+  border-radius: 0.1rem;
+  border: 0rem;
+  font-size: 0.12rem;
+  width: 0.4rem;
+  height: 0.3rem;
+  line-height: 0.3rem;
+  text-align: center;
+  color: #fff;
+  box-sizing: border-box;
+}
+.piFileBlock > div > div > p, .piFileABlock > div > div > p, .piFileBBlock > div > div > p {
+  display: block;
+  font-size: 0.18rem;
+  text-align: right;
+  margin: 0rem;
+  float: right;
+  height: 0.3rem;
+  line-height: 0.3rem;
+}
+.piFileBlock > div > div > span, .piFileABlock > div > div > span, .piFileBBlock > div > div > span {
+  display: block;
+  font-size: 0.12rem;
+  text-align: right;
+  float: right;
+  height: 0.2rem;
+  line-height: 0.2rem;
+  color: #818181;
+}
+
+.piFileABlock > h3 {
+  font-size: 0.18rem;
+  margin: 0rem;
+  margin-top: 0.9rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-align: center;
+  overflow: hidden;
+}
+.piFileABlock > button {
+  display: block;
+  font-size: 0.2rem;
+  width: 100%;
+  height: 0.4rem;
+}
+
+.piFileBBlock > h3 {
+  font-size: 0.18rem;
+  margin: 0rem;
+  margin-top: 0.9rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-align: center;
+  overflow: hidden;
+}
+.piFileBBlock > .download {
+  display: block;
+  font-size: 0.2rem;
+  width: 55%;
+  height: 0.4rem;
+  float: left;
+  margin-right: 0.08rem;
+}
+.piFileBBlock > .delete {
+  display: block;
+  font-size: 0.2rem;
+  width: 40%;
+  height: 0.4rem;
+  float: left;
+}
+
+.piCourseBlock {
+  background-color: #888;
+  width: 7.1rem;
+  height: 1rem;
+  margin: auto;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+  background: #FFFFFF;
+  border: 0.01rem solid #c4c4c4;
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.piCourseBlock > canvas {
+  border: 0.01rem solid #979797;
+  box-shadow: inset 0px -0.02rem 0rem 0rem rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  width: 0.99rem;
+  height: 0.99rem;
+  box-sizing: border-box;
+  float: left;
+}
+.piCourseBlock > button {
+  font-size: 0.24rem;
+  width: 2.4rem;
+  height: 0.8rem;
+  float: left;
+  margin-top: 0.09rem;
+  margin-left: 0.1rem;
+}
+.piCourseBlock :nth-child(3) {
+  width: 2.4rem;
+  height: 1rem;
+  box-sizing: border-box;
+  float: left;
+  padding-left: 0.2rem;
+  padding-top: 0.2rem;
+}
+.piCourseBlock :nth-child(3) > span {
+  display: block;
+  font-size: 0.18rem;
+  color: #818181;
+  margin: 0rem;
+  width: 100%;
+  height: 0.3rem;
+  line-height: 0.3rem;
+}
+.piCourseBlock :nth-child(4) {
+  width: 1.14rem;
+  float: right;
+}
+.piCourseBlock :nth-child(4) > div {
+  float: left;
+  background-color: #fff;
+  width: 0.57rem;
+  height: 0.28rem;
+  box-sizing: border-box;
+  border-left: 0.01rem solid #ebebeb;
+  border-bottom: 0.01rem solid #ebebeb;
+  padding: 0rem;
+}
+.piCourseBlock :nth-child(4) > div > span {
+  text-align: center;
+  display: block;
+  font-size: 0.16rem;
+  height: 0.28rem;
+  line-height: 0.28rem;
+  color: #5b557a;
+  padding: 0rem;
+}
+.piCourseBlock :nth-child(4) > div > span:hover {
+  background-color: #f5f5f5;
+}
+.piCourseBlock :nth-child(4) > div > span:active {
+  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
+}
+.piCourseBlock :nth-child(4) > div > .changed {
+  color: #ff6f62;
+}
+.piCourseBlock :nth-child(4) > button {
+  font-size: 0.18rem;
+  width: 100%;
+  height: 0.45rem;
+  float: left;
+  background-color: #fff;
+  color: #818181;
+  border: 0rem;
+  border-left: 0.01rem solid #ebebeb;
+  outline: none;
+}
+.piCourseBlock :nth-child(4) > button:hover {
+  background-color: #f5f5f5;
+}
+.piCourseBlock :nth-child(4) > button:active {
+  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
+}
+
+.piCourseContainer {
+  width: 7.4rem;
+  height: 3.1rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin: auto;
+}
+
+.piModal {
+  width: 500px;
+  height: 200px;
+  background-color: #888;
+  display: none;
+}
+
+.piNameCard {
+  width: 2.5rem;
+  height: 3.6rem;
+  box-sizing: border-box;
+  margin-bottom: 0.1rem;
+}
+.piNameCard > canvas {
+  width: 2.5rem;
+  box-sizing: border-box;
+  height: 2.5rem;
+  margin-top: -0.01rem;
+  margin-left: -0.01rem;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
+}
+.piNameCard > div {
+  width: 1.5rem;
+  height: 0.8rem;
+  float: left;
+  margin: 0rem;
+  margin-left: 0.2rem;
+  padding: 0.05rem;
+  box-sizing: border-box;
+  border-left: 0.01rem solid #ebebeb;
+  border-right: 0.01rem solid #ebebeb;
+}
+.piNameCard > div > h3 {
+  display: block;
+  margin: 0rem;
+  font-size: 0.24rem;
+  height: 0.35rem;
+  line-height: 0.35rem;
+}
+.piNameCard > div > p {
+  display: block;
+  margin: 0rem;
+  font-size: 0.18rem;
+  height: 0.2rem;
+  line-height: 0.2rem;
+}
+.piNameCard > div > span {
+  display: block;
+  margin: 0rem;
+  font-size: 0.18rem;
+  height: 0.2rem;
+  line-height: 0.2rem;
+}
+.piNameCard > img {
+  float: right;
+  width: 0.5rem;
+  height: 0.8rem;
+  margin-right: 0.15rem;
+  border: 0rem;
+}
+
+.piFooterA {
+  width: 100%;
+  height: 2.2rem;
+  background-image: url(../img/footerABack.png);
+  background-size: 1.5rem 1.5rem;
+  text-align: center;
+  color: #f8f8f8;
+  box-shadow: 0rem -0.07rem 0.39rem 0rem rgba(138, 130, 182, 0.31);
+}
+.piFooterA > ul {
+  padding: 0rem;
+  width: 80%;
+  list-style: none;
+  margin: auto;
+}
+.piFooterA > ul > li {
+  width: 33%;
+  font-size: 0.2rem;
+  float: left;
+}
+.piFooterA > ul > li > ul {
+  list-style: none;
+  padding: 0rem;
+}
+.piFooterA > ul > li > ul > li {
+  height: 0.4rem;
+  line-height: 0.4rem;
+  text-align: center;
+  border-radius: 0.2rem;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+.piFooterA > ul > li > ul > li:hover {
+  color: #5b557a;
+  background-color: #fff;
+}
+.piFooterA > ul > li > ul > li:active {
+  color: #fff;
+  background-color: #5b557a;
+}
+
+.piFooterB {
+  width: 100%;
+  height: 0.7rem;
+  line-height: 0.7rem;
+  color: #fff;
+  font-size: 0.2rem;
+  background-color: #5b557a;
+  text-align: center;
+  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.23);
+}
+
+.piFooterC {
+  position: fixed;
+  bottom: 0rem;
+  width: 100%;
+  height: 0.3rem;
+  background-color: #f7f5f7;
+  border-top: 0.01rem solid #c4c4c4;
+}
+
+.pi404canvas {
+  position: fixed;
+  z-index: -1;
+}
+
+.pi404middle {
+  width: 10rem;
+  margin: auto;
 }

@@ -5,17 +5,71 @@
 	top:0rem;
 	background-color:$UIdark;
 	>ul{
-		width:9.6rem;
+		width:9.0rem;
 		margin:auto;
 		>li{
 			list-style: none;
 			font-size: 0.2rem;
 			float: left;
+			width: 1rem;
+			line-height: .5rem;
+			text-align: center;
+			>a{
+				display: block;
+				text-decoration: none;
+				width:100%;
+				height:100%;
+			    color:$UIborder;
+			    &:hover{
+			    	background-color:rgba(0,0,0,0.5);
+			    }
+			    &:active{
+			    	background-color:#000;
+			    	color: #fff;
+			    }
+			}
+			.new{
+				width:0.26rem;
+				height:0.1rem;
+				background-image:url(../img/new.png);
+				background-size:100% 100%;
+				position:relative;
+				margin-right: -0.26rem;
+
+				//border-radius: 0.05rem;
+				//box-shadow:0rem 0.01rem 0.03rem 0rem rgba(0,0,0,0.3);
+                right:0.29rem;
+                top:-0.45rem;
+                float: right;
+			}
+		}
+		.current{
+			background-color:#000;
+			color: #fff;
 		}
 	}
 }
 
 .piTopNavMain{
 	@extend .piTopNavBase;
+
+}
+
+.piTopNavAvatar{
+	float:right;
+	height:0.4rem;
+	width:0.4rem;
+	border-radius:0.03rem;
+	border:0.01rem solid $UIline;
+	box-sizing:border-box;
+	margin-top:0.05rem;
+}
+
+.piTopNavLogo{
+	width:0.72rem;
+	height:0.67rem;
+	background-image:url(../img/navLogo.png);
+	background-size:100% 100%;
+	position:fixed;
 
 }

@@ -20,8 +20,42 @@ $UIgreen:#a7dd7f;
 $fontSizeAll:0.16rem;
 
 ::selection {color:#FFFFFF;background-color:$UIpurple;}
+::-webkit-scrollbar {
+		  width: 5px;
+	} /* 这是针对缺省样式 (必须的) */
+
+	::-webkit-scrollbar-track {
+		  background-color: $UIsuperlight;
+	} /* 滚动条的滑轨背景颜色 */
+
+	::-webkit-scrollbar-thumb {
+		  background-color: rgba(0, 0, 0, 0.05); 
+		  border-radius: 10rem;
+	} /* 滑块颜色 */
+
+	::-webkit-scrollbar-button {
+		  background-color: #7c2929;
+	} /* 滑轨两头的监听按钮颜色 */
+
+	::-webkit-scrollbar-corner {
+		  background-color: black;
+	} /* 横向滚动条和纵向滚动条相交处尖角的颜色 */
+
+//basic class
+@import "buttons.scss";
+
+@import "svgIconA.scss";
 
 @import "grid.scss";
 @import "card.scss";
 @import "form.scss";
 @import "nav.scss";
+@import "panel.scss";
+@import "block.scss";
+@import "container.scss";
+@import "modal.scss";
+@import "mainPage.scss";
+@import "footer.scss";
+@import "error.scss";
+
+

@@ -3,17 +3,96 @@
 <head>
 	<title></title>
 	<meta charset="utf-8">
+	<script type="text/javascript" src="../static/js/jquery-3.1.0.js"></script>
+	<script type="text/javascript" src="../static/js/piScript.js"></script>
 	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
 </head>
 <body>
 <nav class="piTopNavMain">
+    <div class="piTopNavLogo"></div>
 	<ul>
-		<li>主页</li>
-		<li>下载站</li>
-		<li>应用工具</li>
-		<li>题库</li>
+		<li><a href="#">主页</a></li>
+		<li><a href="#">下载站</a></li>
+		<li ><a href="#">应用工具</a></li>
+		<li><a href="#"  class="current">题库</a><div class="new"></div></li>
+
+		<canvas class="piTopNavAvatar"></canvas>
 	</ul>
 </nav>
+
+
+<div style="height:200px;"></div>
+
+<div class="block">
+	<div class="row">
+		<div class="b3"></div>
+		<div class="b9">
+		    <div class="piPanel">
+		    	<div class="piPanelHead"></div>
+		    	<div class="piPanelBody">
+		    		<div class="piHomeworkBlock">
+		    			<h3>第8周作业</h3>
+		    			<ul>
+		    				<li>
+		    					<span>选择</span>
+		    					<div>
+		    						<span>13/13</span>
+		    						<div></div>
+		    					</div>
+		    				</li>
+		    				<li>
+		    					<span>编程</span>
+		    					<div>
+		    						<span>13/13</span>
+		    						<div></div>
+		    					</div>
+		    				</li>
+		    			</ul>
+		    			<button>前往答题</button>
+		    		</div>
+		    		<div class="piFileABlock">
+		    			<div>
+		    				<img src="../static/img/word.png">
+		    				<div>
+		    					<div>
+		    						<canvas></canvas>
+		    						<div>学生</div>
+		    					</div>
+		    					<p>王家辉</p>
+		    					<span>上传时间</span>
+		    					<span>2016-12-12</span>
+		    				</div>
+		    			</div>
+		    			<h3>1.txt</h3>
+		    			<button>下载</button>
+		    		</div>
+		    		<div class="piFileBBlock">
+		    			<div>
+		    				<img src="../static/img/word.png">
+		    				<div>
+		    					<div>
+		    						<canvas></canvas>
+		    						<div>学生</div>
+		    					</div>
+		    					<p>王家辉</p>
+		    					<span>上传时间</span>
+		    					<span>2016-12-12</span>
+		    				</div>
+		    			</div>
+		    			<h3>文件名文件名.txt</h3>
+		    			<button class="download">下载</button>
+		    			<button class="delete">删除</button>
+		    		</div>
+		    	</div>
+		    </div>
+		</div>
+	</div>
+</div>
+<button data-toggle="modal" data-target="#m">modal test</button>
+
+<div class="piModal" id="m">
+	<button  data-dismiss="modal" >close</button>
+</div>
 
 </body>
 </html>

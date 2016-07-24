@@ -1,0 +1,18 @@
+.piButton{
+	border:0.01rem solid $UIborder;
+	background-color: #fff;
+	border-radius:0.1rem;
+    outline:none;
+    
+    text-decoration: none;
+    color:$UIdark;
+    box-shadow:inset 0rem -0.01rem 0rem 0rem rgba(0,0,0,0.2);
+    outline: none;
+    &:hover{
+    	border: 0.01rem solid $UIgrey;
+    }
+    &:active{
+        box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.50);
+        
+    }
+}
