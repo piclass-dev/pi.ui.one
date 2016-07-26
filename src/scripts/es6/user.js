@@ -1,94 +1,13 @@
-//avatar
-(function () {
-
-var avatar=function(User,element){
-	this.$element=element;
-	this.User=User;
-}
-
-          
-
-//create avatar obj
-$('[data-toggle="avatar"]').each(function(){
-	var $this   = $(this);
-	var name = $this.attr('data-src');
-	var type = $this.attr('data-srcType');
-	var user = new User(name,type);
-    $this.data("pi.avatar",(data=new avatar(user,$this)));
-})
 
 
-})(jQuery);
+export default class User{
+	constructor(name,type){
+		this.name=name;
+	    this.type=type;
+	    this.signature=md5(this.name);
+	}
 
-
-
-
-// var fileBlock(){
-
-// }
-//modal
-//mk 
-
-(function () {
-
-var modal=function(element,target,deleteTarget){
-    //modal button 
-    this.$element = element;
-    //modal
-    this.$target=target;
-    //modal close button
-    this.$deleteTarget=deleteTarget;
- //   this.modalVisible=false;
-    this.regi();
-}
-
-
-modal.prototype.show=function(){
-	this.$target.css('display','block');
-
-}
-modal.prototype.hide=function(){
-	this.$target.css('display','none');
-}
-
-// modal.prototype.change=function(){
-
-// }
-
-//registe event
-modal.prototype.regi=function(){
-
-    this.$element.on('click.pi.modal',function(e){
-	    m=$(this).data("pi.modal");
-        m.show();
-    });
-    //save the modal button position
-    this.$deleteTarget.data("pi.modalMother",this.$element);
-
-    this.$deleteTarget.on('click.pi.modal',function(e){
-	    m=$($(this).data("pi.modalMother")).data("pi.modal");
-        m.hide();
-    });
-}
-
-// create modal object
-$('[data-toggle="modal"]').each(function(){
-	var $this   = $(this);
-	var $target = $($this.attr('data-target'));
-	var $deleteTarget = $target.find('[data-dismiss="modal"]');
-    $this.data("pi.modal",(data=new modal($this,$target,$deleteTarget)));
-})
-
-	
-})(jQuery);
-	
-////用户类
-
-var User=function(name,type){
-	this.name=name;
-	this.type=type;
-
-	this.md5=function(string){
+	md5(string){
 	    function md5_RotateLeft(lValue, iShiftBits) {
 	        return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
 	    }
@@ -291,12 +210,6 @@ var User=function(name,type){
 	    }
 	    return (md5_WordToHex(a) + md5_WordToHex(b) + md5_WordToHex(c) + md5_WordToHex(d)).toLowerCase();
 	}
-	this.signature=this.md5(this.name);
 
+ 
 }
-
-
-
-
-
-
