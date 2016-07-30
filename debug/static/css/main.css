@@ -510,14 +510,25 @@ body {
   padding-left: 0.05rem;
   padding-right: 0.05rem;
 }
+.block:after {
+  content: '';
+  clear: both;
+  display: block;
+}
 
 .row {
   margin-left: -0.05rem;
   margin-right: -0.05rem;
 }
+.row:after {
+  content: '';
+  clear: both;
+  display: block;
+}
 
 .b1 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 8.33333%;
@@ -527,6 +538,7 @@ body {
 
 .b2 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 16.66667%;
@@ -536,6 +548,7 @@ body {
 
 .b3 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 25%;
@@ -545,6 +558,7 @@ body {
 
 .b4 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 33.33333%;
@@ -554,6 +568,7 @@ body {
 
 .b5 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 41.66667%;
@@ -563,6 +578,7 @@ body {
 
 .b6 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 50%;
@@ -572,6 +588,7 @@ body {
 
 .b7 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 58.33333%;
@@ -581,6 +598,7 @@ body {
 
 .b8 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 66.66667%;
@@ -590,6 +608,7 @@ body {
 
 .b9 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 75%;
@@ -599,6 +618,7 @@ body {
 
 .b10 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 83.33333%;
@@ -608,6 +628,7 @@ body {
 
 .b11 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 91.66667%;
@@ -617,6 +638,7 @@ body {
 
 .b12 {
   float: left;
+  box-sizing: border-box;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 100%;
@@ -1079,6 +1101,15 @@ body {
   margin: auto;
 }
 
+.piFileContainer {
+  width: 100%;
+  margin: 0rem;
+  padding: 0.05rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  border-right: solid 0.01rem #ebebeb;
+}
+
 .piModal {
   width: 500px;
   height: 200px;
@@ -1093,11 +1124,12 @@ body {
   margin-bottom: 0.1rem;
 }
 .piNameCard > canvas {
-  width: 2.5rem;
+  width: 2rem;
   box-sizing: border-box;
-  height: 2.5rem;
-  margin-top: -0.01rem;
-  margin-left: -0.01rem;
+  height: 2rem;
+  margin-top: 0.24rem;
+  margin-bottom: 0.24rem;
+  margin-left: 0.24rem;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
 }
 .piNameCard > div {
@@ -1138,6 +1170,66 @@ body {
   height: 0.8rem;
   margin-right: 0.15rem;
   border: 0rem;
+}
+
+.fullSep {
+  width: 100%;
+  border: 0.01rem solid #ebebeb;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+
+.bulletinMain {
+  width: 100%;
+  min-height: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.2rem;
+  box-sizing: border-box;
+}
+.bulletinMain > h2 {
+  display: block;
+  font-size: 0.2rem;
+  float: left;
+  width: 1rem;
+  text-align: center;
+  margin-right: 0.1rem;
+}
+.bulletinMain > p {
+  display: block;
+  font-size: 0.16rem;
+  float: left;
+  line-height: 0.2rem;
+}
+
+.timeTable .timeTableSvg {
+  width: 6.14rem;
+  height: 0.77rem;
+  margin-top: 0.4rem;
+  float: left;
+}
+.timeTable .pointerNow {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 0.2rem;
+  float: left;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+.timeTable .pointerNow:hover {
+  background-color: #5b557a;
+}
+.timeTable div:nth-child(2) {
+  margin-left: -5.41rem;
+  margin-top: 0.584rem;
+}
+.timeTable div:nth-child(3) {
+  margin-left: -3.83rem;
+  margin-top: 0.584rem;
+  background-color: #5b557a;
+}
+.timeTable div:nth-child(4) {
+  margin-left: -0.59rem;
+  margin-top: 0.584rem;
 }
 
 .piFooterA {
@@ -1192,7 +1284,7 @@ body {
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.23);
 }
 
-.piFooterC {
+.piFooterC, .piFooterD {
   position: fixed;
   bottom: 0rem;
   width: 100%;
@@ -1201,12 +1293,68 @@ body {
   border-top: 0.01rem solid #c4c4c4;
 }
 
+.piFooterD {
+  height: 0.7rem;
+}
+
 .pi404canvas {
-  position: fixed;
   z-index: -1;
 }
 
 .pi404middle {
-  width: 10rem;
+  width: 8rem;
   margin: auto;
+  font-size: 0.64rem;
+  font-family: sans-serif;
+}
+.pi404middle > h1 {
+  display: block;
+  float: left;
+  position: fixed;
+  top: 1.6rem;
+  margin-left: 3rem;
+}
+.pi404middle > p {
+  font-size: 0.18rem;
+  display: block;
+  margin-top: -rem;
+  position: fixed;
+  top: 3.5rem;
+}
+.pi404middle > button {
+  font-size: 0.36rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 0.45rem;
+  box-shadow: 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.1);
+  border: none;
+  background-color: #fff;
+  position: fixed;
+  top: 3.8rem;
+  margin-left: 3.2rem;
+  outline: none;
+  opacity: 0.8;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+.pi404middle > button:hover {
+  opacity: 1;
+}
+.pi404middle > button:active {
+  opacity: 0.5;
+}
+
+.pi404Svg {
+  width: 2.77rem;
+  height: 1.51rem;
+  position: fixed;
+  top: 2rem;
+}
+
+.pisthSvg {
+  width: 4.28rem;
+  height: 0.37rems;
+  position: fixed;
+  top: 2rem;
+  margin-left: 3rem;
 }

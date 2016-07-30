@@ -6,3 +6,11 @@
 	margin:auto;
 }
 
+.piFileContainer{
+	width:100%;
+	margin:0rem;
+	padding:0.05rem;
+	overflow:scroll;
+	overflow-x:hidden;
+	border-right:solid 0.01rem $UIline;
+}

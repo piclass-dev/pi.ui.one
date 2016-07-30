@@ -1,9 +1,67 @@
 .pi404canvas{
-	position:fixed;
 	z-index:-1;
 }
 
 .pi404middle{
-	width:10rem;
+	width:8rem;
 	margin:auto;
+	font-size:0.64rem;
+	font-family: sans-serif;
+	// font-weight:100;
+	>h1{
+		display: block;
+		float:left;
+		position:fixed;
+		top:1.6rem;
+		margin-left: 3rem;
+	}
+	>p{
+		font-size: 0.18rem;
+		display: block;
+		margin-top: -rem;
+		position:fixed;
+		top:3.5rem;
+	}
+	>button{
+		font-size: 0.36rem;
+		width:0.9rem;
+		height:0.9rem;
+		border-radius: 0.45rem;
+		box-shadow: 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.1);
+		border:none;
+		background-color: #fff;
+		position:fixed;
+		top:3.8rem;
+		margin-left:3.2rem;
+		outline: none;
+		opacity: 0.8;
+    	transition-timing-function: ease-in-out;
+    	transition-duration: 0.2s;
+    	&:hover{
+			opacity: 1;
+    	}
+    	&:active{
+    		opacity: 0.5;
+    	}
+	}
+
+}
+
+.pi404Svg{
+	width:2.77rem ;
+	height:1.51rem;
+	position:fixed;
+	top:2rem;
+    
+}
+
+
+
+.pisthSvg{
+	width:4.28rem;
+	height:0.37rems;
+	position:fixed;
+	top:2rem;
+	margin-left:3rem;
+
 }

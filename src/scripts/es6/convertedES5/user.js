@@ -8,13 +8,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var User = function () {
+var User = exports.User = function () {
 	function User(name, type) {
 		_classCallCheck(this, User);
 
 		this.name = name;
 		this.type = type;
-		this.signature = md5(this.name);
+		this.signature = this.md5(this.name);
 	}
 
 	_createClass(User, [{
@@ -227,5 +227,3 @@ var User = function () {
 
 	return User;
 }();
-
-exports.default = User;

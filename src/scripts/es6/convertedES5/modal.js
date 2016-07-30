@@ -11,7 +11,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //modal
 //mk 
 
-var modal = function () {
+var modal = exports.modal = function () {
     function modal(element, target, deleteTarget) {
         _classCallCheck(this, modal);
 
@@ -37,21 +37,24 @@ var modal = function () {
     }, {
         key: 'regi',
         value: function regi() {
-            this.$element.on('click.pi.modal', function (e) {
-                var m = $(this).data("pi.modal");
-                m.show();
-            });
-            //save the modal button position
-            this.$deleteTarget.data("pi.modalMother", this.$element);
 
-            this.$deleteTarget.on('click.pi.modal', function (e) {
-                var m = $($(this).data("pi.modalMother")).data("pi.modal");
-                m.hide();
+            this.$element.on('click', this, function (e) {
+                e.data.show();
             });
+
+            this.$deleteTarget.on('click', this, function (e) {
+                e.data.hide();
+            });
+
+            // //save the modal button position
+            // this.$deleteTarget.data("pi.modalMother",this.$element);
+
+            // this.$deleteTarget.on('click.pi.modal',function(e){
+            //     var m=$($(this).data("pi.modalMother")).data("pi.modal");
+            //     m.hide();
+            // });
         }
     }]);
 
     return modal;
 }();
-
-exports.default = modal;

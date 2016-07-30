@@ -1,3 +1,4 @@
+//首页个人信息
 .piNameCard{
     @extend .cardBase;
 	width:2.5rem;
@@ -5,12 +6,13 @@
 	box-sizing:border-box;
     margin-bottom: $gutter;
 	>canvas{
-		width:2.5rem;
+		width:2rem;
 	    box-sizing:border-box;
-	    height: 2.5rem;
+	    height: 2rem;
         @extend .cardBase;
-        margin-top: -0.01rem;
-        margin-left: -0.01rem;
+        margin-top: 0.24rem;
+        margin-bottom: 0.24rem;
+        margin-left: 0.24rem;
         box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);
 
 	}
@@ -59,3 +61,72 @@
 	}
 
 }
+
+//全页分隔hr
+.fullSep{
+	width:100%;
+	border:0.01rem solid $UIline;
+	margin-top:0.1rem;
+	margin-bottom:0.1rem;
+}
+
+//首页布告栏
+.bulletinMain{
+	width:100%;
+	min-height:1.5rem;
+	background-color:rgba(255,255,255,0.5);
+	padding:0.2rem;
+	box-sizing:border-box;
+	>h2{
+		display: block;
+        font-size: 0.2rem;
+        float:left;
+        width:1rem;
+        text-align: center;
+        margin-right:0.1rem;
+	}
+	>p{
+		display: block;
+		font-size: 0.16rem;
+		float: left;
+		line-height: 0.2rem;
+	}
+}
+
+//首页svg 时间表
+.timeTable{
+	.timeTableSvg{
+	width:6.14rem;
+	height:0.77rem;
+	margin-top: 0.4rem;
+	float:left;
+	}
+	.pointerNow{
+		width:0.4rem;
+		height:0.4rem;
+		border-radius:0.2rem;
+		float:left;
+    	transition-timing-function: ease-in-out;
+    	transition-duration: 0.2s;
+    	&:hover{
+			background-color:$UIpurple;
+    	}
+	}
+	div:nth-child(2){
+     margin-left: -5.41rem;
+     margin-top: 0.584rem;
+	}
+	div:nth-child(3){
+     margin-left: -3.83rem;
+     margin-top: 0.584rem;
+     background-color:$UIpurple;
+	}
+	div:nth-child(4){
+     margin-left: -0.59rem;
+     margin-top: 0.584rem;
+	}
+
+}
+
+
+

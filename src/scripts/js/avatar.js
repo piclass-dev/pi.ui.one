@@ -5,7 +5,7 @@ var avatar=function(User,element){
 	this.$element=element;
 	this.User=User;
 }
-
+ 
           
 
 //create avatar obj

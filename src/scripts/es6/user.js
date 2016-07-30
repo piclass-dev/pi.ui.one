@@ -1,10 +1,9 @@
 
-
-export default class User{
+export class User{
 	constructor(name,type){
 		this.name=name;
 	    this.type=type;
-	    this.signature=md5(this.name);
+	    this.signature=this.md5(this.name);
 	}
 
 	md5(string){

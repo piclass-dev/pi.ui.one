@@ -1,3 +1,24 @@
+   
+   export class errorCanvas{
+     constructor(canvas){
+        this.$canvas =canvas;
+        this.ctx=this.$canvas.getContext("2d");
+        this.resize();
+        window.onresize = resize;//to fix
+
+     }
+
+     resize(){
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        this.$canvas.css("height",window.innerWidth);
+        this.$canvas.css("width",window.innerHeight);
+     }
+   }
+
+
+
+
     var canvas = document.getElementById("cas");
     var ctx = canvas.getContext("2d");
  

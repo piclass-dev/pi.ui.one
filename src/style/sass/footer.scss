@@ -59,3 +59,10 @@ box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.23);
 	background-color:$UIpurplelight;
 	border-top:0.01rem solid $UIborder;
 }
+
+.piFooterD{
+	@extend .piFooterC;
+	height:0.7rem;
+}
+
+
