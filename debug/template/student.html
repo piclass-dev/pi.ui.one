@@ -36,7 +36,10 @@
 
 		<div class="b9">
 		    <div class="piPanel">
-		    	<div class="piPanelHead"></div>
+		    	<div class="piPanelHead"><button class="piFormBtn pullright">课程管理</button>
+		    	    <!-- <p class="piFormText">选择要进入的课程</p> -->
+		    		
+		    	</div>
 		    	<div class="piPanelBody">
 		    	    <div class="piCourseContainer">
 		    	    <div class="piCourseBlock">
@@ -69,7 +72,9 @@
 		    				<button>修改信息</button>
 		    			</div>
 		    		</div>
-		    		
+		    		<div class="piCourseAdd">
+		    			<p>前往 <span>课程管理</span> 添加新的课程</p>
+		    		</div>
 		    	    </div>
 		    		
 
@@ -117,7 +122,7 @@
 <div class="block">
 	<div class="row">
 	    <div class="b8">
-			<div class="timeTable">	    	
+			<div class="timeTable">	   	
 				<svg  class="timeTableSvg"  viewBox="0 0 614 77" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 				    <g id="-pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 				        <g id="piclass-更新信息" transform="translate(0.000000, -38.000000)" fill="#FF6F62">
@@ -125,16 +130,23 @@
 				        </g>
 				    </g>
 				</svg>
-				<div class="pointerNow"></div>
-				<div class="pointerNow"></div>
-				<div class="pointerNow"></div>
+				<div data-toggle="piNavBtnGroup">
+					<div class="pointerNow" data-target="#historyS"></div>
+					<div class="pointerNow piBtnGroupActive" data-target="#currentS" ></div>
+					<div class="pointerNow" data-target="#futureS"></div>
+				</div>
+			   <h3>PICLASS更新信息</h3> 
 			</div>
 	    </div>
 		<div class="b4">
 			<div class="bulletinMain">
-			<p>piclass V3<br>
+			<p id="currentS">piclass V3<br>
 			前端界面重构，增加了xxx功能，修复了xxx问题</p>
-			</div>		
+			<p id="historyS">piclass V2<br>
+			前端功能，修复了xxx问题</p>
+			<p id="futureS">piclass V4<br>
+			修复了xxx问题</p>
+			</div>	
 		</div>
 	</div>
 	<div style="clear:both"></div>
@@ -151,7 +163,6 @@
 			</div>		
 		</div>
 	</div>
-	<div style="clear:both"></div>
 </div>
 
 <footer>

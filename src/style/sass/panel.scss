@@ -10,8 +10,11 @@
 .piPanelHead{
     height:0.45rem;
     width: 100%;
-    
+    box-sizing:border-box;
+    padding-top: ($piFormRowHeight - $piFormEleHeight) / 2;
+    padding-bottom: ($piFormRowHeight - $piFormEleHeight) / 2;
     border-bottom: 0.01rem solid $UIline;
+   
 }
 
 .piPanelBody{

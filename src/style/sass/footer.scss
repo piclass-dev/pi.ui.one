@@ -66,3 +66,28 @@ box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.23);
 }
 
 
+.piFooterE{
+	width:100%;
+	:first-child{
+		background-color:$UIgreen;
+		width:100%;
+		height:0.15rem;
+		margin-bottom: 0.07rem;
+	}
+	:nth-child(2){
+		background-color:$UIpurple;
+		width:100%;
+		height: 0.2rem;
+	}
+	>p{
+		font-size: 0.2rem;
+		text-align: center;
+		background-image:url(../img/footerEBack.png);
+		background-size:0.3rem 0.3rem;
+		margin:0rem;
+		height: 0.5rem;
+		line-height: 0.5rem;
+	}
+}
+
+

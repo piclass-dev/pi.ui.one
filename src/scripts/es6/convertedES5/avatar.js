@@ -14,7 +14,7 @@ var _graColorTable = require("./graColorTable");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var avatar = exports.avatar = function () {
-	function avatar(User, element) {
+	function avatar(User, element, graColorTable) {
 		_classCallCheck(this, avatar);
 
 		this.$element = element;
@@ -27,18 +27,7 @@ var avatar = exports.avatar = function () {
 		this.canvas.width = this.$element.css("width").replace("px", '');
 		this.ctx = this.canvas.getContext("2d");
 		this.step = this.canvas.height / 5;
-
-		this.colorList = new Array();
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
-		// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
-		// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
-		this.graColorTable = new _graColorTable.graColorTable(this.colorList);
-		// this.graColorTable=new Array()
-
+		this.graColorTable = graColorTable;
 		this.draw();
 		//alert(this.User.signature);
 	}

@@ -1,3 +1,6 @@
+//首页顶图
+
+
 //首页个人信息
 .piNameCard{
     @extend .cardBase;
@@ -95,10 +98,16 @@
 
 //首页svg 时间表
 .timeTable{
+	>h3{
+		font-size: 0.2rem;
+		margin-left: 0.4rem;
+		float: left;
+		margin-top:-1.1rem;
+	}
 	.timeTableSvg{
 	width:6.14rem;
 	height:0.77rem;
-	margin-top: 0.4rem;
+	margin-top: 0.5rem;
 	float:left;
 	}
 	.pointerNow{
@@ -112,18 +121,20 @@
 			background-color:$UIpurple;
     	}
 	}
-	div:nth-child(2){
-     margin-left: -5.41rem;
-     margin-top: 0.584rem;
-	}
-	div:nth-child(3){
-     margin-left: -3.83rem;
-     margin-top: 0.584rem;
-     background-color:$UIpurple;
-	}
-	div:nth-child(4){
-     margin-left: -0.59rem;
-     margin-top: 0.584rem;
+	>div{
+		:nth-child(1){
+	     margin-left: -5.41rem;
+	     margin-top: 0.684rem;
+		}
+		:nth-child(2){
+	     margin-left: -3.83rem;
+	     margin-top: 0.684rem;
+	     background-color:$UIpurple;
+		}
+		:nth-child(3){
+	     margin-left: -0.59rem;
+	     margin-top: 0.684rem;
+		}
 	}
 
 }

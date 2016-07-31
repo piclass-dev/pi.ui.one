@@ -15,7 +15,7 @@ var _graColorTable = require("./graColorTable");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var avatar = exports.avatar = function () {
-	function avatar(User, element) {
+	function avatar(User, element, graColorTable) {
 		_classCallCheck(this, avatar);
 
 		this.$element = element;
@@ -28,18 +28,7 @@ var avatar = exports.avatar = function () {
 		this.canvas.width = this.$element.css("width").replace("px", '');
 		this.ctx = this.canvas.getContext("2d");
 		this.step = this.canvas.height / 5;
-
-		this.colorList = new Array();
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
-		this.colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
-		// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
-		// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
-		this.graColorTable = new _graColorTable.graColorTable(this.colorList);
-		// this.graColorTable=new Array()
-
+		this.graColorTable = graColorTable;
 		this.draw();
 		//alert(this.User.signature);
 	}
@@ -260,13 +249,26 @@ var _navTab = require('./navTab.js');
 
 var _errorCanvas = require('./errorCanvas.js');
 
+var _graColorTable = require('./graColorTable');
+
+//create colorTable
+var colorList = new Array();
+colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
+colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
+colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
+colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
+colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
+// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
+// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
+var mainGra = new _graColorTable.graColorTable(colorList);
+
 //create avatar obj
 $('[data-toggle="avatar"]').each(function () {
 	var $this = $(this);
 	var name = $this.attr('data-src');
 	var type = $this.attr('data-srcType');
 	var user = new _user.User(name, type);
-	$this.data("pi.avatar", new _avatar.avatar(user, $this));
+	$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra));
 });
 
 // create modal object
@@ -277,10 +279,11 @@ $('[data-toggle="modal"]').each(function () {
 	$this.data("pi.modal", new _modal.modal($this, $target, $deleteTarget));
 });
 
+//creat nav0tab obj
 $('[data-toggle="piNavBtnGroup"]').each(function () {
 	var $this = $(this);
-	var $buttonList = $this.find('button');
-	var $active = $this.find('[class="active"]');
+	var $buttonList = $this.find('*');
+	var $active = $this.find('.piBtnGroupActive');
 	var $MatchList = new Array();
 	$buttonList.each(function () {
 		var $Match = { "button": $(this),
@@ -290,12 +293,19 @@ $('[data-toggle="piNavBtnGroup"]').each(function () {
 	$this.data("pi-navTabBtnGroup", new _navTab.navTabBtnGroup($this, $MatchList, $active));
 });
 
+//create menu obj
+$('[data-au="menu"]').each(function () {
+	var $this = $(this);
+	var $target = $($this.attr('data-target'));
+	$this.data("pi.menu", new menu($this, $target));
+});
+
 // //create errorcanvas
 // $('[class="pi404canvas"]').each(function(){
 // 	var $this   = $(this);
 // 	$this.data("pi.404canvas",new errorCanvas($this));
 // })
-},{"./avatar.js":1,"./errorCanvas.js":2,"./modal.js":5,"./navTab.js":6,"./user.js":7}],4:[function(require,module,exports){
+},{"./avatar.js":1,"./errorCanvas.js":2,"./graColorTable":4,"./modal.js":5,"./navTab.js":6,"./user.js":7}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -414,6 +424,7 @@ var navTabBtnGroup = exports.navTabBtnGroup = function () {
 		this.$MatchList = MatchList;
 		this.$active = active;
 		this.regi();
+		$(this.$active.attr('data-target')).css('display', 'block');
 	}
 
 	_createClass(navTabBtnGroup, [{
@@ -421,15 +432,16 @@ var navTabBtnGroup = exports.navTabBtnGroup = function () {
 		value: function show($button) {
 			var $target = $($button.attr('data-target'));
 			$(this.$active.attr('data-target')).css('display', 'none');
+			$(this.$active).removeClass("piBtnGroupActive");
 			$target.css('display', 'block');
 			this.$active = $button;
+			$(this.$active).addClass("piBtnGroupActive");
 		}
 	}, {
 		key: 'regi',
 		value: function regi() {
 			this.$MatchList.forEach(function (match) {
 				match.target.css('display', 'none');
-				//alert(vm);
 				match.button.on('click', this, function (e) {
 					e.data.show(match.button);
 				});

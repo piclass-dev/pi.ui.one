@@ -441,7 +441,7 @@ body {
 }
 
 /* 横向滚动条和纵向滚动条相交处尖角的颜色 */
-.piButton, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button {
+.piButton, .piNavBtnGroup > button, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button {
   border: 0.01rem solid #c4c4c4;
   background-color: #fff;
   border-radius: 0.1rem;
@@ -451,11 +451,33 @@ body {
   box-shadow: inset 0rem -0.01rem 0rem 0rem rgba(0, 0, 0, 0.2);
   outline: none;
 }
-.piButton:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .piCourseBlock > button:hover {
+.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .piCourseBlock > button:hover {
   border: 0.01rem solid #818181;
 }
-.piButton:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .piCourseBlock > button:active {
+.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .piCourseBlock > button:active {
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
+}
+
+.piNavBtnGroup {
+  margin-left: 0.1rem;
+}
+.piNavBtnGroup > button {
+  height: 0.35rem;
+  display: block;
+  float: left;
+  margin: 0rem;
+  margin-left: -0.01rem;
+}
+.piNavBtnGroup :first-child {
+  border-radius: 0.1rem 0rem 0rem 0.1rem;
+}
+.piNavBtnGroup :last-child {
+  border-radius: 0rem 0.1rem 0.1rem 0rem;
+}
+
+.piBtnGroupActive {
+  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5) !important;
+  background-color: #ebebeb !important;
 }
 
 @font-face {
@@ -792,6 +814,9 @@ body {
   box-sizing: border-box;
   margin-top: 0.05rem;
 }
+.piTopNavAvatar:hover + div {
+  display: block;
+}
 
 .piTopNavLogo {
   width: 0.72rem;
@@ -809,6 +834,9 @@ body {
 .piPanelHead {
   height: 0.45rem;
   width: 100%;
+  box-sizing: border-box;
+  padding-top: 0.05rem;
+  padding-bottom: 0.05rem;
   border-bottom: 0.01rem solid #ebebeb;
 }
 
@@ -997,7 +1025,6 @@ body {
 }
 
 .piCourseBlock {
-  background-color: #888;
   width: 7.1rem;
   height: 1rem;
   margin: auto;
@@ -1093,6 +1120,30 @@ body {
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
 }
 
+.piCourseAdd {
+  width: 7.1rem;
+  height: 1rem;
+  margin: auto;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+  background: #FFFFFF;
+  border: 0.01rem solid #c4c4c4;
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.piCourseAdd > p {
+  font-size: 0.2rem;
+  text-align: center;
+  color: #5b557a;
+  height: 1rem;
+  line-height: 1rem;
+  margin: 0rem;
+}
+.piCourseAdd > p > span {
+  color: #ff6f62;
+}
+
 .piCourseContainer {
   width: 7.4rem;
   height: 3.1rem;
@@ -1108,6 +1159,8 @@ body {
   overflow: scroll;
   overflow-x: hidden;
   border-right: solid 0.01rem #ebebeb;
+  border-top: solid 0.01rem #ebebeb;
+  height: 4.6rem;
 }
 
 .piModal {
@@ -1201,10 +1254,16 @@ body {
   line-height: 0.2rem;
 }
 
+.timeTable > h3 {
+  font-size: 0.2rem;
+  margin-left: 0.4rem;
+  float: left;
+  margin-top: -1.1rem;
+}
 .timeTable .timeTableSvg {
   width: 6.14rem;
   height: 0.77rem;
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
   float: left;
 }
 .timeTable .pointerNow {
@@ -1218,18 +1277,18 @@ body {
 .timeTable .pointerNow:hover {
   background-color: #5b557a;
 }
-.timeTable div:nth-child(2) {
+.timeTable > div :nth-child(1) {
   margin-left: -5.41rem;
-  margin-top: 0.584rem;
+  margin-top: 0.684rem;
 }
-.timeTable div:nth-child(3) {
+.timeTable > div :nth-child(2) {
   margin-left: -3.83rem;
-  margin-top: 0.584rem;
+  margin-top: 0.684rem;
   background-color: #5b557a;
 }
-.timeTable div:nth-child(4) {
+.timeTable > div :nth-child(3) {
   margin-left: -0.59rem;
-  margin-top: 0.584rem;
+  margin-top: 0.684rem;
 }
 
 .piFooterA {
@@ -1297,6 +1356,30 @@ body {
   height: 0.7rem;
 }
 
+.piFooterE {
+  width: 100%;
+}
+.piFooterE :first-child {
+  background-color: #a7dd7f;
+  width: 100%;
+  height: 0.15rem;
+  margin-bottom: 0.07rem;
+}
+.piFooterE :nth-child(2) {
+  background-color: #5b557a;
+  width: 100%;
+  height: 0.2rem;
+}
+.piFooterE > p {
+  font-size: 0.2rem;
+  text-align: center;
+  background-image: url(../img/footerEBack.png);
+  background-size: 0.3rem 0.3rem;
+  margin: 0rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+}
+
 .pi404canvas {
   z-index: -1;
 }
@@ -1357,4 +1440,52 @@ body {
   position: fixed;
   top: 2rem;
   margin-left: 3rem;
+}
+
+.pihintMain {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.menuBody {
+  background-color: rgba(255, 255, 255, 0.95);
+  position: absolute;
+  top: 1rem;
+  width: 1.5rem;
+  border-radius: 0.05rem;
+  padding-top: 0.025rem;
+  padding-bottom: 0.025rem;
+  font-size: 0.2rem;
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.4);
+}
+.menuBody > ul {
+  list-style: none;
+  padding-left: 0rem;
+  border-top: 0.01rem solid #c4c4c4;
+  border-bottom: 0.01rem solid #c4c4c4;
+  margin-top: 0.025rem;
+  margin-bottom: 0.025rem;
+}
+.menuBody > ul :first-child {
+  border-top: 0rem;
+}
+.menuBody > ul > li {
+  height: 0.35rem;
+  width: 85%;
+  margin: auto;
+  border-top: 0.01rem solid #ebebeb;
+}
+.menuBody > ul > li > a {
+  display: block;
+  border-radius: 0.05rem;
+  height: 100%;
+  line-height: 0.35rem;
+  text-decoration: none;
+  text-align: center;
+  color: #000;
+}
+.menuBody > ul > li > a:hover {
+  background-color: #fff;
+}
+.menuBody > ul > li > a:active {
+  background-color: #ebebeb;
 }

@@ -63,6 +63,12 @@
 	border:0.01rem solid $UIline;
 	box-sizing:border-box;
 	margin-top:0.05rem;
+	&:hover{
+		&+div{
+		display: block;
+		}
+	}
+	
 }
 
 .piTopNavLogo{

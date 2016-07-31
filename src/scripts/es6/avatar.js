@@ -1,7 +1,7 @@
 import {User} from "./user";
 import {colorMatch,rgbColor,graColorTable} from "./graColorTable";
 export class avatar{
-	constructor(User,element){
+	constructor(User,element,graColorTable){
 	    this.$element=element;
 		this.User=User;
 	    this.colors=new Array(24);
@@ -12,18 +12,7 @@ export class avatar{
 	    this.canvas.width=this.$element.css("width").replace("px",'');
 	    this.ctx=this.canvas.getContext("2d");
 	    this.step=this.canvas.height/5;
-
-	    this.colorList= new Array();
-		this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
-		this.colorList.push(new colorMatch(new rgbColor(165,87,109),80));
-		this.colorList.push(new colorMatch(new rgbColor(91,85,122),200));
-		this.colorList.push(new colorMatch(new rgbColor(72,89,110),220));
-		this.colorList.push(new colorMatch(new rgbColor(36,45,55),255));
-		// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
-		// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
-		this.graColorTable=new graColorTable(this.colorList);
-	   // this.graColorTable=new Array()
-
+	    this.graColorTable=graColorTable;
  		this.draw();
  		//alert(this.User.signature);
 	}
