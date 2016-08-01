@@ -17,43 +17,48 @@
 		<li><a href="#"  class="current">题库</a><div class="new"></div></li>
 
 		<canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="teacher" data-au="menu" data-target="#navMenu"></canvas>
-		<div class="menuBody" id="navMenu">
-			<ul>
-				<li><a href="">MK</a></li>
-				<li><a href="">退出登录</a></li>
-			</ul>
-			<ul>
-				<li><a href="">帐号设置</a></li>
-				<li><a href="">信息修改</a></li>
-			</ul>
-			
-		</div>
 	</ul>
 </nav>
 <div style="height:100px"></div>
 
 <div class="block">
 	<div class="row">
-		<div class="b12">
+		<div class="b6">
 			<div class="piPanel">
-				<div class="row">
-
-					<div class="b8">
-					<div class="piFormRow">
+				<div class="piFormRow">
 						<div class="piNavBtnGroup" data-toggle="piNavBtnGroup">
 							<button class="piBtnGroupActive" data-target="#dangqianzuoye">当前作业</button>
 							<button data-target="#lishizuoye">批改过的作业</button>
 						</div>
 					</div>
-						<div class="piFileContainer" id="dangqianzuoye">
-						</div>
-						<div class="piFileContainer" id="lishizuoye">
-						</div>
+					<div class="piCourseContainer" id="dangqianzuoye">
 					</div>
+					<div class="piCourseContainer" id="lishizuoye">
+					</div>
+			</div>
+		</div>
+		<div class="b6">
+			<div class="piPanel">
+				<div class="piFormRowHead">
+				 <span class="piFormText">作业信息填写</span>
+				 <button class="piFormBtn pullright">重置</button>
+				</div>
 
-					<div class="b4">
-						
-					</div>
+				<div class="piFormRow">
+					<span class="piFormText ">截止日期</span>
+					<input type="date" name="" class="piFormTextInput">
+					<span class="piFormText ">该日期已过</span>
+				</div>
+				<div class="piFormRow">
+					<span class="piFormText ">作业标题</span>
+					<input type="text" name="" class="piFormTextInput">
+				</div>
+				<div class="piFormTextareaRow">
+					<span class="piFormText ">备注信息</span>
+					<textarea class="piFormTextarea"></textarea>
+				</div>
+				<div class="piFormRow">
+					<button class="piFormBtn ">添加题目</button>
 				</div>
 			</div>
 		</div>

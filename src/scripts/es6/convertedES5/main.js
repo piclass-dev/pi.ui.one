@@ -10,6 +10,8 @@ var _navTab = require('./navTab.js');
 
 var _errorCanvas = require('./errorCanvas.js');
 
+var _menu = require('./menu.js');
+
 var _graColorTable = require('./graColorTable');
 
 //create colorTable
@@ -58,7 +60,7 @@ $('[data-toggle="piNavBtnGroup"]').each(function () {
 $('[data-au="menu"]').each(function () {
 	var $this = $(this);
 	var $target = $($this.attr('data-target'));
-	$this.data("pi.menu", new menu($this, $target));
+	$this.data("pi.menu", new _menu.menu($this, $target));
 });
 
 // //create errorcanvas

@@ -75,7 +75,7 @@ var avatar = exports.avatar = function () {
 
 	return avatar;
 }();
-},{"./graColorTable":4,"./user":7}],2:[function(require,module,exports){
+},{"./graColorTable":4,"./user":8}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -249,6 +249,8 @@ var _navTab = require('./navTab.js');
 
 var _errorCanvas = require('./errorCanvas.js');
 
+var _menu = require('./menu.js');
+
 var _graColorTable = require('./graColorTable');
 
 //create colorTable
@@ -297,7 +299,7 @@ $('[data-toggle="piNavBtnGroup"]').each(function () {
 $('[data-au="menu"]').each(function () {
 	var $this = $(this);
 	var $target = $($this.attr('data-target'));
-	$this.data("pi.menu", new menu($this, $target));
+	$this.data("pi.menu", new _menu.menu($this, $target));
 });
 
 // //create errorcanvas
@@ -305,7 +307,7 @@ $('[data-au="menu"]').each(function () {
 // 	var $this   = $(this);
 // 	$this.data("pi.404canvas",new errorCanvas($this));
 // })
-},{"./avatar.js":1,"./errorCanvas.js":2,"./graColorTable":4,"./modal.js":5,"./navTab.js":6,"./user.js":7}],4:[function(require,module,exports){
+},{"./avatar.js":1,"./errorCanvas.js":2,"./graColorTable":4,"./menu.js":5,"./modal.js":6,"./navTab.js":7,"./user.js":8}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -344,6 +346,67 @@ var graColorTable = exports.graColorTable = function graColorTable(colorList) {
   }
 };
 },{}],5:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var menu = exports.menu = function () {
+	function menu(element, target) {
+		_classCallCheck(this, menu);
+
+		this.$element = element;
+		this.$target = target;
+		this.timer;
+		this.init();
+		this.regi();
+	}
+
+	//find position
+
+
+	_createClass(menu, [{
+		key: "init",
+		value: function init() {
+			var x = this.$element.get(0).getBoundingClientRect().left + document.documentElement.scrollLeft;
+			var y = this.$element.get(0).getBoundingClientRect().top + document.documentElement.scrollTop;
+
+			y = y + parseInt(this.$element.css("height").replace("px", "")) + 10;
+			this.$target.css("left", x);
+			this.$target.css("top", y);
+		}
+
+		//register event
+
+	}, {
+		key: "regi",
+		value: function regi() {
+			this.$target.css("display", "none");
+			this.$element.on('mouseenter', this, function (e) {
+				e.data.$target.css("display", "block");
+			});
+			this.$element.on('mouseleave', this, function (e) {
+				e.data.timer = setTimeout(function () {
+					e.data.$target.css("display", "none");
+				}, 100);
+				e.data.$target.one('mouseenter', e.data, function (e) {
+					clearTimeout(e.data.timer);
+				});
+			});
+			this.$target.on('mouseleave', this, function (e) {
+				e.data.$target.css("display", "none");
+			});
+		}
+	}]);
+
+	return menu;
+}();
+},{}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -404,7 +467,7 @@ var modal = exports.modal = function () {
 
     return modal;
 }();
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -451,7 +514,7 @@ var navTabBtnGroup = exports.navTabBtnGroup = function () {
 
 	return navTabBtnGroup;
 }();
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

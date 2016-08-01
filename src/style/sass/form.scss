@@ -78,7 +78,7 @@ $piFormSep:0.05rem;
 .piFormTextInput{
 	display:inline-block;
 	height:$piFormEleHeight - 0.03rem;
-	width:1.5rem;
+	min-width:1.5rem;
 	box-sizing:border-box;
 	margin:0px;
 	background-color:#fcfcfc;
@@ -90,9 +90,29 @@ $piFormSep:0.05rem;
 }
 
 
+.piFormTextareaRow{
+	@extend .piFormRow;
+	height:$piFormEleHeight * 4;
+}
+.piFormTextarea{
+	height:4 * $piFormRowHeight;
+	width:98%;
+	min-width:1.5rem;
+	box-sizing:border-box;
+	margin:0px;
+	background-color:#fcfcfc;
+	margin-left: $piFormSep;
+    margin-right: $piFormSep;
+    resize: none;
+    outline: none;
+}
+
+
 .pullright{
 	float:right;
 }
 .center{
 	text-align:center;
+	width:100%;
+	margin:0rem;
 }

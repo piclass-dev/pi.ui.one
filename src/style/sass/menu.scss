@@ -4,7 +4,7 @@
 	// position:fixed;
 	position:absolute;
 	top:1rem;
-		width:1.5rem;
+	width:1.5rem;
 	border-radius:0.05rem;
 	padding-top:0.025rem;
 	padding-bottom:0.025rem;
@@ -37,7 +37,7 @@
 				color: #000;
 
 				&:hover{
-					background-color:#fff;
+					background-color:$UIsuperlight;
 				}
 				&:active{
 					background-color:$UIline;
@@ -45,7 +45,21 @@
 			}
 		}
 	}
+
+    &:before{
+    	content:'';
+    	clear: both;
+    	display: block;
+    	height: 0.1rem;
+    	width:1.5rem;
+    	background-color:rgba(0,0,0,0);
+    	position:absolute;
+    	top:-0.1rem;
+
+    }
 }
+
+
 .menuHr{
 
 }
