@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../static/js/jquery-3.1.0.js"></script>
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<body>
+
+<nav class="piTopNavMain">
+    <div class="piTopNavLogo"></div>
+	<ul>
+		<li><a href="#">作业</a></li>
+		<li><a href="#" class="current">点名</a></li>
+		<li><a href="#">文件</a></li>
+		<li><a href="#">留言</a></li>
+
+		<canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="teacher" data-au="menu" data-target="#navMenu"></canvas>
+	</ul>
+</nav>
+<div style="height:100px"></div>
+
+<div class="block">
+	<div class="row">
+		<div class="b6">
+			<div class="piPanel">
+				<div class="piFormRowHead">
+					<span class="piFormText">点名记录</span>
+				</div>
+					<div class="piCountContainer" data-target="#dropdown">
+					</div>
+			</div>
+		</div>
+		<div class="b6">
+		    <div class="piPanel" id="newCount">
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow">
+		    	<div class="row">
+		    		<div class="b3"></div>
+		    		<div class="b6"><button class="piFormBtn btn-fuildAll" id="switcher">发起一次新的点名</button></div>
+		    		<div class="b3"></div>
+		    	</div>
+		    </div>
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow"></div>
+		    <div class="piFormClearRow"></div>
+		    </div>
+			<form class="piPanel" id="countInfo" style="display:none">
+				<div class="piFormRowHead">
+				 <span class="piFormText">点名信息填写</span>
+				 <button class="piFormBtn pullright btn-warning" id="abortCount">放弃</button>
+				 <button class="piFormBtn pullright btn-warning" id="renewCount">重置</button>
+				</div>
+
+				<div class="piFormRow">
+					<span class="piFormText ">点名日期</span>
+					<input type="date" name="" class="piFormTextInput" 
+					id="countTime">
+					<span class="piFormText ">默认不填为今日</span>
+				</div>
+				<div class="piFormRow">
+					<span class="piFormText " >点名地点</span>
+					<input type="text" name="" placeholder="默认不填为本课程默认" id="countPlace" class="piFormTextInput">
+				</div>
+				<div class="piFormTextareaRow">
+					<span class="piFormText " >备注信息</span>
+					<textarea class="piFormTextarea" id="countText"></textarea>
+				</div>
+		        <div class="piFormClearRow"></div>
+				<div class="piFormRow">
+				    <div class="row">
+				    	<div class="b4"></div>
+				    	<div class="b4"><input type="submit" class="piFormBtn btn-pri btn-fuildAll" value="开始点名"></div>
+				    	<div class="b4"></div>
+				    </div>
+				</div>
+				<div class="piFormRow"></div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div style="height:0.5rem;"></div>
+<hr class="fullSep">
+
+<div class="block">
+	<div class="row">
+		<div class="b12">
+			<div class="bulletinMain">
+			<p style="width:100%;color:#888">文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明</p>
+			</div>		
+		</div>
+	</div>
+</div>
+
+<hr class="fullSep">
+<div style="height:0.5rem;"></div>
+
+
+<footer class="piFooterE">
+	<div></div>
+	<div></div>
+	<p>PICLASS 2016</p>
+</footer>
+
+<div class="countDropdown" id="dropdown">
+	<div class="piFormRow">
+		<span class="piFormText" id="time">点名日期：20161212</span>
+	</div>
+	<div class="piFormRow">
+		<span class="piFormText" id="presentRatio">出席率：93%</span>
+	</div>
+	<div class="piFormRow">
+		<span class="piFormText" id="present">出席情况：93/100</span>
+	</div>
+	<div class="piFormRow">
+		<div class="row">
+		    <div class="b1"></div>
+			<div class="b10"><button class="piFormBtn btn-fuildAll">手工修改／查看详情</button></div>
+		    <div class="b1"></div>
+		</div>
+	</div>
+	<div class="piFormRow">
+		<div class="row">
+		    <div class="b1"></div>
+			<div class="b5"><button class="piFormBtn btn-fuildAll btn-pri">继续点名</button></div>
+			<div class="b5"><button class="piFormBtn btn-fuildAll btn-warning">删除记录</button></div>
+			<div class="b1"></div>
+		</div>
+	</div>
+	<div class="piFormTextareaRow" >
+		<div class="piFormTextarea" id="notice">asd faks dfhkasd bfkasd fh a shd fuahs dfiuh asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd fasd faks dfhkasd bfkasd f</div>
+	</div>
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="../static/js/main.js"></script>
+</html>

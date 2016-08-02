@@ -677,7 +677,7 @@ body {
 
 .cardMain {
   width: 100%;
-  height: 1rem;
+  min-height: 1rem;
   margin-bottom: 0.1rem;
 }
 
@@ -686,7 +686,7 @@ body {
   margin-bottom: 0.1rem;
 }
 
-.piFormRow, .piFormRowHead, .piFormTextareaRow {
+.piFormRow, .piFormClearRow, .piFormRowHead, .piFormTextareaRow {
   width: 100%;
   height: 0.45rem;
   font-size: 0.2rem;
@@ -696,8 +696,12 @@ body {
   padding-bottom: 0.05rem;
   overflow: hidden;
 }
-.piFormRow:first-child, .piFormRowHead:first-child, .piFormTextareaRow:first-child {
+.piFormRow:first-child, .piFormClearRow:first-child, .piFormRowHead:first-child, .piFormTextareaRow:first-child {
   border: none;
+}
+
+.piFormClearRow {
+  border: 0rem;
 }
 
 .piFormRowHead {
@@ -740,29 +744,31 @@ body {
   height: 0.32rem;
   min-width: 1.5rem;
   box-sizing: border-box;
-  margin: 0px;
+  margin: 0rem;
   background-color: #fcfcfc;
   outline: none;
-  border: 0px;
+  border: 0rem;
   border-bottom: 0.02rem solid #c4c4c4;
   padding-left: 0.1rem;
 }
 
 .piFormTextareaRow {
-  height: 1.4rem;
+  height: 1.75rem;
 }
 
 .piFormTextarea {
   height: 1.8rem;
   width: 98%;
-  min-width: 1.5rem;
   box-sizing: border-box;
-  margin: 0px;
+  margin: 0rem;
   background-color: #fcfcfc;
   margin-left: 0.05rem;
   margin-right: 0.05rem;
   resize: none;
   outline: none;
+  border: 0rem;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .pullright {
@@ -775,7 +781,12 @@ body {
   margin: 0rem;
 }
 
+.piFormEleFuildAll {
+  width: 100%;
+}
+
 .piTopNavBase, .piTopNavMain {
+  z-index: 9999;
   position: fixed;
   height: 0.5rem;
   width: 100%;
@@ -1163,21 +1174,29 @@ body {
   color: #ff6f62;
 }
 
-.piCourseContainer {
+.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer {
   width: 100%;
-  height: 3.1rem;
   overflow: scroll;
   overflow-x: hidden;
+}
+
+.piCourseContainer {
+  height: 3.1rem;
   margin: auto;
   border-top: solid 0.01rem #ebebeb;
 }
 
 .piFileContainer {
-  width: 100%;
   margin: 0rem;
   padding: 0.05rem;
-  overflow: scroll;
-  overflow-x: hidden;
+  border-right: solid 0.01rem #ebebeb;
+  border-top: solid 0.01rem #ebebeb;
+  height: 4.6rem;
+}
+
+.piCountContainer {
+  margin: 0rem;
+  padding: 0.05rem;
   border-right: solid 0.01rem #ebebeb;
   border-top: solid 0.01rem #ebebeb;
   height: 4.6rem;
@@ -1193,6 +1212,19 @@ body {
   left: 1rem;
   width: 500px;
   height: 200px;
+  z-index: 999;
+  opacity: 0;
+}
+
+.piModalBack {
+  display: block;
+  width: 20rem;
+  height: 20rem;
+  background-color: black;
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  opacity: 0;
 }
 
 .piNameCard {
@@ -1523,4 +1555,79 @@ body {
   background-color: transparent;
   position: absolute;
   top: -0.1rem;
+}
+
+.piQrcode {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  margin: auto;
+}
+
+.countBlock {
+  display: block;
+  float: left;
+  font-size: 0.2rem;
+  margin: 0.10rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: #FFFFFF;
+  border: 1px solid #a7dd7f;
+  outline: none;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.22), inset 0px -2px 3px 0px #5b557a;
+  border-radius: 10px;
+}
+.countBlock:hover {
+  background: #ebebeb;
+  border: 1px solid #5b557a;
+  box-shadow: inset 0px 0px 11px 0px #FFFFFF;
+  border-radius: 10px;
+}
+.countBlock:active {
+  background: #5b557a;
+  border: 1px solid #5b557a;
+  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: #fff;
+}
+
+.countDropdown {
+  display: none;
+  width: 2.5rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border-radius: 0.1rem;
+  background: #FFFFFF;
+  border-box: box-sizing;
+  box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
+  padding-left: 0.05rem;
+  padding-right: 0.05rem;
+}
+
+.btn-pri {
+  border-color: #5b557a;
+  color: #5b557a;
+}
+.btn-pri:hover {
+  border-color: #5b557a;
+}
+.btn-pri:active {
+  border-color: #5b557a;
+}
+
+.btn-warning {
+  border-color: #ff6f62;
+  color: #ff6f62;
+}
+.btn-warning:hover {
+  border-color: #ff6f62;
+}
+.btn-warning:active {
+  border-color: #ff6f62;
+  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(255, 111, 98, 0.5);
+}
+
+.btn-fuildAll {
+  width: 100%;
 }

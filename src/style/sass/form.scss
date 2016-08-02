@@ -18,7 +18,6 @@ $piFormSep:0.05rem;
 
 	box-sizing:border-box;
 	border-top:0.01rem solid $UIline;
-	//border-bottom:1px solid $UIline;
     padding-top: ($piFormRowHeight - $piFormEleHeight) / 2;
     padding-bottom: ($piFormRowHeight - $piFormEleHeight) / 2;
 
@@ -26,6 +25,11 @@ $piFormSep:0.05rem;
     &:first-child{
         border:none;
     }
+}
+
+.piFormClearRow{
+    @extend .piFormRow;
+	border:0rem;
 }
 
 .piFormRowHead{
@@ -80,11 +84,11 @@ $piFormSep:0.05rem;
 	height:$piFormEleHeight - 0.03rem;
 	min-width:1.5rem;
 	box-sizing:border-box;
-	margin:0px;
+	margin:0rem;
 	background-color:#fcfcfc;
 	//border-radius:$piFormEleCorner;
 	outline:none;
-	border:0px;
+	border:0rem;
 	border-bottom:0.02rem solid $UIborder;
 	padding-left:$piFormSep * 2;
 }
@@ -92,19 +96,22 @@ $piFormSep:0.05rem;
 
 .piFormTextareaRow{
 	@extend .piFormRow;
-	height:$piFormEleHeight * 4;
+	height:$piFormEleHeight * 5;
 }
 .piFormTextarea{
 	height:4 * $piFormRowHeight;
 	width:98%;
-	min-width:1.5rem;
 	box-sizing:border-box;
-	margin:0px;
+	margin:0rem;
 	background-color:#fcfcfc;
 	margin-left: $piFormSep;
     margin-right: $piFormSep;
     resize: none;
     outline: none;
+    border:0rem;
+
+	overflow:scroll;
+	overflow-x:hidden;
 }
 
 
@@ -115,4 +122,8 @@ $piFormSep:0.05rem;
 	text-align:center;
 	width:100%;
 	margin:0rem;
+}
+
+.piFormEleFuildAll{
+	width:100%;
 }

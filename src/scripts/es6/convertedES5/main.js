@@ -12,57 +12,91 @@ var _errorCanvas = require('./errorCanvas.js');
 
 var _menu = require('./menu.js');
 
+var _patch = require('./patch.js');
+
+var _patch2 = _interopRequireDefault(_patch);
+
+var _countContainer = require('./countContainer.js');
+
 var _graColorTable = require('./graColorTable');
 
-//create colorTable
-var colorList = new Array();
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
-// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
-// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
-var mainGra = new _graColorTable.graColorTable(colorList);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//create avatar obj
-$('[data-toggle="avatar"]').each(function () {
-	var $this = $(this);
-	var name = $this.attr('data-src');
-	var type = $this.attr('data-srcType');
-	var user = new _user.User(name, type);
-	$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra));
-});
+//rem calculate
+function setRem() {
+	var width = document.body.clientWidth;
+	var ratio = width / 12.8;
+	var fontSize = ratio + "px";
+	if (width <= 1280) {
+		$('html').css("font-size", "100px");
+	} else {
+		$('html').css("font-size", fontSize);
+	}
+}
 
-// create modal object
-$('[data-toggle="modal"]').each(function () {
-	var $this = $(this);
-	var $target = $($this.attr('data-target'));
-	var $deleteTarget = $target.find('[data-dismiss="modal"]');
-	$this.data("pi.modal", new _modal.modal($this, $target, $deleteTarget));
-});
+function main() {
 
-//creat nav0tab obj
-$('[data-toggle="piNavBtnGroup"]').each(function () {
-	var $this = $(this);
-	var $buttonList = $this.find('*');
-	var $active = $this.find('.piBtnGroupActive');
-	var $MatchList = new Array();
-	$buttonList.each(function () {
-		var $Match = { "button": $(this),
-			"target": $($(this).attr('data-target')) };
-		$MatchList.push($Match);
+	setRem();
+	(0, _patch2.default)();
+
+	//create colorTable
+	var colorList = new Array();
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
+	// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
+	// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
+	var mainGra = new _graColorTable.graColorTable(colorList);
+
+	//create avatar obj
+	$('[data-toggle="avatar"]').each(function () {
+		var $this = $(this);
+		var name = $this.attr('data-src');
+		var type = $this.attr('data-srcType');
+		var user = new _user.User(name, type);
+		$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra));
 	});
-	$this.data("pi-navTabBtnGroup", new _navTab.navTabBtnGroup($this, $MatchList, $active));
-});
 
-//create menu obj
-$('[data-au="menu"]').each(function () {
-	var $this = $(this);
-	var $target = $($this.attr('data-target'));
-	$this.data("pi.menu", new _menu.menu($this, $target));
-});
+	// create modal object
+	$('[data-toggle="modal"]').each(function () {
+		var $this = $(this);
+		var $target = $($this.attr('data-target'));
+		var $deleteTarget = $target.find('[data-dismiss="modal"]');
+		$this.data("pi.modal", new _modal.modal($this, $target, $deleteTarget));
+	});
 
+	//creat nav0tab obj
+	$('[data-toggle="piNavBtnGroup"]').each(function () {
+		var $this = $(this);
+		var $buttonList = $this.find('*');
+		var $active = $this.find('.piBtnGroupActive');
+		var $MatchList = new Array();
+		$buttonList.each(function () {
+			var $Match = { "button": $(this),
+				"target": $($(this).attr('data-target')) };
+			$MatchList.push($Match);
+		});
+		$this.data("pi-navTabBtnGroup", new _navTab.navTabBtnGroup($this, $MatchList, $active));
+	});
+
+	//create menu obj
+	$('[data-au="menu"]').each(function () {
+		var $this = $(this);
+		var $target = $($this.attr('data-target'));
+		$this.data("pi.menu", new _menu.menu($this, $target));
+	});
+
+	//create countContainer
+	$('[class="piCountContainer"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		$this.data("pi.countContainer", new _countContainer.countContainer($this, $hover));
+	});
+};
+$(document).ready(main);
+window.onresize = setRem;
 // //create errorcanvas
 // $('[class="pi404canvas"]').each(function(){
 // 	var $this   = $(this);

@@ -9,7 +9,7 @@
 .cardMain{
     @extend .cardBase;
 	width:100%;
-	height:1rem;
+	min-height:1rem;
 	margin-bottom:$gutter;
 
 }

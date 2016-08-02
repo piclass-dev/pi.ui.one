@@ -1,0 +1,14 @@
+.countDropdown{
+	display:none;
+	width:2.5rem;
+	position:absolute;
+	top:1rem;
+	left:1rem;
+	border-radius:0.1rem;
+	background: #FFFFFF;
+	border-box:box-sizing;
+	box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0,0,0,0.50);
+    
+	padding-left:$gutter/2;
+	padding-right:$gutter/2;
+}

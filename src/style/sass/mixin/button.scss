@@ -1,0 +1,38 @@
+
+.btn-pri{
+	border-color: $UIpurple;
+    color:$UIpurple;
+    &:hover{
+    	border-color:$UIpurple;
+    }
+    &:active{
+    	border-color:$UIpurple;
+    	//box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(255,111,98,0.50);
+    }
+}
+
+.btn-warning{
+    border-color: $UIorange;
+    color:$UIorange;
+    &:hover{
+    	border-color:$UIorange;
+    }
+    &:active{
+    	border-color:$UIorange;
+    	box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(255,111,98,0.50);
+    }
+}
+
+.btn-danger{
+
+}
+
+.btn-danger{
+
+}
+
+
+//配合栅格单行全局居中
+.btn-fuildAll{
+    width:100%;
+}

@@ -4,8 +4,28 @@
  import {navTabBtnGroup} from './navTab.js'
  import {errorCanvas} from './errorCanvas.js'
  import {menu} from './menu.js'
-import {colorMatch,rgbColor,graColorTable} from "./graColorTable";
+ import patchAll from './patch.js'
+ import {countContainer} from './countContainer.js'
+ import {colorMatch,rgbColor,graColorTable} from "./graColorTable";
 
+//rem calculate
+function setRem(){
+	var width=document.body.clientWidth;
+	var ratio=width/12.8
+	var fontSize=ratio+"px";
+	if(width<=1280){
+		$('html').css("font-size","100px");
+	}else{
+		$('html').css("font-size",fontSize);
+	}
+
+}
+
+
+function main(){
+
+setRem();
+patchAll();
 
 //create colorTable
 var colorList= new Array();
@@ -58,8 +78,16 @@ $('[data-au="menu"]').each(function(){
     $this.data("pi.menu",new menu($this,$target));
 })
 
+//create countContainer
+$('[class="piCountContainer"]').each(function(){
+	var $this=$(this);
+	var $hover=$($this.attr('data-target'));
+	$this.data("pi.countContainer",new countContainer($this,$hover));
+})
 
-
+};
+$(document).ready(main);
+window.onresize=setRem;
 // //create errorcanvas
 // $('[class="pi404canvas"]').each(function(){
 // 	var $this   = $(this);

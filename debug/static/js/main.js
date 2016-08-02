@@ -75,7 +75,87 @@ var avatar = exports.avatar = function () {
 
 	return avatar;
 }();
-},{"./graColorTable":4,"./user":8}],2:[function(require,module,exports){
+},{"./graColorTable":5,"./user":10}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var count = exports.count = function count(time, all, present, notice, id) {
+	_classCallCheck(this, count);
+
+	this.time = time;
+	this.all = all;
+	this.present = present;
+	this.notice = notice;
+	this.id = id;
+};
+
+var countContainer = exports.countContainer = function () {
+	function countContainer(element, hover) {
+		_classCallCheck(this, countContainer);
+
+		var self = this;
+		this.$element = element;
+		this.$hover = hover;
+		this.left;
+		this.top;
+		this.counts = new Array();
+		$.getJSON("http://django.piclass.cn/test", function (data) {
+			for (var i = 0; i <= data.info.length - 1; i++) {
+				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id);
+				self.counts.push(countt);
+			}
+			self.addBlock();
+			self.regi();
+		});
+	}
+
+	_createClass(countContainer, [{
+		key: 'addBlock',
+		value: function addBlock() {
+			this.counts.forEach(function (count) {
+				this.$element.append('<button class="countBlock">' + count.id + '</button>');
+			}, this);
+		}
+	}, {
+		key: 'regi',
+		value: function regi() {
+			var self = this;
+			$('[class="countBlock"]').each(function (i, block) {
+				$(block).data("pi.countBlock", self.counts[i]);
+				// var x=self.counts[i].getBoundingClientRect().left+document.documentElement.scrollLeft;
+				// var y=self.counts[i].getBoundingClientRect().top+document.documentElement.scrollTop;
+				// y=y+parseInt(self.counts[i].css("height").replace("px",""))+10;
+				$(block).on('mouseenter', self, function (e) {
+					var x = this.getBoundingClientRect().left + document.documentElement.scrollLeft;
+					var y = this.getBoundingClientRect().top + document.documentElement.scrollTop;
+					y = y + parseInt($(this).css("height").replace("px", "")) + 10 + document.body.scrollTop;
+
+					e.data.$hover.css("left", x);
+					e.data.$hover.css("top", y);
+					var c = $(this).data("pi.countBlock");
+					e.data.$hover.find('#time').html("点名日期：" + c.time);
+					e.data.$hover.find('#presentRatio').html("出席率：" + c.present / c.all);
+					e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
+					e.data.$hover.find('#notice').html(c.notice);
+					e.data.$hover.css("display", "block");
+				});
+				$(block).on('mouseleave', self, function (e) {
+					e.data.$hover.css("display", "none");
+				});
+			});
+		}
+	}]);
+
+	return countContainer;
+}();
+},{}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -236,7 +316,7 @@ var errorCanvas = exports.errorCanvas = function () {
 
     return errorCanvas;
 }();
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var _avatar = require('./avatar.js');
@@ -251,63 +331,97 @@ var _errorCanvas = require('./errorCanvas.js');
 
 var _menu = require('./menu.js');
 
+var _patch = require('./patch.js');
+
+var _patch2 = _interopRequireDefault(_patch);
+
+var _countContainer = require('./countContainer.js');
+
 var _graColorTable = require('./graColorTable');
 
-//create colorTable
-var colorList = new Array();
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
-colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
-// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
-// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
-var mainGra = new _graColorTable.graColorTable(colorList);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//create avatar obj
-$('[data-toggle="avatar"]').each(function () {
-	var $this = $(this);
-	var name = $this.attr('data-src');
-	var type = $this.attr('data-srcType');
-	var user = new _user.User(name, type);
-	$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra));
-});
+//rem calculate
+function setRem() {
+	var width = document.body.clientWidth;
+	var ratio = width / 12.8;
+	var fontSize = ratio + "px";
+	if (width <= 1280) {
+		$('html').css("font-size", "100px");
+	} else {
+		$('html').css("font-size", fontSize);
+	}
+}
 
-// create modal object
-$('[data-toggle="modal"]').each(function () {
-	var $this = $(this);
-	var $target = $($this.attr('data-target'));
-	var $deleteTarget = $target.find('[data-dismiss="modal"]');
-	$this.data("pi.modal", new _modal.modal($this, $target, $deleteTarget));
-});
+function main() {
 
-//creat nav0tab obj
-$('[data-toggle="piNavBtnGroup"]').each(function () {
-	var $this = $(this);
-	var $buttonList = $this.find('*');
-	var $active = $this.find('.piBtnGroupActive');
-	var $MatchList = new Array();
-	$buttonList.each(function () {
-		var $Match = { "button": $(this),
-			"target": $($(this).attr('data-target')) };
-		$MatchList.push($Match);
+	setRem();
+	(0, _patch2.default)();
+
+	//create colorTable
+	var colorList = new Array();
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
+	// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
+	// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
+	var mainGra = new _graColorTable.graColorTable(colorList);
+
+	//create avatar obj
+	$('[data-toggle="avatar"]').each(function () {
+		var $this = $(this);
+		var name = $this.attr('data-src');
+		var type = $this.attr('data-srcType');
+		var user = new _user.User(name, type);
+		$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra));
 	});
-	$this.data("pi-navTabBtnGroup", new _navTab.navTabBtnGroup($this, $MatchList, $active));
-});
 
-//create menu obj
-$('[data-au="menu"]').each(function () {
-	var $this = $(this);
-	var $target = $($this.attr('data-target'));
-	$this.data("pi.menu", new _menu.menu($this, $target));
-});
+	// create modal object
+	$('[data-toggle="modal"]').each(function () {
+		var $this = $(this);
+		var $target = $($this.attr('data-target'));
+		var $deleteTarget = $target.find('[data-dismiss="modal"]');
+		$this.data("pi.modal", new _modal.modal($this, $target, $deleteTarget));
+	});
 
+	//creat nav0tab obj
+	$('[data-toggle="piNavBtnGroup"]').each(function () {
+		var $this = $(this);
+		var $buttonList = $this.find('*');
+		var $active = $this.find('.piBtnGroupActive');
+		var $MatchList = new Array();
+		$buttonList.each(function () {
+			var $Match = { "button": $(this),
+				"target": $($(this).attr('data-target')) };
+			$MatchList.push($Match);
+		});
+		$this.data("pi-navTabBtnGroup", new _navTab.navTabBtnGroup($this, $MatchList, $active));
+	});
+
+	//create menu obj
+	$('[data-au="menu"]').each(function () {
+		var $this = $(this);
+		var $target = $($this.attr('data-target'));
+		$this.data("pi.menu", new _menu.menu($this, $target));
+	});
+
+	//create countContainer
+	$('[class="piCountContainer"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		$this.data("pi.countContainer", new _countContainer.countContainer($this, $hover));
+	});
+};
+$(document).ready(main);
+window.onresize = setRem;
 // //create errorcanvas
 // $('[class="pi404canvas"]').each(function(){
 // 	var $this   = $(this);
 // 	$this.data("pi.404canvas",new errorCanvas($this));
 // })
-},{"./avatar.js":1,"./errorCanvas.js":2,"./graColorTable":4,"./menu.js":5,"./modal.js":6,"./navTab.js":7,"./user.js":8}],4:[function(require,module,exports){
+},{"./avatar.js":1,"./countContainer.js":2,"./errorCanvas.js":3,"./graColorTable":5,"./menu.js":6,"./modal.js":7,"./navTab.js":8,"./patch.js":9,"./user.js":10}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -345,7 +459,7 @@ var graColorTable = exports.graColorTable = function graColorTable(colorList) {
     }
   }
 };
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -406,8 +520,8 @@ var menu = exports.menu = function () {
 
 	return menu;
 }();
-},{}],6:[function(require,module,exports){
-'use strict';
+},{}],7:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -430,21 +544,46 @@ var modal = exports.modal = function () {
         this.$target = target;
         //modal close button
         this.$deleteTarget = deleteTarget;
+
+        //about size and position
+        this.modalWidth = parseInt(this.$target.css("width").replace("px", ""));
+        this.modalHeight = parseInt(this.$target.css("height").replace("px", ""));
+
         this.regi();
     }
 
+    //prepare style
+
+
     _createClass(modal, [{
-        key: 'show',
+        key: "stylePerpare",
+        value: function stylePerpare() {
+            this.$target.css("position", "fixed");
+        }
+    }, {
+        key: "show",
         value: function show() {
             this.$target.css('display', 'block');
+            this.$target.after('<div class="piModalBack"></div>');
+            $('[class="piModalBack"]').one('click', this, function (e) {
+                e.data.hide();
+            });
+            $('[class="piModalBack"]').animate({
+                opacity: "0.3"
+            }, 200, 'swing');
+            this.$target.animate({
+                opacity: "1",
+                top: "+=1rem"
+            }, 400);
         }
     }, {
-        key: 'hide',
+        key: "hide",
         value: function hide() {
             this.$target.css('display', 'none');
+            $('[class="piModalBack"]').remove();
         }
     }, {
-        key: 'regi',
+        key: "regi",
         value: function regi() {
 
             this.$element.on('click', this, function (e) {
@@ -454,20 +593,12 @@ var modal = exports.modal = function () {
             this.$deleteTarget.on('click', this, function (e) {
                 e.data.hide();
             });
-
-            // //save the modal button position
-            // this.$deleteTarget.data("pi.modalMother",this.$element);
-
-            // this.$deleteTarget.on('click.pi.modal',function(e){
-            //     var m=$($(this).data("pi.modalMother")).data("pi.modal");
-            //     m.hide();
-            // });
         }
     }]);
 
     return modal;
 }();
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -514,7 +645,29 @@ var navTabBtnGroup = exports.navTabBtnGroup = function () {
 
 	return navTabBtnGroup;
 }();
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = patchAll;
+function patchAll() {
+    $("#switcher").on('click', function () {
+        $("#newCount").css("display", "none");
+        $("#countInfo").css("display", "block");
+    });
+    $("#abortCount").on('click', function () {
+        $("#newCount").css("display", "block");
+        $("#countInfo").css("display", "none");
+    });
+    $("#renewCount").on('click', function () {
+        $("#countPlace").val("");
+        $("#countTime").val("");
+        $("#countText").val("");
+    });
+}
+},{}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -744,4 +897,4 @@ var User = exports.User = function () {
 
 	return User;
 }();
-},{}]},{},[3])
+},{}]},{},[4])

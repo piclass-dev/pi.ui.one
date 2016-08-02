@@ -1,18 +1,31 @@
-.piCourseContainer{
+
+.piContiner{
 	width:100%;
-	height:3.1rem;
 	overflow:scroll;
 	overflow-x:hidden;
+
+}
+
+.piCourseContainer{
+	@extend .piContiner;
+	height:3.1rem;
 	margin:auto;
 	border-top:solid 0.01rem $UIline;
 }
 
 .piFileContainer{
-	width:100%;
+	@extend .piContiner;
 	margin:0rem;
 	padding:0.05rem;
-	overflow:scroll;
-	overflow-x:hidden;
+	border-right:solid 0.01rem $UIline;
+	border-top:solid 0.01rem $UIline;
+	height:4.6rem;
+}
+
+.piCountContainer{
+	@extend .piContiner;
+	margin:0rem;
+	padding:0.05rem;
 	border-right:solid 0.01rem $UIline;
 	border-top:solid 0.01rem $UIline;
 	height:4.6rem;
