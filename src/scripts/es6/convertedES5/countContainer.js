@@ -27,6 +27,7 @@ var countContainer = exports.countContainer = function () {
 		this.$hover = hover;
 		this.left;
 		this.top;
+		this.timer;
 		this.counts = new Array();
 		$.getJSON("http://django.piclass.cn/test", function (data) {
 			for (var i = 0; i <= data.info.length - 1; i++) {
@@ -49,19 +50,25 @@ var countContainer = exports.countContainer = function () {
 		key: 'regi',
 		value: function regi() {
 			var self = this;
+			this.$hover.on('mouseleave', this, function (e) {
+				e.data.$hover.css("display", "none");
+			});
 			$('[class="countBlock"]').each(function (i, block) {
+
 				$(block).data("pi.countBlock", self.counts[i]);
-				// var x=self.counts[i].getBoundingClientRect().left+document.documentElement.scrollLeft;
-				// var y=self.counts[i].getBoundingClientRect().top+document.documentElement.scrollTop;
-				// y=y+parseInt(self.counts[i].css("height").replace("px",""))+10;
+
 				$(block).on('mouseenter', self, function (e) {
+					clearTimeout(e.data.timer);
+
 					var x = this.getBoundingClientRect().left + document.documentElement.scrollLeft;
 					var y = this.getBoundingClientRect().top + document.documentElement.scrollTop;
 					y = y + parseInt($(this).css("height").replace("px", "")) + 10 + document.body.scrollTop;
 
 					e.data.$hover.css("left", x);
 					e.data.$hover.css("top", y);
+
 					var c = $(this).data("pi.countBlock");
+
 					e.data.$hover.find('#time').html("点名日期：" + c.time);
 					e.data.$hover.find('#presentRatio').html("出席率：" + c.present / c.all);
 					e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
@@ -69,7 +76,13 @@ var countContainer = exports.countContainer = function () {
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {
-					e.data.$hover.css("display", "none");
+					//	e.data.$hover.css("display","none");
+					e.data.timer = setTimeout(function () {
+						e.data.$hover.css("display", "none");
+					}, 100);
+					e.data.$hover.one('mouseenter', e.data, function (e) {
+						clearTimeout(e.data.timer);
+					});
 				});
 			});
 		}

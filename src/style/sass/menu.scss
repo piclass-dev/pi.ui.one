@@ -4,7 +4,7 @@
 	// position:fixed;
 	position:absolute;
 	top:1rem;
-	width:1.5rem;
+	width:2rem;
 	border-radius:0.05rem;
 	padding-top:0.025rem;
 	padding-bottom:0.025rem;
@@ -42,6 +42,16 @@
 				&:active{
 					background-color:$UIline;
 				}
+			}
+			>span{
+				display: block;
+				border-radius:0.05rem;
+				height:100%;
+				line-height: 0.35rem;
+				text-decoration:none;
+				text-align: center;
+				color: $UIgrey;
+				overflow: hidden;
 			}
 		}
 	}

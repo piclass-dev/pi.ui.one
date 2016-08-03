@@ -25,10 +25,11 @@ var menu = exports.menu = function () {
 	_createClass(menu, [{
 		key: "init",
 		value: function init() {
-			var x = this.$element.get(0).getBoundingClientRect().left + document.documentElement.scrollLeft;
-			var y = this.$element.get(0).getBoundingClientRect().top + document.documentElement.scrollTop;
+			var x = this.$element.get(0).getBoundingClientRect().right + document.documentElement.scrollLeft;
+			var y = this.$element.get(0).getBoundingClientRect().bottom + document.documentElement.scrollTop;
 
-			y = y + parseInt(this.$element.css("height").replace("px", "")) + 10;
+			y = y + 10;
+			x = x - parseInt(this.$target.css("width").replace("px", ""));
 			this.$target.css("left", x);
 			this.$target.css("top", y);
 		}
@@ -40,6 +41,7 @@ var menu = exports.menu = function () {
 		value: function regi() {
 			this.$target.css("display", "none");
 			this.$element.on('mouseenter', this, function (e) {
+				e.data.init();
 				e.data.$target.css("display", "block");
 			});
 			this.$element.on('mouseleave', this, function (e) {

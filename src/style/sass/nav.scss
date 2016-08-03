@@ -8,6 +8,15 @@
 	>ul{
 		width:9.0rem;
 		margin:auto;
+		>span{
+		font-size: 0.2rem;
+		color:$UIborder;
+		display: block;
+		float:right;
+		height:0.5rem;
+		line-height: 0.5rem;
+		margin-right: 0.2rem;
+		}
 		>li{
 			list-style: none;
 			font-size: 0.2rem;

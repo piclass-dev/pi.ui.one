@@ -410,37 +410,6 @@ body {
   background-size: 1rem 1rem;
 }
 
-::selection {
-  color: #FFFFFF;
-  background-color: #5b557a;
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* 这是针对缺省样式 (必须的) */
-::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
-}
-
-/* 滚动条的滑轨背景颜色 */
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 10rem;
-}
-
-/* 滑块颜色 */
-::-webkit-scrollbar-button {
-  background-color: #7c2929;
-}
-
-/* 滑轨两头的监听按钮颜色 */
-::-webkit-scrollbar-corner {
-  background-color: black;
-}
-
-/* 横向滚动条和纵向滚动条相交处尖角的颜色 */
 .piButton, .piNavBtnGroup > button, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button {
   border: 0.01rem solid #c4c4c4;
   background-color: #fff;
@@ -796,6 +765,15 @@ body {
 .piTopNavBase > ul, .piTopNavMain > ul {
   width: 9.0rem;
   margin: auto;
+}
+.piTopNavBase > ul > span, .piTopNavMain > ul > span {
+  font-size: 0.2rem;
+  color: #c4c4c4;
+  display: block;
+  float: right;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  margin-right: 0.2rem;
 }
 .piTopNavBase > ul > li, .piTopNavMain > ul > li {
   list-style: none;
@@ -1507,7 +1485,7 @@ body {
   background-color: rgba(255, 255, 255, 0.95);
   position: absolute;
   top: 1rem;
-  width: 1.5rem;
+  width: 2rem;
   border-radius: 0.05rem;
   padding-top: 0.025rem;
   padding-bottom: 0.025rem;
@@ -1545,6 +1523,16 @@ body {
 }
 .menuBody > ul > li > a:active {
   background-color: #ebebeb;
+}
+.menuBody > ul > li > span {
+  display: block;
+  border-radius: 0.05rem;
+  height: 100%;
+  line-height: 0.35rem;
+  text-decoration: none;
+  text-align: center;
+  color: #818181;
+  overflow: hidden;
 }
 .menuBody:before {
   content: '';
@@ -1605,6 +1593,23 @@ body {
   padding-right: 0.05rem;
 }
 
+.piTable {
+  width: 100%;
+  font-size: 0.2rem;
+}
+.piTable > tbody {
+  box-shadow: 0rem -0.01rem 0rem 0rem #ebebeb;
+}
+.piTable > tbody > tr {
+  height: 0.45rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+.piTable > tbody > tr > td {
+  text-align: center;
+  border-top: 0.01rem solid #ebebeb;
+}
+
 .btn-pri {
   border-color: #5b557a;
   color: #5b557a;
@@ -1631,3 +1636,35 @@ body {
 .btn-fuildAll {
   width: 100%;
 }
+
+::selection {
+  color: #FFFFFF;
+  background-color: #5b557a;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* 这是针对缺省样式 (必须的) */
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* 滚动条的滑轨背景颜色 */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 10rem;
+}
+
+/* 滑块颜色 */
+::-webkit-scrollbar-button {
+  background-color: #ebebeb;
+}
+
+/* 滑轨两头的监听按钮颜色 */
+::-webkit-scrollbar-corner {
+  background-color: #ebebeb;
+}
+
+/* 横向滚动条和纵向滚动条相交处尖角的颜色 */

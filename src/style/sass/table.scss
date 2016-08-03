@@ -1,0 +1,17 @@
+.piTable{
+	width:100%;
+	font-size:0.2rem;
+	>tbody{
+		    box-shadow:0rem -0.01rem 0rem 0rem $UIline;
+		>tr{
+			height: 0.45rem;
+			box-sizing:border-box;
+		    text-align:center;
+		    >td{
+		    	text-align:center;
+		    border-top:0.01rem solid $UIline;
+		    }
+		}
+	}
+	
+}
