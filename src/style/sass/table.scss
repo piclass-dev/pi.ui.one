@@ -3,13 +3,17 @@
 	font-size:0.2rem;
 	>tbody{
 		    box-shadow:0rem -0.01rem 0rem 0rem $UIline;
+		    tr:nth-child(odd){
+		    	background-color: $UIsuperlight;
+		    }
 		>tr{
 			height: 0.45rem;
 			box-sizing:border-box;
 		    text-align:center;
 		    >td{
 		    	text-align:center;
-		    border-top:0.01rem solid $UIline;
+		        border-top:0.01rem solid $UIline;
+
 		    }
 		}
 	}

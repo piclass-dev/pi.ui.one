@@ -1,5 +1,5 @@
 .piModal{
-	
+
 	display:none;
 	background: #FFFFFF;
 	box-shadow: 0px 18px 50px 0px rgba(0,0,0,0.41);
@@ -7,13 +7,24 @@
 	position:fixed;
 	top:1rem;
 	left:1rem;
-	width:500px;
-	height:200px;
 	z-index:999;
 	opacity:0;
 }
 
+.modalLarge{
+	width:8rem;
+	height:4rem;
+}
 
+.modalMedium{
+	width:6rem;
+	height:4rem;
+}
+
+.modalSmall{
+	width:5rem;
+	height:2rem;
+}
 
 .piModalBack{
 	display: block;

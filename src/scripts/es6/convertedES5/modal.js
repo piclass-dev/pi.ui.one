@@ -9,13 +9,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 //modal
-//mk 
+//mk
 
 var modal = exports.modal = function () {
     function modal(element, target, deleteTarget) {
         _classCallCheck(this, modal);
 
-        //modal button 
+        //modal button
         this.$element = element;
         //modal
         this.$target = target;
@@ -36,10 +36,14 @@ var modal = exports.modal = function () {
         key: "stylePerpare",
         value: function stylePerpare() {
             this.$target.css("position", "fixed");
+            var widthAll = document.body.clientWidth;
+            var left = (widthAll - this.modalWidth) / 2;
+            this.$target.css("left", left);
         }
     }, {
         key: "show",
         value: function show() {
+            this.stylePerpare();
             this.$target.css('display', 'block');
             this.$target.after('<div class="piModalBack"></div>');
             $('[class="piModalBack"]').one('click', this, function (e) {
@@ -50,14 +54,18 @@ var modal = exports.modal = function () {
             }, 200, 'swing');
             this.$target.animate({
                 opacity: "1",
-                top: "+=1rem"
+                top: "+=0.5rem"
             }, 400);
         }
     }, {
         key: "hide",
         value: function hide() {
-            this.$target.css('display', 'none');
             $('[class="piModalBack"]').remove();
+            this.$target.animate({
+                opacity: "0",
+                top: "-=0.5rem"
+            }, 400);
+            this.$target.css('display', 'none');
         }
     }, {
         key: "regi",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-type="#n4">
 <head>
 	<title></title>
 	<meta charset="utf-8">
@@ -8,15 +8,29 @@
 </head>
 <body>
 
+
 <nav class="piTopNavMain">
     <div class="piTopNavLogo"></div>
 	<ul>
-		<li><a href="#">主页</a></li>
-		<li><a href="#">下载站</a></li>
-		<li ><a href="#">应用工具</a></li>
-		<li><a href="#"  class="current">题库</a><div class="new"></div></li>
+		<li><a href="#" id="n1">总览</a></li>
+		<li><a href="#" id="n2">作业</a></li>
+		<li><a href="#" id="n3">点名</a></li>
+		<li><a href="#" id="n4">文件</a></li>
+		<li><a href="#" id="n5">留言</a></li>
 
-		<canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="teacher"></canvas>
+		<canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="course" data-au="menu" data-target="#navMenu"></canvas>
+		<div class="menuBody" id="navMenu">
+			<ul>
+				<li><span>C102</span></li>
+				<li><span>周1 34</span></li>
+				<li><span>王家辉</span></li>
+			</ul>
+			<ul>
+				<li><a href="">切换课程</a></li>
+				<li><a href="">返回主页</a></li>
+			</ul>
+		</div>
+		<span>C语言程序设计</span>
 	</ul>
 </nav>
 <div style="height:100px"></div>
@@ -28,9 +42,9 @@
 				<div class="row">
 
 					<div class="b8">
-					<div class="piFormRow">
-						<span class="piFormText">课程文件分享</span>
-					</div>
+						<div class="piFormRow">
+							<span class="piFormText">课程文件分享</span>
+						</div>
 						<div class="piFileContainer" id="kechenwenjian">
 							<div class="piFileBBlock">
 				    			<div>
@@ -168,7 +182,7 @@
 				    			<button class="download">下载</button>
 				    			<button class="delete">删除</button>
 				    		</div>
-				    		<div style="width:100%;height:2rem;float:left">
+				    		<div style="width:100%;height:2rem;float:left"></div>
 						</div>
 					</div>
 

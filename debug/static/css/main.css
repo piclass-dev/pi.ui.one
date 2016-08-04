@@ -637,7 +637,7 @@ body {
   min-height: 1px;
 }
 
-.cardBase, .cardMain, .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas {
+.cardBase, .cardMain, .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
   background-color: #fff;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
@@ -663,6 +663,7 @@ body {
   border-top: 0.01rem solid #ebebeb;
   padding-top: 0.05rem;
   padding-bottom: 0.05rem;
+  padding-right: 0.1rem;
   overflow: hidden;
 }
 .piFormRow:first-child, .piFormClearRow:first-child, .piFormRowHead:first-child, .piFormTextareaRow:first-child {
@@ -837,6 +838,7 @@ body {
 .piPanel {
   width: 100%;
   min-height: 0.5rem;
+  margin-bottom: 0.1rem;
 }
 
 .piPanelHead {
@@ -876,6 +878,8 @@ body {
   box-sizing: border-box;
   list-style: none;
   padding-top: 0.1rem;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 .piHomeworkBlock > ul > li {
   width: 100%;
@@ -1086,7 +1090,7 @@ body {
   float: left;
   background-color: #fff;
   width: 0.57rem;
-  height: 0.28rem;
+  height: 0.5rem;
   box-sizing: border-box;
   border-left: 0.01rem solid #ebebeb;
   border-bottom: 0.01rem solid #ebebeb;
@@ -1096,8 +1100,8 @@ body {
   text-align: center;
   display: block;
   font-size: 0.16rem;
-  height: 0.28rem;
-  line-height: 0.28rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
   color: #5b557a;
   padding: 0rem;
 }
@@ -1109,23 +1113,6 @@ body {
 }
 .piCourseBlock :nth-child(4) > div > .changed {
   color: #ff6f62;
-}
-.piCourseBlock :nth-child(4) > button {
-  font-size: 0.18rem;
-  width: 100%;
-  height: 0.45rem;
-  float: left;
-  background-color: #fff;
-  color: #818181;
-  border: 0rem;
-  border-left: 0.01rem solid #ebebeb;
-  outline: none;
-}
-.piCourseBlock :nth-child(4) > button:hover {
-  background-color: #f5f5f5;
-}
-.piCourseBlock :nth-child(4) > button:active {
-  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
 }
 
 .piCourseAdd {
@@ -1152,7 +1139,7 @@ body {
   color: #ff6f62;
 }
 
-.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer {
+.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piStudentCourseContainer {
   width: 100%;
   overflow: scroll;
   overflow-x: hidden;
@@ -1180,6 +1167,10 @@ body {
   height: 4.6rem;
 }
 
+.piStudentCourseContainer {
+  min-height: 3rem;
+}
+
 .piModal {
   display: none;
   background: #FFFFFF;
@@ -1188,10 +1179,23 @@ body {
   position: fixed;
   top: 1rem;
   left: 1rem;
-  width: 500px;
-  height: 200px;
   z-index: 999;
   opacity: 0;
+}
+
+.modalLarge {
+  width: 8rem;
+  height: 4rem;
+}
+
+.modalMedium {
+  width: 6rem;
+  height: 4rem;
+}
+
+.modalSmall {
+  width: 5rem;
+  height: 2rem;
 }
 
 .piModalBack {
@@ -1482,6 +1486,7 @@ body {
 }
 
 .menuBody {
+  display: none;
   background-color: rgba(255, 255, 255, 0.95);
   position: absolute;
   top: 1rem;
@@ -1600,6 +1605,9 @@ body {
 .piTable > tbody {
   box-shadow: 0rem -0.01rem 0rem 0rem #ebebeb;
 }
+.piTable > tbody tr:nth-child(odd) {
+  background-color: #f5f5f5;
+}
 .piTable > tbody > tr {
   height: 0.45rem;
   box-sizing: border-box;
@@ -1608,6 +1616,32 @@ body {
 .piTable > tbody > tr > td {
   text-align: center;
   border-top: 0.01rem solid #ebebeb;
+}
+
+.appBlock {
+  font-size: 0.2rem;
+  width: 5rem;
+  height: 2.4rem;
+}
+.appBlock :first-child {
+  width: 60%;
+  height: 2.4rem;
+  float: left;
+  border-right: 0.01rem solid #ebebeb;
+  margin-right: 2%;
+  box-sizing: border-box;
+}
+.appBlock :first-child > img {
+  width: 100%;
+  height: 1.87rem;
+}
+.appBlock :first-child > div {
+  width: 100%;
+  height: 0.48rem;
+}
+.appBlock :last-child {
+  float: right;
+  width: 38%;
 }
 
 .btn-pri {

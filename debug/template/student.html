@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-type="#1">
 <head>
 	<title></title>
 	<meta charset="utf-8">
@@ -10,12 +10,21 @@
 <nav class="piTopNavMain">
     <div class="piTopNavLogo"></div>
 	<ul>
-		<li><a href="#">主页</a></li>
-		<li><a href="#">下载站</a></li>
-		<li ><a href="#">应用工具</a></li>
-		<li><a href="#"  class="current">题库</a><div class="new"></div></li>
+		<li><a href="#" id="#1">主页</a></li>
+		<li><a href="#" id="#2">下载站</a></li>
+		<li ><a href="#" id="#3">应用工具</a></li>
+		<li><a href="#" id="#4">题库</a><div class="new"></div></li>
 
-		<canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="teacher"></canvas>
+		<canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="user" data-au="menu" data-target="#navMenu"></canvas>
+		<div class="menuBody" id="navMenu">
+			<ul>
+				<li><span>MK</span></li>
+			</ul>
+			<ul><li><a href="">修改个人信息</a></li>
+			<li><a href="">修改密码</a></li>
+				<li><a href="">退出登录</a></li>
+			</ul>
+		</div>
 	</ul>
 </nav>
 <div style="height:200px;"></div>
@@ -24,7 +33,7 @@
 	<div class="row">
 		<div class="b3">
 		    <div class="piNameCard">
-		    	<canvas data-toggle="avatar" data-src="MK" data-srcType="teacher"></canvas>
+		    	<canvas data-toggle="avatar" data-src="MK" data-srcType="user"></canvas>
 		    	<div>
 		    		<h3>MK</h3>
 		    		<p>10142430</p>
@@ -43,7 +52,7 @@
 		    	<div class="piPanelBody">
 		    	    <div class="piCourseContainer">
 		    	    <div class="piCourseBlock">
-		    			<canvas></canvas>
+		    			<canvas data-toggle="avatar" data-src="C语言程序设计" data-srcType="course"></canvas>
 		    			<button>C语言程序设计</button>
 		    			<div>
 		    				<span>上课时间：周三 3 4 节</span>
@@ -54,11 +63,10 @@
 		    				<div><span class="icon-file changed">2</span></div>
 		    				<div><span class="icon-message">12</span></div>
 		    				<div></div>
-		    				<button data-toggle="modal" data-target="#changeInfo">修改信息</button>
 		    			</div>
 		    		</div>
 		    		<div class="piCourseBlock">
-		    			<canvas></canvas>
+		    			<canvas data-toggle="avatar" data-src="C语言程序设计3" data-srcType="course"></canvas>
 		    			<button>C语言程序设计</button>
 		    			<div>
 		    				<span>上课时间：周三 3 4 节</span>
@@ -69,7 +77,6 @@
 		    				<div><span class="icon-file changed">2</span></div>
 		    				<div><span class="icon-message">12</span></div>
 		    				<div></div>
-		    				<button>修改信息</button>
 		    			</div>
 		    		</div>
 		    		<div class="piCourseAdd">

@@ -29,6 +29,8 @@
         box-sizing:border-box;
         list-style: none;
         padding-top:0.1rem;
+        overflow:scroll;
+        overflow-x:hidden;
         //单条进度
         >li{
         	width:100%;
@@ -270,7 +272,7 @@
     		float: left;
     		background-color:#fff;
     		width:0.57rem;
-    		height:0.28rem;
+    		height:0.5rem;
     		box-sizing:border-box;
 	        border-left:0.01rem solid $UIline;
 	        border-bottom:0.01rem solid $UIline;
@@ -280,8 +282,8 @@
     		text-align: center;
     		display: block;
     		font-size: 0.16rem;
-    		height:0.28rem;
-    		line-height: 0.28rem;
+    		height:0.5rem;
+    		line-height: 0.5rem;
     		color:$UIpurple;
     		padding:0rem;
     		&:hover{
@@ -296,23 +298,6 @@
     			color: $UIorange;
     		}
 
-    	}
-    	>button{
-    			font-size: 0.18rem;
-    			width:100%;
-    			height:0.45rem;
-    			float: left;
-    			background-color:#fff;
-    			color:$UIgrey;
-    			border:0rem;
-	            border-left:0.01rem solid $UIline;
-	            outline: none;
-	            &:hover{
-	        	background-color:$UIsuperlight;
-	            }
-	            &:active{
-                 box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.50);
-	            }
     	}
     }
 }

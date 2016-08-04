@@ -30,3 +30,10 @@
 	border-top:solid 0.01rem $UIline;
 	height:4.6rem;
 }
+
+.piStudentCourseContainer{
+	@extend .piContiner;
+	min-height:3rem;
+}
+
+

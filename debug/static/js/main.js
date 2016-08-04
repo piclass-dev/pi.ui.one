@@ -10,16 +10,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _user = require("./user");
 
-var _graColorTable = require("./graColorTable");
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var avatar = exports.avatar = function () {
-	function avatar(User, element, graColorTable) {
+	function avatar(User, element, graColorTable, type) {
 		_classCallCheck(this, avatar);
 
 		this.$element = element;
 		this.User = User;
+		this.type = type;
 		this.colors = new Array(24);
 		this.colorsSig = new Array(24);
 		this.colorsSig10 = new Array(24);
@@ -29,15 +28,18 @@ var avatar = exports.avatar = function () {
 		this.ctx = this.canvas.getContext("2d");
 		this.step = this.canvas.height / 5;
 		this.graColorTable = graColorTable;
-		this.draw();
+		if (this.type == "user") {
+			this.drawUser();
+		} else if (this.type == "course") {
+			this.drawCourse();
+		}
+
 		//alert(this.User.signature);
 	}
 
-	//draw avatar on canvas
-
 	_createClass(avatar, [{
-		key: "draw",
-		value: function draw() {
+		key: "perpareColor",
+		value: function perpareColor() {
 			for (var i = 0; i <= 24; i++) {
 				this.colorsSig[i] = this.User.signature.slice(i, i + 2);
 				var index = parseInt(this.colorsSig[i], 16);
@@ -64,6 +66,14 @@ var avatar = exports.avatar = function () {
 				b = this.graColorTable.colorArray[this.colorsSig10[i]].b;
 				this.colors[i] = "rgb(" + r + "," + g + "," + b + ")";
 			}
+		}
+
+		//draw avatar on canvas
+
+	}, {
+		key: "drawUser",
+		value: function drawUser() {
+			this.perpareColor();
 			for (var i = 0; i <= 4; i++) {
 				for (var j = 0; j <= 4; j++) {
 					this.ctx.fillStyle = this.colors[5 * i + j];
@@ -71,11 +81,48 @@ var avatar = exports.avatar = function () {
 				}
 			}
 		}
+	}, {
+		key: "drawAngular",
+		value: function drawAngular(x1, y1, x2, y2, x3, y3, color) {
+			var c = this.ctx;
+			c.fillStyle = color;
+			c.beginPath();
+			c.moveTo(x1 * this.step, y1 * this.step);
+			c.lineTo(x2 * this.step, y2 * this.step);
+			c.lineTo(x3 * this.step, y3 * this.step);
+			c.fill();
+		}
+	}, {
+		key: "drawCourse",
+		value: function drawCourse() {
+			this.perpareColor();
+			this.step = this.canvas.height / 10;
+
+			this.drawAngular(0, 0, 5, 0, 3, 3, this.colors[0]);
+			this.drawAngular(0, 0, 2, 2, 0, 5, this.colors[1]);
+			this.drawAngular(0, 5, 2, 2, 5, 5, this.colors[2]);
+			this.drawAngular(5, 5, 5, 0, 3, 3, this.colors[3]);
+
+			this.drawAngular(5, 0, 10, 0, 8, 2, this.colors[4]);
+			this.drawAngular(5, 0, 5, 5, 8, 2, this.colors[5]);
+			this.drawAngular(5, 5, 7, 3, 10, 5, this.colors[6]);
+			this.drawAngular(10, 0, 10, 5, 7, 3, this.colors[7]);
+
+			this.drawAngular(0, 5, 5, 5, 3, 7, this.colors[8]);
+			this.drawAngular(0, 5, 0, 10, 3, 7, this.colors[9]);
+			this.drawAngular(0, 10, 2, 8, 5, 10, this.colors[10]);
+			this.drawAngular(5, 5, 5, 10, 2, 8, this.colors[11]);
+
+			this.drawAngular(5, 5, 10, 5, 8, 8, this.colors[12]);
+			this.drawAngular(5, 5, 7, 7, 5, 10, this.colors[13]);
+			this.drawAngular(5, 10, 7, 7, 10, 10, this.colors[14]);
+			this.drawAngular(10, 10, 10, 5, 8, 8, this.colors[15]);
+		}
 	}]);
 
 	return avatar;
 }();
-},{"./graColorTable":5,"./user":10}],2:[function(require,module,exports){
+},{"./user":10}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -371,6 +418,8 @@ function main() {
 	setRem();
 	(0, _patch2.default)();
 
+	$($('html').attr("data-type")).attr("class", "current");
+
 	//create colorTable
 	var colorList = new Array();
 	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
@@ -382,13 +431,23 @@ function main() {
 	// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
 	var mainGra = new _graColorTable.graColorTable(colorList);
 
+	var colorList2 = new Array();
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(157, 47, 124), 40));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(176, 71, 88), 100));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(54, 46, 99), 255));
+	var mainGra2 = new _graColorTable.graColorTable(colorList2);
 	//create avatar obj
 	$('[data-toggle="avatar"]').each(function () {
 		var $this = $(this);
 		var name = $this.attr('data-src');
 		var type = $this.attr('data-srcType');
 		var user = new _user.User(name, type);
-		$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra));
+		if (type == "user") {
+			$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra, type));
+		} else if (type == "course") {
+			$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra2, type));
+		}
 	});
 
 	// create modal object
@@ -547,13 +606,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 //modal
-//mk 
+//mk
 
 var modal = exports.modal = function () {
     function modal(element, target, deleteTarget) {
         _classCallCheck(this, modal);
 
-        //modal button 
+        //modal button
         this.$element = element;
         //modal
         this.$target = target;
@@ -574,10 +633,14 @@ var modal = exports.modal = function () {
         key: "stylePerpare",
         value: function stylePerpare() {
             this.$target.css("position", "fixed");
+            var widthAll = document.body.clientWidth;
+            var left = (widthAll - this.modalWidth) / 2;
+            this.$target.css("left", left);
         }
     }, {
         key: "show",
         value: function show() {
+            this.stylePerpare();
             this.$target.css('display', 'block');
             this.$target.after('<div class="piModalBack"></div>');
             $('[class="piModalBack"]').one('click', this, function (e) {
@@ -588,14 +651,18 @@ var modal = exports.modal = function () {
             }, 200, 'swing');
             this.$target.animate({
                 opacity: "1",
-                top: "+=1rem"
+                top: "+=0.5rem"
             }, 400);
         }
     }, {
         key: "hide",
         value: function hide() {
-            this.$target.css('display', 'none');
             $('[class="piModalBack"]').remove();
+            this.$target.animate({
+                opacity: "0",
+                top: "-=0.5rem"
+            }, 400);
+            this.$target.css('display', 'none');
         }
     }, {
         key: "regi",

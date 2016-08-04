@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-type="#n3">
 <head>
 	<title></title>
 	<meta charset="utf-8">
@@ -11,12 +11,13 @@
 <nav class="piTopNavMain">
     <div class="piTopNavLogo"></div>
 	<ul>
-		<li><a href="#">作业</a></li>
-		<li><a href="#" class="current">点名</a></li>
-		<li><a href="#">文件</a></li>
-		<li><a href="#">留言</a></li>
+		<li><a href="#" id="n1">总览</a></li>
+		<li><a href="#" id="n2">作业</a></li>
+		<li><a href="#" id="n3">点名</a></li>
+		<li><a href="#" id="n4">文件</a></li>
+		<li><a href="#" id="n5">留言</a></li>
 
-		<canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="teacher" data-au="menu" data-target="#navMenu"></canvas>
+		<canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="course" data-au="menu" data-target="#navMenu"></canvas>
 		<div class="menuBody" id="navMenu">
 			<ul>
 				<li><span>C102</span></li>
@@ -25,6 +26,7 @@
 			</ul>
 			<ul>
 				<li><a href="">切换课程</a></li>
+				<li><a href="">返回主页</a></li>
 			</ul>
 		</div>
 		<span>C语言程序设计</span>
@@ -64,8 +66,7 @@
 				<div class="piFormRow">
 					<div class="row">
 					    <div class="b1"></div>
-						<div class="b5"><button class="piFormBtn btn-fuildAll btn-pri">继续点名</button></div>
-						<div class="b5"><button class="piFormBtn btn-fuildAll btn-warning">删除记录</button></div>
+					    <div class="b10"><button class="piFormBtn btn-fuildAll btn-pri">继续点名</button></div>
 						<div class="b1"></div>
 					</div>
 				</div>

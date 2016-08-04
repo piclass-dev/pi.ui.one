@@ -20,7 +20,7 @@ $piFormSep:0.05rem;
 	border-top:0.01rem solid $UIline;
     padding-top: ($piFormRowHeight - $piFormEleHeight) / 2;
     padding-bottom: ($piFormRowHeight - $piFormEleHeight) / 2;
-
+    padding-right:0.1rem;//?????
     overflow: hidden;
     &:first-child{
         border:none;
@@ -43,6 +43,7 @@ $piFormSep:0.05rem;
 .piFormBtn{
 	//float:left;
 	@extend .piButton;
+
 	font-size:$piFormFontSize;
 
 	height:$piFormEleHeight;

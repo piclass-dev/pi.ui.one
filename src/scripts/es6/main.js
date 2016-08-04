@@ -27,6 +27,8 @@ function main(){
 setRem();
 patchAll();
 
+$($('html').attr("data-type")).attr("class","current");
+
 //create colorTable
 var colorList= new Array();
 colorList.push(new colorMatch(new rgbColor(255,111,98),0));
@@ -38,14 +40,23 @@ colorList.push(new colorMatch(new rgbColor(36,45,55),255));
 // this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
 var mainGra=new graColorTable(colorList);
 
-
+var colorList2=new Array();
+colorList2.push(new colorMatch(new rgbColor(255,111,98),0));
+colorList2.push(new colorMatch(new rgbColor(157,47,124),40));
+colorList2.push(new colorMatch(new rgbColor(176,71,88),100));
+colorList2.push(new colorMatch(new rgbColor(54,46,99),255));
+var mainGra2=new graColorTable(colorList2);
 //create avatar obj
 $('[data-toggle="avatar"]').each(function(){
 	var $this   = $(this);
 	var name = $this.attr('data-src');
 	var type = $this.attr('data-srcType');
 	var user = new User(name,type);
-    $this.data("pi.avatar",new avatar(user,$this,mainGra));
+	if(type=="user"){
+	    $this.data("pi.avatar",new avatar(user,$this,mainGra,type));
+	}else if(type=="course"){
+		$this.data("pi.avatar",new avatar(user,$this,mainGra2,type));
+	}
 })
 
 
