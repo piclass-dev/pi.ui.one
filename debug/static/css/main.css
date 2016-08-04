@@ -410,7 +410,7 @@ body {
   background-size: 1rem 1rem;
 }
 
-.piButton, .piNavBtnGroup > button, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button {
+.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button {
   border: 0.01rem solid #c4c4c4;
   background-color: #fff;
   border-radius: 0.1rem;
@@ -456,7 +456,8 @@ body {
   font-weight: normal;
   font-style: normal;
 }
-[class^="icon-"], [class*=" icon-"] {
+[class*=" icon-"],
+[class^="icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: none;
@@ -637,7 +638,7 @@ body {
   min-height: 1px;
 }
 
-.cardBase, .cardMain, .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
+.cardBase, .cardMain, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
   background-color: #fff;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
@@ -655,7 +656,7 @@ body {
   margin-bottom: 0.1rem;
 }
 
-.piFormRow, .piFormClearRow, .piFormRowHead, .piFormTextareaRow {
+.piFormRow, .piFormClearRow .piFormClearRow, .piFormClearRow .piFormRowHead, .piFormClearRow .piFormTextareaRow, .piFormClearRow, .piFormRowHead, .piFormTextareaRow {
   width: 100%;
   height: 0.45rem;
   font-size: 0.2rem;
@@ -672,6 +673,96 @@ body {
 
 .piFormClearRow {
   border: 0rem;
+}
+.piFormClearRow .piForm {
+  width: 100%;
+  margin-bottom: 0.1rem;
+}
+.piFormClearRow .piFormRow, .piFormClearRow .piFormClearRow, .piFormClearRow .piFormRowHead, .piFormClearRow .piFormTextareaRow {
+  width: 100%;
+  height: 0.45rem;
+  font-size: 0.2rem;
+  box-sizing: border-box;
+  border-top: 0.01rem solid #ebebeb;
+  padding-top: 0.05rem;
+  padding-bottom: 0.05rem;
+  padding-right: 0.1rem;
+  overflow: hidden;
+}
+.piFormClearRow .piFormRow:first-child, .piFormClearRow .piFormClearRow:first-child, .piFormClearRow .piFormRowHead:first-child, .piFormClearRow .piFormTextareaRow:first-child {
+  border: none;
+}
+.piFormClearRow .piFormClearRow {
+  border: 0;
+}
+.piFormClearRow .piFormRowHead {
+  background-color: #f5f5f5;
+  border-radius: 0.05rem;
+}
+.piFormClearRow .piFormBtn {
+  font-size: 0.2rem;
+  height: 0.35rem;
+  line-height: 0.35rem;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-left: 0.05rem;
+  margin-right: 0.05rem;
+  padding-top: 0;
+  padding-left: 0.075rem;
+  padding-right: 0.075rem;
+  min-width: 0.7rem;
+  background-color: #fff;
+  border: 0.01rem solid #c4c4c4;
+  border-radius: 0.1rem;
+  text-align: center;
+  white-space: nowrap;
+}
+.piFormClearRow .piFormText {
+  display: inline-block;
+  font-size: 0.2rem;
+  height: 0.35rem;
+  line-height: 0.35rem;
+  margin: 0 0.1rem;
+}
+.piFormClearRow .piFormTextInput {
+  display: inline-block;
+  height: 0.32rem;
+  min-width: 1.5rem;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: #fcfcfc;
+  outline: none;
+  border: 0;
+  border-bottom: 0.02rem solid #c4c4c4;
+  padding-left: 0.1rem;
+}
+.piFormClearRow .piFormTextareaRow {
+  height: 1.75rem;
+}
+.piFormClearRow .piFormTextarea {
+  height: 1.8rem;
+  width: 98%;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: #fcfcfc;
+  margin-left: 0.05rem;
+  margin-right: 0.05rem;
+  resize: none;
+  outline: none;
+  border: 0;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.piFormClearRow .pullright {
+  float: right;
+}
+.piFormClearRow .center {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+.piFormClearRow .piFormEleFuildAll {
+  width: 100%;
 }
 
 .piFormRowHead {
@@ -1169,6 +1260,7 @@ body {
 
 .piStudentCourseContainer {
   min-height: 3rem;
+  padding: 0.05rem;
 }
 
 .piModal {
@@ -1183,19 +1275,20 @@ body {
   opacity: 0;
 }
 
+.modalSizeBase, .modalLarge, .modalMedium, .modalSmall {
+  min-height: 2.25rem;
+}
+
 .modalLarge {
   width: 8rem;
-  height: 4rem;
 }
 
 .modalMedium {
   width: 6rem;
-  height: 4rem;
 }
 
 .modalSmall {
   width: 5rem;
-  height: 2rem;
 }
 
 .piModalBack {
@@ -1642,6 +1735,45 @@ body {
 .appBlock :last-child {
   float: right;
   width: 38%;
+}
+
+.studentBlock {
+  display: block;
+  float: left;
+  height: 0.35rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+  font-size: 0.2rem;
+  border: 1px solid #a7dd7f;
+  outline: none;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.22), inset 0 -2px 1px 0 #c4c4c4;
+  border-radius: 10px;
+  line-height: 0.35rem;
+  padding-left: 0.05rem;
+  padding-right: 0.05rem;
+  text-align: center;
+}
+.studentBlock:hover {
+  background: #ebebeb;
+  border: 1px solid #5b557a;
+  box-shadow: inset 0px 0px 11px 0px #FFFFFF;
+  border-radius: 10px;
+}
+
+.studentInfo {
+  display: none;
+  width: 2.5rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border-radius: 0.1rem;
+  background: #FFFFFF;
+  border-box: box-sizing;
+  box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
+  padding-left: 0.05rem;
+  padding-right: 0.05rem;
 }
 
 .btn-pri {

@@ -42,6 +42,7 @@ $fontSizeAll:0.16rem;
 @import "dropdown.scss";
 @import "table.scss";
 @import "appBlock.scss";
+@import "student.scss";
 
 //mixins
 @import "mixin/button.scss";
@@ -56,7 +57,7 @@ $fontSizeAll:0.16rem;
 	} /* 滚动条的滑轨背景颜色 */
 
 	::-webkit-scrollbar-thumb {
-		  background-color: rgba(0, 0, 0, 0.05); 
+		  background-color: rgba(0, 0, 0, 0.05);
 		  border-radius: 10rem;
 	} /* 滑块颜色 */
 
@@ -67,4 +68,3 @@ $fontSizeAll:0.16rem;
 	::-webkit-scrollbar-corner {
 		  background-color: $UIline;
 	} /* 横向滚动条和纵向滚动条相交处尖角的颜色 */
-

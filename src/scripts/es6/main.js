@@ -6,6 +6,7 @@
  import {menu} from './menu.js'
  import patchAll from './patch.js'
  import {countContainer} from './countContainer.js'
+ import {studentContainer,studentFinder} from './studentContainer.js'
  import {colorMatch,rgbColor,graColorTable} from "./graColorTable";
 
 //rem calculate
@@ -96,6 +97,18 @@ $('[class="piCountContainer"]').each(function(){
 	$this.data("pi.countContainer",new countContainer($this,$hover));
 })
 
+$('[class="piStudentCourseContainer"]').each(function(){
+	var $this=$(this);
+	var $hover=$($this.attr('data-target'));
+	$this.data("pi.studentContainer",new studentContainer($this,$hover));
+})
+
+$('#studentFinder').each(function(){
+	var $this=$(this);
+    var s=$('[class="piStudentCourseContainer"]').data("pi.studentContainer");
+	$this.data("pi.studentFinder",new studentFinder(s,$this));
+})
+
 };
 $(document).ready(main);
 window.onresize=setRem;
@@ -104,6 +117,3 @@ window.onresize=setRem;
 // 	var $this   = $(this);
 // 	$this.data("pi.404canvas",new errorCanvas($this));
 // })
-
-
-

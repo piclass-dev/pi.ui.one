@@ -11,19 +11,21 @@
 	opacity:0;
 }
 
-.modalLarge{
-	width:8rem;
-	height:4rem;
+.modalSizeBase{
+	min-height: 0.45rem * 5;
 }
 
-.modalMedium{
-	width:6rem;
-	height:4rem;
+.modalLarge {
+	@extend .modalSizeBase;
+	width: 8rem;
 }
-
-.modalSmall{
-	width:5rem;
-	height:2rem;
+.modalMedium {
+	width: 6rem;
+	@extend .modalSizeBase;
+}
+.modalSmall {
+	width: 5rem;
+	@extend .modalSizeBase;
 }
 
 .piModalBack{

@@ -18,6 +18,8 @@ var _patch2 = _interopRequireDefault(_patch);
 
 var _countContainer = require('./countContainer.js');
 
+var _studentContainer = require('./studentContainer.js');
+
 var _graColorTable = require('./graColorTable');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -105,6 +107,18 @@ function main() {
 		var $this = $(this);
 		var $hover = $($this.attr('data-target'));
 		$this.data("pi.countContainer", new _countContainer.countContainer($this, $hover));
+	});
+
+	$('[class="piStudentCourseContainer"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		$this.data("pi.studentContainer", new _studentContainer.studentContainer($this, $hover));
+	});
+
+	$('#studentFinder').each(function () {
+		var $this = $(this);
+		var s = $('[class="piStudentCourseContainer"]').data("pi.studentContainer");
+		$this.data("pi.studentFinder", new _studentContainer.studentFinder(s, $this));
 	});
 };
 $(document).ready(main);
