@@ -51,7 +51,7 @@ export class countContainer{
 
 		    $(block).on('mouseenter',self,function(e){
 		    	clearTimeout(e.data.timer);
-		    	
+
 		    	var x=this.getBoundingClientRect().left+document.documentElement.scrollLeft;
 				var y=this.getBoundingClientRect().top+document.documentElement.scrollTop;
 				y=y+parseInt($(this).css("height").replace("px",""))+10+document.body.scrollTop;
@@ -68,7 +68,6 @@ export class countContainer{
 		    	e.data.$hover.css("display","block");
 		    })
 		    $(block).on('mouseleave',self,function(e){
-		    //	e.data.$hover.css("display","none");
 		    	e.data.timer=setTimeout(function(){
             		e.data.$hover.css("display","none");
 	            },100)

@@ -93,11 +93,13 @@ export class studentContainer {
 
                 var c=$(this).data("pi.studentBlock");
 
-                // e.data.$hover.find('#time').html("点名日期："+c.time);
-                // e.data.$hover.find('#presentRatio').html("出席率："+c.present/c.all);
-                // e.data.$hover.find('#present').html("出席人数："+c.present+"/"+c.all);
-                // e.data.$hover.find('#notice').html(c.notice);
+                e.data.$hover.find('#id').html("学号："+c.id);
+                e.data.$hover.find('#c1').html("上课点名成绩:"+c.countScore);
+                e.data.$hover.find('#c2').html("上机点名成绩:"+c.ccScore);
+                e.data.$hover.find('#c3').html("作业成绩:"+c.homeworkScore);
+                e.data.$hover.find('#notice').html(c.notice);
                 e.data.$hover.css("display","block");
+
             })
             $(block).on('mouseleave',self,function(e){
             //	e.data.$hover.css("display","none");

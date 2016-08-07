@@ -44,7 +44,7 @@ var mainGra=new graColorTable(colorList);
 var colorList2=new Array();
 colorList2.push(new colorMatch(new rgbColor(255,111,98),0));
 colorList2.push(new colorMatch(new rgbColor(157,47,124),40));
-colorList2.push(new colorMatch(new rgbColor(176,71,88),100));
+colorList2.push(new colorMatch(new rgbColor(176,71,188),100));
 colorList2.push(new colorMatch(new rgbColor(54,46,99),255));
 var mainGra2=new graColorTable(colorList2);
 //create avatar obj

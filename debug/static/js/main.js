@@ -201,7 +201,6 @@ var countContainer = exports.countContainer = function () {
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {
-					//	e.data.$hover.css("display","none");
 					e.data.timer = setTimeout(function () {
 						e.data.$hover.css("display", "none");
 					}, 100);
@@ -436,7 +435,7 @@ function main() {
 	var colorList2 = new Array();
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(157, 47, 124), 40));
-	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(176, 71, 88), 100));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(176, 71, 188), 100));
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(54, 46, 99), 255));
 	var mainGra2 = new _graColorTable.graColorTable(colorList2);
 	//create avatar obj
@@ -878,10 +877,11 @@ var studentContainer = exports.studentContainer = function () {
 
                     var c = $(this).data("pi.studentBlock");
 
-                    // e.data.$hover.find('#time').html("点名日期："+c.time);
-                    // e.data.$hover.find('#presentRatio').html("出席率："+c.present/c.all);
-                    // e.data.$hover.find('#present').html("出席人数："+c.present+"/"+c.all);
-                    // e.data.$hover.find('#notice').html(c.notice);
+                    e.data.$hover.find('#id').html("学号：" + c.id);
+                    e.data.$hover.find('#c1').html("上课点名成绩:" + c.countScore);
+                    e.data.$hover.find('#c2').html("上机点名成绩:" + c.ccScore);
+                    e.data.$hover.find('#c3').html("作业成绩:" + c.homeworkScore);
+                    e.data.$hover.find('#notice').html(c.notice);
                     e.data.$hover.css("display", "block");
                 });
                 $(block).on('mouseleave', self, function (e) {

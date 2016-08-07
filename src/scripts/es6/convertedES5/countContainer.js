@@ -76,7 +76,6 @@ var countContainer = exports.countContainer = function () {
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {
-					//	e.data.$hover.css("display","none");
 					e.data.timer = setTimeout(function () {
 						e.data.$hover.css("display", "none");
 					}, 100);
