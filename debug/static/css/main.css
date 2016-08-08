@@ -490,6 +490,7 @@ body {
 
 html {
   font-size: 100px;
+  font-family: 'microsoft yahei','PingFang SC','Inziu Iosevka SC',sans-serif;
 }
 
 body {
@@ -1318,6 +1319,11 @@ body {
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
 }
 .piNameCard > div {
+  width: 100%;
+  position: relative;
+  top: -0.2rem;
+}
+.piNameCard > div > div {
   width: 1.5rem;
   height: 0.8rem;
   float: left;
@@ -1328,28 +1334,28 @@ body {
   border-left: 0.01rem solid #ebebeb;
   border-right: 0.01rem solid #ebebeb;
 }
-.piNameCard > div > h3 {
+.piNameCard > div > div > h3 {
   display: block;
   margin: 0rem;
   font-size: 0.24rem;
   height: 0.35rem;
   line-height: 0.35rem;
 }
-.piNameCard > div > p {
+.piNameCard > div > div > p {
   display: block;
   margin: 0rem;
   font-size: 0.18rem;
   height: 0.2rem;
   line-height: 0.2rem;
 }
-.piNameCard > div > span {
+.piNameCard > div > div > span {
   display: block;
   margin: 0rem;
   font-size: 0.18rem;
   height: 0.2rem;
   line-height: 0.2rem;
 }
-.piNameCard > img {
+.piNameCard > div > img {
   float: right;
   width: 0.5rem;
   height: 0.8rem;
@@ -1421,6 +1427,15 @@ body {
 .timeTable > div :nth-child(3) {
   margin-left: -0.59rem;
   margin-top: 0.684rem;
+}
+
+.mainBanner {
+  margin: auto;
+  margin-bottom: 0.3rem;
+  width: 12.8rem;
+  height: 1.6rem;
+  background-image: url("../img/bannerA.png");
+  background-size: 100% 100%;
 }
 
 .piFooterA {
