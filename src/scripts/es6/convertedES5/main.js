@@ -57,7 +57,8 @@ function main() {
 	var colorList2 = new Array();
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(157, 47, 124), 40));
-	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(176, 71, 188), 100));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 61, 98), 100));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(127, 47, 134), 180));
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(54, 46, 99), 255));
 	var mainGra2 = new _graColorTable.graColorTable(colorList2);
 	//create avatar obj

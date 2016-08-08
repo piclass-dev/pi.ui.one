@@ -1,3 +1,5 @@
+import {config} from './config.js';
+
 export class studentBlock {
     constructor(id,name,countScore,ccScore,homeworkScore,notice,element) {
         this.$element=element;
@@ -47,7 +49,7 @@ export class studentContainer {
 		this.top;
 		this.timer;
 		this.students=new Array();
-        $.getJSON("http://django.piclass.cn/myclass/student_list.html",function(data){
+        $.getJSON(config.getStudents,function(data){
     		for(var i=0;i<=data.student_list.length-1;i++){
     		    var s=new studentBlock(data.student_list[i].username,
                                         data.student_list[i].name,
@@ -99,6 +101,12 @@ export class studentContainer {
                 e.data.$hover.find('#c3').html("作业成绩:"+c.homeworkScore);
                 e.data.$hover.find('#notice').html(c.notice);
                 e.data.$hover.css("display","block");
+
+                e.data.$hover.find('#submitChange').off('click');
+                e.data.$hover.find('#submitChange').one('click',c,function(e){
+                    //$.get(config.changeStudent,{"student":e.data.id,"class_id":"1001"},function(){ location.href =config.changeStudent;});
+                    location.href=config.changeStudent+"?student="+e.data.id+"&"+"class_id=1001";
+                })
 
             })
             $(block).on('mouseleave',self,function(e){

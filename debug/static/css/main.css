@@ -410,7 +410,7 @@ body {
   background-size: 1rem 1rem;
 }
 
-.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button {
+.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button, .appBlock div > div > button + button, .appBlock div > div > button, .appBlock div + div > button, .download > a {
   border: 0.01rem solid #c4c4c4;
   background-color: #fff;
   border-radius: 0.1rem;
@@ -420,10 +420,10 @@ body {
   box-shadow: inset 0rem -0.01rem 0rem 0rem rgba(0, 0, 0, 0.2);
   outline: none;
 }
-.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .piCourseBlock > button:hover {
+.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .piCourseBlock > button:hover, .appBlock div > div > button + button:hover, .appBlock div > div > button:hover, .appBlock div + div > button:hover, .download > a:hover {
   border: 0.01rem solid #818181;
 }
-.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .piCourseBlock > button:active {
+.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .piCourseBlock > button:active, .appBlock div > div > button + button:active, .appBlock div > div > button:active, .appBlock div + div > button:active, .download > a:active {
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
 }
 
@@ -639,14 +639,14 @@ body {
   min-height: 1px;
 }
 
-.cardBase, .cardMain, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
+.cardBase, .cardMain, .download > div, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
   background-color: #fff;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
   border-radius: 0.05rem;
 }
 
-.cardMain {
+.cardMain, .download > div {
   width: 100%;
   min-height: 1rem;
   margin-bottom: 0.1rem;
@@ -1144,8 +1144,10 @@ body {
   border: 0.01rem solid #979797;
   box-shadow: inset 0px -0.02rem 0rem 0rem rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  width: 0.99rem;
-  height: 0.99rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-top: 0.09rem;
+  margin-left: 0.09rem;
   box-sizing: border-box;
   float: left;
 }
@@ -1227,8 +1229,11 @@ body {
   line-height: 1rem;
   margin: 0rem;
 }
-.piCourseAdd > p > span {
+.piCourseAdd > p > a {
   color: #ff6f62;
+}
+.piCourseAdd > p > a:active {
+  color: #5b557a;
 }
 
 .piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piStudentCourseContainer {
@@ -1727,11 +1732,12 @@ body {
 }
 
 .appBlock {
+  margin-bottom: 0.1rem;
   font-size: 0.2rem;
   width: 5rem;
   height: 2.4rem;
 }
-.appBlock :first-child {
+.appBlock div {
   width: 60%;
   height: 2.4rem;
   float: left;
@@ -1739,17 +1745,77 @@ body {
   margin-right: 2%;
   box-sizing: border-box;
 }
-.appBlock :first-child > img {
+.appBlock div > img {
   width: 100%;
   height: 1.87rem;
 }
-.appBlock :first-child > div {
+.appBlock div > div {
   width: 100%;
   height: 0.48rem;
 }
-.appBlock :last-child {
+.appBlock div > div > button + button {
+  float: right;
+  height: 0.4rem;
+  width: 0.4rem;
+  margin-right: 0.10rem;
+}
+.appBlock div > div > button {
+  float: right;
+  height: 0.4rem;
+  width: 1.3rem;
+  margin-right: 0.05rem;
+}
+.appBlock div > div > div {
+  width: 0.8rem;
+  margin-left: 0.15rem;
+  border: 0rem;
+}
+.appBlock div > div > div > span {
+  display: block;
+  float: left;
+  font-size: 0.14rem;
+  color: #c4c4c4;
+}
+.appBlock div + div {
   float: right;
   width: 38%;
+  margin: 0rem;
+  border: 0rem;
+}
+.appBlock div + div > h3 {
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  margin: 0rem;
+  text-align: center;
+}
+.appBlock div + div > span {
+  border-top: 0.01rem solid #ebebeb;
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 0.16rem;
+  color: #c4c4c4;
+  height: 0.25rem;
+  line-height: 0.25rem;
+  margin: 0rem;
+}
+.appBlock div + div > p {
+  border-top: 0.01rem solid #ebebeb;
+  border-bottom: 0.01rem solid #ebebeb;
+  width: 100%;
+  display: block;
+  font-size: 0.16rem;
+  color: #c4c4c4;
+  margin: 0rem;
+  padding-top: 0.05rem;
+  height: 1.05rem;
+}
+.appBlock div + div > button {
+  margin-top: 0.07rem;
+  width: 1.85rem;
+  height: 0.4rem;
 }
 
 .studentBlock {
@@ -1789,6 +1855,81 @@ body {
   box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
   padding-left: 0.05rem;
   padding-right: 0.05rem;
+}
+
+.downloadBlock {
+  width: 100%;
+}
+.downloadBlock > h2 {
+  display: block;
+  margin: 0rem;
+  width: 100%;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-top: 0.01rem #c4c4c4 solid;
+  border-bottom: 0.01rem #ebebeb solid;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-size: 0.24rem;
+  box-sizing: border-box;
+  color: #818181;
+}
+.downloadBlock > div {
+  width: 100%;
+  margin: auto;
+}
+
+.download {
+  width: 2rem;
+  height: 2.6rem;
+  float: left;
+  margin: 0.2rem;
+}
+.download > div {
+  overflow: hidden;
+  height: 2rem;
+}
+.download > div:hover > p {
+  opacity: 1;
+}
+.download > div > p {
+  opacity: 0;
+  display: block;
+  position: relative;
+  top: -2.2rem;
+  padding: 0.05rem;
+  box-sizing: border-box;
+  width: 2rem;
+  font-size: 0.18rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 1rem;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+.download > div > img {
+  width: 2rem;
+  height: 1.6rem;
+}
+.download > div > div {
+  position: relative;
+  top: -0.34rem;
+  background-color: #424147;
+  font-size: 0.2rem;
+  text-align: center;
+  overflow: hidden;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  color: #fff;
+}
+.download > a {
+  margin: auto;
+  display: block;
+  font-size: 0.2rem;
+  line-height: 0.4rem;
+  text-align: center;
+  width: 1.6rem;
+  height: 0.4rem;
 }
 
 .btn-pri {

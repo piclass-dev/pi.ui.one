@@ -86,11 +86,13 @@ var avatar = exports.avatar = function () {
 		value: function drawAngular(x1, y1, x2, y2, x3, y3, color) {
 			var c = this.ctx;
 			c.fillStyle = color;
+			c.strokeStyle = color;
 			c.beginPath();
 			c.moveTo(x1 * this.step, y1 * this.step);
 			c.lineTo(x2 * this.step, y2 * this.step);
 			c.lineTo(x3 * this.step, y3 * this.step);
 			c.fill();
+			c.stroke();
 		}
 	}, {
 		key: "drawCourse",
@@ -122,14 +124,42 @@ var avatar = exports.avatar = function () {
 
 	return avatar;
 }();
-},{"./user":11}],2:[function(require,module,exports){
+},{"./user":12}],2:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+//本地调试目录
+var mkdebugURL = "http://django.piclass.cn";
+var serverBaseURL = "";
+
+//实际使用前缀
+var baseURL = mkdebugURL;
+
+//路径配置
+var config = exports.config = {
+
+    //获取所有学生信息
+    "getStudents": baseURL + "/myclass/student_list.html",
+    "changeStudent": baseURL + "/myclass/student_info.html",
+
+    //获取所有点名记录
+    "getCount": baseURL + "/count/history.html"
+
+};
+},{}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.countContainer = exports.count = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _config = require('./config.js');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -154,7 +184,7 @@ var countContainer = exports.countContainer = function () {
 		this.top;
 		this.timer;
 		this.counts = new Array();
-		$.getJSON("http://django.piclass.cn/test", function (data) {
+		$.getJSON(_config.config.getCount, function (data) {
 			for (var i = 0; i <= data.info.length - 1; i++) {
 				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id);
 				self.counts.push(countt);
@@ -214,7 +244,7 @@ var countContainer = exports.countContainer = function () {
 
 	return countContainer;
 }();
-},{}],3:[function(require,module,exports){
+},{"./config.js":2}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -375,7 +405,7 @@ var errorCanvas = exports.errorCanvas = function () {
 
     return errorCanvas;
 }();
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var _avatar = require('./avatar.js');
@@ -435,7 +465,8 @@ function main() {
 	var colorList2 = new Array();
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(157, 47, 124), 40));
-	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(176, 71, 188), 100));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 61, 98), 100));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(127, 47, 134), 180));
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(54, 46, 99), 255));
 	var mainGra2 = new _graColorTable.graColorTable(colorList2);
 	//create avatar obj
@@ -506,7 +537,7 @@ window.onresize = setRem;
 // 	var $this   = $(this);
 // 	$this.data("pi.404canvas",new errorCanvas($this));
 // })
-},{"./avatar.js":1,"./countContainer.js":2,"./errorCanvas.js":3,"./graColorTable":5,"./menu.js":6,"./modal.js":7,"./navTab.js":8,"./patch.js":9,"./studentContainer.js":10,"./user.js":11}],5:[function(require,module,exports){
+},{"./avatar.js":1,"./countContainer.js":3,"./errorCanvas.js":4,"./graColorTable":6,"./menu.js":7,"./modal.js":8,"./navTab.js":9,"./patch.js":10,"./studentContainer.js":11,"./user.js":12}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -544,7 +575,7 @@ var graColorTable = exports.graColorTable = function graColorTable(colorList) {
     }
   }
 };
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -607,7 +638,7 @@ var menu = exports.menu = function () {
 
 	return menu;
 }();
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -693,7 +724,7 @@ var modal = exports.modal = function () {
 
     return modal;
 }();
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -740,7 +771,7 @@ var navTabBtnGroup = exports.navTabBtnGroup = function () {
 
 	return navTabBtnGroup;
 }();
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -762,14 +793,17 @@ function patchAll() {
         $("#countText").val("");
     });
 }
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.studentContainer = exports.studentFinder = exports.studentBlock = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _config = require("./config.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -832,7 +866,7 @@ var studentContainer = exports.studentContainer = function () {
         this.top;
         this.timer;
         this.students = new Array();
-        $.getJSON("http://django.piclass.cn/myclass/student_list.html", function (data) {
+        $.getJSON(_config.config.getStudents, function (data) {
             for (var i = 0; i <= data.student_list.length - 1; i++) {
                 var s = new studentBlock(data.student_list[i].username, data.student_list[i].name, data.student_list[i].score, data.student_list[i].score2, data.student_list[i].score3, data.student_list[i].notice, null);
                 self.students.push(s);
@@ -883,6 +917,12 @@ var studentContainer = exports.studentContainer = function () {
                     e.data.$hover.find('#c3').html("作业成绩:" + c.homeworkScore);
                     e.data.$hover.find('#notice').html(c.notice);
                     e.data.$hover.css("display", "block");
+
+                    e.data.$hover.find('#submitChange').off('click');
+                    e.data.$hover.find('#submitChange').one('click', c, function (e) {
+                        //$.get(config.changeStudent,{"student":e.data.id,"class_id":"1001"},function(){ location.href =config.changeStudent;});
+                        location.href = _config.config.changeStudent + "?student=" + e.data.id + "&" + "class_id=1001";
+                    });
                 });
                 $(block).on('mouseleave', self, function (e) {
                     //	e.data.$hover.css("display","none");
@@ -899,7 +939,7 @@ var studentContainer = exports.studentContainer = function () {
 
     return studentContainer;
 }();
-},{}],11:[function(require,module,exports){
+},{"./config.js":2}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1129,4 +1169,4 @@ var User = exports.User = function () {
 
 	return User;
 }();
-},{}]},{},[4])
+},{}]},{},[5])

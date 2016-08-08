@@ -85,7 +85,7 @@
 		width:1.4rem;
 		margin:auto;
 		margin-top: 0.10rem;
-		
+
 	}
 }
 
@@ -114,7 +114,7 @@
     		height:1rem;
     		float: right;
     		>div{
-    			
+
     			>canvas{
     				float:left;
     				@extend .cardBase;
@@ -234,8 +234,10 @@
         border: 0.01rem solid #979797;
         box-shadow: inset 0px -0.02rem 0rem 0rem rgba(0,0,0,0.30);
         border-radius: 10px;
-        width:0.99rem;
-        height: 0.99rem;
+        width:0.8rem;
+        height: 0.8rem;
+		margin-top: 0.09rem;
+		margin-left:0.09rem;
         box-sizing:border-box;
         float: left;
     }
@@ -315,22 +317,19 @@
     overflow: hidden;
 	>p{
 		font-size: 0.2rem;
-		text-align: center; 
+		text-align: center;
 		color: $UIpurple;
 		height:1rem;
 		line-height:1rem;
 		margin: 0rem;
 
-		>span{
+		>a{
 			color: $UIorange;
+			&:active{
+				color:$UIpurple;
+			}
+
 		}
 	}
 
 }
-
-
-
-
-
-
-

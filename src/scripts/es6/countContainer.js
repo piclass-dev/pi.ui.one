@@ -1,3 +1,4 @@
+import {config} from './config.js';
 
 export class count{
 	constructor(time,all,present,notice,id){
@@ -20,7 +21,7 @@ export class countContainer{
 		this.top;
 		this.timer;
 		this.counts=new Array();
-		$.getJSON("http://django.piclass.cn/test",function(data){
+		$.getJSON(config.getCount,function(data){
     		for(var i=0;i<=data.info.length-1;i++){
     		    var countt=new count(data.info[i].time,data.info[i].all,data.info[i].present,data.info[i].notice,data.info[i].count_id);
     		    self.counts.push(countt);

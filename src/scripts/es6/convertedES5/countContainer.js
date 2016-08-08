@@ -3,8 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.countContainer = exports.count = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _config = require('./config.js');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -29,7 +32,7 @@ var countContainer = exports.countContainer = function () {
 		this.top;
 		this.timer;
 		this.counts = new Array();
-		$.getJSON("http://django.piclass.cn/test", function (data) {
+		$.getJSON(_config.config.getCount, function (data) {
 			for (var i = 0; i <= data.info.length - 1; i++) {
 				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id);
 				self.counts.push(countt);
