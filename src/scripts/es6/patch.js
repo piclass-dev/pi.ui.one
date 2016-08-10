@@ -13,7 +13,13 @@ export default function patchAll(){
     	$("#countText").val("");
     })
 
+    $("#checkTimeNow").on('change',function(){
+        var myDate=new Date();
+       alert($("#checkTimeNow").val())
+       //alert(myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate())
+    })
 
 
-    
+
+
 }

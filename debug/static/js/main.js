@@ -792,6 +792,12 @@ function patchAll() {
         $("#countTime").val("");
         $("#countText").val("");
     });
+
+    $("#checkTimeNow").on('change', function () {
+        var myDate = new Date();
+        alert($("#checkTimeNow").val());
+        //alert(myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate())
+    });
 }
 },{}],11:[function(require,module,exports){
 "use strict";
