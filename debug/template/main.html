@@ -89,6 +89,12 @@
 	</div>
 </div>
 
+<textarea name="name" rows="8" cols="40"></textarea>
+<script type="text/javascript">
+javascript:(function%20inject(options,%20callback)%20{%20var%20baseUrl%20=%20options.baseUrl%20||%20"../../src-noconflict";%20var%20load%20=%20function(path,%20callback)%20{%20var%20head%20=%20document.getElementsByTagName('head')[0];%20var%20s%20=%20document.createElement('script');%20s.src%20=%20baseUrl%20+%20"/"%20+%20path;%20head.appendChild(s);%20s.onload%20=%20s.onreadystatechange%20=%20function(_,%20isAbort)%20{%20if%20(isAbort%20||%20!s.readyState%20||%20s.readyState%20==%20"loaded"%20||%20s.readyState%20==%20"complete")%20{%20s%20=%20s.onload%20=%20s.onreadystatechange%20=%20null;%20if%20(!isAbort)%20callback();%20}%20};%20};%20load("ace.js",%20function()%20{%20ace.config.loadModule("ace/ext/textarea",%20function()%20{%20var%20event%20=%20ace.require("ace/lib/event");%20var%20areas%20=%20document.getElementsByTagName("textarea");%20for%20(var%20i%20=%200;%20i%20<%20areas.length;%20i++)%20{%20event.addListener(areas[i],%20"click",%20function(e)%20{%20if%20(e.detail%20==%203)%20{%20ace.transformTextarea(e.target,%20options.ace);%20}%20});%20}%20callback%20&&%20callback();%20});%20});})({"selectionStyle":"line","highlightActiveLine":true,"highlightSelectedWord":true,"readOnly":false,"cursorStyle":"ace","mergeUndoDeltas":true,"behavioursEnabled":true,"wrapBehavioursEnabled":true,"hScrollBarAlwaysVisible":false,"vScrollBarAlwaysVisible":false,"highlightGutterLine":true,"animatedScroll":false,"showInvisibles":true,"showPrintMargin":false,"printMarginColumn":80,"printMargin":false,"fadeFoldWidgets":false,"showFoldWidgets":true,"showLineNumbers":true,"showGutter":true,"displayIndentGuides":true,"fontSize":"16px","scrollPastEnd":0,"theme":"monokai","scrollSpeed":2,"dragDelay":150,"dragEnabled":true,"focusTimout":0,"tooltipFollowsMouse":true,"firstLineNumber":1,"overwrite":false,"newLineMode":"auto","useWorker":true,"useSoftTabs":true,"tabSize":4,"wrap":"off","indentedSoftWrap":true,"mode":"c_cpp","enableMultiselect":true,"enableBlockSelect":true,"baseUrl":"../static/js/ace/src-min-noconflict"})
+
+</script>
+
 <button data-toggle="modal" data-target="#m">modal test</button>
 
 <div class="piModal modalSmall" id="m">

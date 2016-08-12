@@ -11,7 +11,7 @@ var _config = require('./config.js');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var count = exports.count = function count(time, all, present, notice, id) {
+var count = exports.count = function count(time, all, present, notice, id, state) {
 	_classCallCheck(this, count);
 
 	this.time = time;
@@ -19,6 +19,7 @@ var count = exports.count = function count(time, all, present, notice, id) {
 	this.present = present;
 	this.notice = notice;
 	this.id = id;
+	this.state = state;
 };
 
 var countContainer = exports.countContainer = function () {
@@ -34,7 +35,7 @@ var countContainer = exports.countContainer = function () {
 		this.counts = new Array();
 		$.getJSON(_config.config.getCount, function (data) {
 			for (var i = 0; i <= data.info.length - 1; i++) {
-				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id);
+				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id, data.info[i].state);
 				self.counts.push(countt);
 			}
 			self.addBlock();
@@ -73,9 +74,25 @@ var countContainer = exports.countContainer = function () {
 					var c = $(this).data("pi.countBlock");
 
 					e.data.$hover.find('#time').html("点名日期：" + c.time);
-					e.data.$hover.find('#presentRatio').html("出席率：" + c.present / c.all);
+					var a = c.present / c.all + '';
+					var b = a.slice(0, 4);
+					e.data.$hover.find('#presentRatio').html("出席率：" + b);
 					e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
 					e.data.$hover.find('#notice').html(c.notice);
+					if (c.state === "1") {
+						e.data.$hover.find('#ch').html("查看详情");
+						e.data.$hover.find('#contin').css("display", "none");
+					} else {
+						e.data.$hover.find('#ch').html("查看详情/手工修改");
+						e.data.$hover.find('#contin').css("display", "block");
+						e.data.$hover.find('#contin').one('click', c, function (e) {
+							location.href = _config.config.continueCount + "?count_id=" + e.data.id;
+						});
+					}
+					e.data.$hover.find('#ch').one('click', c, function (e) {
+						location.href = _config.config.getCountDetail + "?count_id=" + e.data.id;
+					});
+
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {

@@ -127,13 +127,30 @@ var avatar = exports.avatar = function () {
 },{"./user":12}],2:[function(require,module,exports){
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
+// //本地调试目录
+// var mkdebugURL="http://django.piclass.cn";
+// var serverBaseURL="";
+//
+// //实际使用前缀
+// var baseURL=mkdebugURL;
+//
+// //路径配置
+// export var config={
+//
+//
+//     //获取所有学生信息
+//     "getStudents":baseURL+"/myclass/student_list.html",
+//     //修改学生信息
+//     "changeStudent":baseURL+"/myclass/student_info.html",
+//
+//     //获取所有点名记录
+//     "getCount":baseURL+"/count/history.html",
+//
+// }
 
-//本地调试目录
-var mkdebugURL = "http://django.piclass.cn";
-var serverBaseURL = "";
+var mkdebugURL = "http://django.piclass.cn/api/test/";
+var commenURL = "http://django.piclass.cn/";
+var serverBaseURL = "/api/";
 
 //实际使用前缀
 var baseURL = mkdebugURL;
@@ -142,12 +159,15 @@ var baseURL = mkdebugURL;
 var config = exports.config = {
 
     //获取所有学生信息
-    "getStudents": baseURL + "/myclass/student_list.html",
-    "changeStudent": baseURL + "/myclass/student_info.html",
+    "getStudents": baseURL + "student_list.html",
+    "changeStudent": "/myclass/student_info.html",
 
     //获取所有点名记录
-    "getCount": baseURL + "/count/history.html"
-
+    "getCount": baseURL + "count_history.html",
+    //继续点名
+    "continueCount": commenURL + "count/count_qrcode.html",
+    //查看详情
+    "getCountDetail": commenURL + "count/count_detail.html"
 };
 },{}],3:[function(require,module,exports){
 'use strict';
@@ -163,7 +183,7 @@ var _config = require('./config.js');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var count = exports.count = function count(time, all, present, notice, id) {
+var count = exports.count = function count(time, all, present, notice, id, state) {
 	_classCallCheck(this, count);
 
 	this.time = time;
@@ -171,6 +191,7 @@ var count = exports.count = function count(time, all, present, notice, id) {
 	this.present = present;
 	this.notice = notice;
 	this.id = id;
+	this.state = state;
 };
 
 var countContainer = exports.countContainer = function () {
@@ -186,7 +207,7 @@ var countContainer = exports.countContainer = function () {
 		this.counts = new Array();
 		$.getJSON(_config.config.getCount, function (data) {
 			for (var i = 0; i <= data.info.length - 1; i++) {
-				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id);
+				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id, data.info[i].state);
 				self.counts.push(countt);
 			}
 			self.addBlock();
@@ -225,9 +246,25 @@ var countContainer = exports.countContainer = function () {
 					var c = $(this).data("pi.countBlock");
 
 					e.data.$hover.find('#time').html("点名日期：" + c.time);
-					e.data.$hover.find('#presentRatio').html("出席率：" + c.present / c.all);
+					var a = c.present / c.all + '';
+					var b = a.slice(0, 4);
+					e.data.$hover.find('#presentRatio').html("出席率：" + b);
 					e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
 					e.data.$hover.find('#notice').html(c.notice);
+					if (c.state === "1") {
+						e.data.$hover.find('#ch').html("查看详情");
+						e.data.$hover.find('#contin').css("display", "none");
+					} else {
+						e.data.$hover.find('#ch').html("查看详情/手工修改");
+						e.data.$hover.find('#contin').css("display", "block");
+						e.data.$hover.find('#contin').one('click', c, function (e) {
+							location.href = _config.config.continueCount + "?count_id=" + e.data.id;
+						});
+					}
+					e.data.$hover.find('#ch').one('click', c, function (e) {
+						location.href = _config.config.getCountDetail + "?count_id=" + e.data.id;
+					});
+
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {
@@ -797,6 +834,21 @@ function patchAll() {
         var myDate = new Date();
         alert($("#checkTimeNow").val());
         //alert(myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate())
+        // if()
+    });
+
+    //编程页清空信息
+    $("#clearError").on('click', function () {
+        $("#error").val("");
+    });
+    $("#clearOutput").on('click', function () {
+        $("#output").val("");
+    });
+
+    //文件块进度条
+    $('[data-toggle="prog"]').each(function () {
+        var $this = $(this);
+        $this.css("width", $this.attr("data-progL") + "%");
     });
 }
 },{}],11:[function(require,module,exports){

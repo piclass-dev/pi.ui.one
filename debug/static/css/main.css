@@ -410,7 +410,7 @@ body {
   background-size: 1rem 1rem;
 }
 
-.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button, .appBlock div > div > button + button, .appBlock div > div > button, .appBlock div + div > button, .download > a {
+.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .appBlock div > div > button + button, .appBlock div > div > button, .appBlock div + div > button, .download > a, .piCourseBlock > button {
   border: 0.01rem solid #c4c4c4;
   background-color: #fff;
   border-radius: 0.1rem;
@@ -420,10 +420,10 @@ body {
   box-shadow: inset 0rem -0.01rem 0rem 0rem rgba(0, 0, 0, 0.2);
   outline: none;
 }
-.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .piCourseBlock > button:hover, .appBlock div > div > button + button:hover, .appBlock div > div > button:hover, .appBlock div + div > button:hover, .download > a:hover {
+.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .appBlock div > div > button + button:hover, .appBlock div > div > button:hover, .appBlock div + div > button:hover, .download > a:hover, .piCourseBlock > button:hover {
   border: 0.01rem solid #818181;
 }
-.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .piCourseBlock > button:active, .appBlock div > div > button + button:active, .appBlock div > div > button:active, .appBlock div + div > button:active, .download > a:active {
+.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .appBlock div > div > button + button:active, .appBlock div > div > button:active, .appBlock div + div > button:active, .download > a:active, .piCourseBlock > button:active {
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
 }
 
@@ -436,6 +436,7 @@ body {
   float: left;
   margin: 0rem;
   margin-left: -0.01rem;
+  border-radius: 0rem;
 }
 .piNavBtnGroup :first-child {
   border-radius: 0.1rem 0rem 0rem 0.1rem;
@@ -1025,7 +1026,6 @@ body {
 }
 .piHomeworkBlock > ul > li > div > span {
   display: block;
-  float: left;
   width: 40%;
   margin: 0rem;
   font-size: 0.16rem;
@@ -1035,11 +1035,11 @@ body {
 }
 .piHomeworkBlock > ul > li > div > div {
   float: right;
-  width: 50%;
+  width: 0%;
   height: 0.15rem;
   background-color: #a7dd7f;
   border-radius: 10rem;
-  margin-top: 0.03rem;
+  margin-top: -0.18rem;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
 }
 .piHomeworkBlock > button {
@@ -1155,114 +1155,6 @@ body {
   width: 40%;
   height: 0.4rem;
   float: right;
-}
-
-.piCourseBlock {
-  width: 7.1rem;
-  height: 1rem;
-  margin: auto;
-  margin-top: 0.1rem;
-  margin-bottom: 0.1rem;
-  background: #FFFFFF;
-  border: 0.01rem solid #c4c4c4;
-  border-radius: 0.1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-.piCourseBlock > canvas {
-  border: 0.01rem solid #979797;
-  box-shadow: inset 0px -0.02rem 0rem 0rem rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  width: 0.8rem;
-  height: 0.8rem;
-  margin-top: 0.09rem;
-  margin-left: 0.09rem;
-  box-sizing: border-box;
-  float: left;
-}
-.piCourseBlock > button {
-  font-size: 0.24rem;
-  width: 2.4rem;
-  height: 0.8rem;
-  float: left;
-  margin-top: 0.09rem;
-  margin-left: 0.1rem;
-}
-.piCourseBlock :nth-child(3) {
-  width: 2.4rem;
-  height: 1rem;
-  box-sizing: border-box;
-  float: left;
-  padding-left: 0.2rem;
-  padding-top: 0.2rem;
-}
-.piCourseBlock :nth-child(3) > span {
-  display: block;
-  font-size: 0.18rem;
-  color: #818181;
-  margin: 0rem;
-  width: 100%;
-  height: 0.3rem;
-  line-height: 0.3rem;
-}
-.piCourseBlock :nth-child(4) {
-  width: 1.14rem;
-  float: right;
-}
-.piCourseBlock :nth-child(4) > div {
-  float: left;
-  background-color: #fff;
-  width: 0.57rem;
-  height: 0.5rem;
-  box-sizing: border-box;
-  border-left: 0.01rem solid #ebebeb;
-  border-bottom: 0.01rem solid #ebebeb;
-  padding: 0rem;
-}
-.piCourseBlock :nth-child(4) > div > span {
-  text-align: center;
-  display: block;
-  font-size: 0.16rem;
-  height: 0.5rem;
-  line-height: 0.5rem;
-  color: #5b557a;
-  padding: 0rem;
-}
-.piCourseBlock :nth-child(4) > div > span:hover {
-  background-color: #f5f5f5;
-}
-.piCourseBlock :nth-child(4) > div > span:active {
-  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
-}
-.piCourseBlock :nth-child(4) > div > .changed {
-  color: #ff6f62;
-}
-
-.piCourseAdd {
-  width: 7.1rem;
-  height: 1rem;
-  margin: auto;
-  margin-top: 0.1rem;
-  margin-bottom: 0.1rem;
-  background: #FFFFFF;
-  border: 0.01rem solid #c4c4c4;
-  border-radius: 0.1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-.piCourseAdd > p {
-  font-size: 0.2rem;
-  text-align: center;
-  color: #5b557a;
-  height: 1rem;
-  line-height: 1rem;
-  margin: 0rem;
-}
-.piCourseAdd > p > a {
-  color: #ff6f62;
-}
-.piCourseAdd > p > a:active {
-  color: #5b557a;
 }
 
 .piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piStudentCourseContainer {
@@ -1713,12 +1605,6 @@ body {
   border-radius: 10px;
 }
 .countBlock:hover {
-  background: #ebebeb;
-  border: 1px solid #5b557a;
-  box-shadow: inset 0px 0px 11px 0px #FFFFFF;
-  border-radius: 10px;
-}
-.countBlock:active {
   background: #5b557a;
   border: 1px solid #5b557a;
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
@@ -1743,7 +1629,6 @@ body {
 .piTable {
   width: 100%;
   font-size: 0.2rem;
-  min-height: 3rem;
 }
 .piTable > tbody {
   box-shadow: 0rem -0.01rem 0rem 0rem #ebebeb;

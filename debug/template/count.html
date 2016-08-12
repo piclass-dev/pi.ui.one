@@ -71,7 +71,7 @@
 
 				<div class="piFormRow">
 					<span class="piFormText ">点名日期</span>
-					<input type="date" name="" class="piFormTextInput" 
+					<input type="date" name="" class="piFormTextInput"
 					id="countTime">
 					<span class="piFormText ">默认不填为今日</span>
 				</div>
@@ -105,7 +105,7 @@
 		<div class="b12">
 			<div class="bulletinMain">
 			<p style="width:100%;color:#888">文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明文件上传说明</p>
-			</div>		
+			</div>
 		</div>
 	</div>
 </div>
@@ -133,15 +133,15 @@
 	<div class="piFormRow">
 		<div class="row">
 		    <div class="b1"></div>
-			<div class="b10"><button class="piFormBtn btn-fuildAll">手工修改／查看详情</button></div>
+			<div class="b10"><button class="piFormBtn btn-fuildAll" id="ch">手工修改／查看详情</button></div>
 		    <div class="b1"></div>
 		</div>
 	</div>
 	<div class="piFormRow">
 		<div class="row">
 		    <div class="b1"></div>
-			<div class="b5"><button class="piFormBtn btn-fuildAll btn-pri">继续点名</button></div>
-			<div class="b5"><button class="piFormBtn btn-fuildAll btn-warning">删除记录</button></div>
+			<div class="b5" id="contin"><button class="piFormBtn btn-fuildAll btn-pri">继续点名</button></div>
+			<div class="b5"><button class="piFormBtn btn-fuildAll btn-warning" data-toggle="modal" data-target="#m">删除记录</button></div>
 			<div class="b1"></div>
 		</div>
 	</div>
@@ -149,6 +149,17 @@
 		<div class="piFormTextarea" id="notice">asd faks dfhkasd bfkasd fh a shd fuahs dfiuh asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd f asd faks dfhkasd bfkasd fasd faks dfhkasd bfkasd f</div>
 	</div>
 
+</div>
+
+<div class="piModal" id="m">
+	<div class="piFormClearRow"><button class="piFormBtn pullright" data-dismiss="modal">取消</button></div>
+	<div class="piFormClearRow"></div>
+<div class="piFormRow" action="index.html" method="post">
+	<span class="piFormText">您确定要删除该记录么</span>
+	<button class="piFormBtn btn-warning" id="deleteCount">删除</button>
+</div>
+<div class="piFormRow"></div>
+<div class="piFormClearRow"></div>
 </div>
 
 

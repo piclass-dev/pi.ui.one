@@ -80,8 +80,8 @@ D 在for语句中，continue与break的效果是一样的，可以互换
 				<div class="piFormRow">
 					<button type="button" class="piFormBtn pullright">编辑器设定</button>
 					<button type="button" class="piFormBtn btn-warning pullright">清空编辑器</button>
-					<button type="button" class="piFormBtn ">清空错误信息</button>
-					<button type="button" class="piFormBtn ">清空输出信息</button>
+					<button type="button" class="piFormBtn " id="clearError">清空错误信息</button>
+					<button type="button" class="piFormBtn " id="clearOutput">清空输出信息</button>
 
 				</div>
 			</div>
@@ -91,12 +91,12 @@ D 在for语句中，continue与break的效果是一样的，可以互换
 	<div class="row">
 		<div class="b6">
 			<div class="piPanel">
-				<textarea class="piPanelTextarea codeOutput codeError" disabled="disabled" placeholder="错误信息"></textarea>
+				<textarea class="piPanelTextarea codeOutput codeError" disabled="disabled" placeholder="错误信息" id="error">sd</textarea>
 			</div>
 		</div>
 		<div class="b6">
 			<div class="piPanel">
-				<textarea class="piPanelTextarea codeOutput" disabled="disabled" placeholder="输出信息">
+				<textarea class="piPanelTextarea codeOutput" disabled="disabled" placeholder="输出信息" id="output">
 以下叙述中正确的是
 A continue语句使得整个循环终止
 B break语句不能用于提前结束for语句的本层循环

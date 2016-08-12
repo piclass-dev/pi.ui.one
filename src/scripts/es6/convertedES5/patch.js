@@ -23,5 +23,20 @@ function patchAll() {
         var myDate = new Date();
         alert($("#checkTimeNow").val());
         //alert(myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate())
+        // if()
+    });
+
+    //编程页清空信息
+    $("#clearError").on('click', function () {
+        $("#error").val("");
+    });
+    $("#clearOutput").on('click', function () {
+        $("#output").val("");
+    });
+
+    //文件块进度条
+    $('[data-toggle="prog"]').each(function () {
+        var $this = $(this);
+        $this.css("width", $this.attr("data-progL") + "%");
     });
 }
