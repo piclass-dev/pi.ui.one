@@ -124,7 +124,120 @@ var avatar = exports.avatar = function () {
 
 	return avatar;
 }();
-},{"./user":12}],2:[function(require,module,exports){
+},{"./user":13}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.choiceContainerTeacher = exports.choiceTeacher = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _config = require('./config.js');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var choiceTeacher = exports.choiceTeacher = function choiceTeacher(question, ans, id) {
+    _classCallCheck(this, choiceTeacher);
+
+    this.question = question;
+    this.ans = ans;
+    this.deleteId = id;
+};
+
+var choiceContainerTeacher = exports.choiceContainerTeacher = function () {
+    function choiceContainerTeacher(element, hover) {
+        _classCallCheck(this, choiceContainerTeacher);
+
+        var self = this;
+        this.$element = element;
+        this.$hover = hover;
+        this.left;
+        this.top;
+        this.timer;
+        this.choices = new Array();
+        $.getJSON(_config.config.getAllChoice, function (data) {
+            for (var i = 0; i <= data.info.length - 1; i++) {
+                var choice = new choiceTeacher(data.info[i].question, data.info[i].ans, data.info[i].id);
+                self.choices.push(choice);
+            }
+            self.addBlock();
+            self.regi();
+        });
+    }
+
+    _createClass(choiceContainerTeacher, [{
+        key: 'addBlock',
+        value: function addBlock() {
+            this.choices.forEach(function (choice) {
+                this.$element.append('<div class="choiceBlock"><textarea disabled="disabled">' + choice.question + '</textarea></div>');
+            }, this);
+        }
+    }, {
+        key: 'regi',
+        value: function regi() {
+            var self = this;
+            this.$hover.on('mouseleave', this, function (e) {
+                e.data.$hover.css("display", "none");
+            });
+
+            $('[class="choiceBlock"]').each(function (i, block) {
+
+                $(block).data("pi.choiceBlock", self.choices[i]);
+
+                $(block).on('mouseenter', self, function (e) {
+                    clearTimeout(e.data.timer);
+
+                    var x = this.getBoundingClientRect().right + document.documentElement.scrollLeft;
+                    var y = this.getBoundingClientRect().bottom + document.documentElement.scrollTop;
+                    //y = y + parseInt($(this).css("height").replace("px", "")) + 10 + document.body.scrollTop;
+                    x = x - parseInt(e.data.$hover.css("width").replace("px", ""));
+                    e.data.$hover.css("left", x);
+                    e.data.$hover.css("top", y);
+
+                    var c = $(this).data("pi.choiceBlock");
+
+                    e.data.$hover.find('#detailtext').html("题目：" + c.question);
+                    // var a = c.present / c.all + '';
+                    // var b = a.slice(0, 4);
+                    e.data.$hover.find('#rightanswer').html("正确答案：" + c.ans);
+                    // e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
+                    // e.data.$hover.find('#notice').html(c.notice);
+                    // if (c.state === "1") {
+                    //     e.data.$hover.find('#ch').html("查看详情");
+                    //     e.data.$hover.find('#contin').css("display", "none");
+                    // } else {
+                    //     e.data.$hover.find('#ch').html("查看详情/手工修改");
+                    //     e.data.$hover.find('#contin').css("display", "block");
+                    //     e.data.$hover.find('#contin').one('click', c, function(e) {
+                    //         location.href = config.continueCount + "?count_id=" + e.data.id;
+                    //     });
+                    // }
+                    // e.data.$hover.find('#ch').one('click', c, function(e) {
+                    //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
+                    // });
+                    // $('#deleteCount').one('click', c, function(e) {
+                    //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
+                    // });
+                    $("#qwe").val(c.id);
+                    e.data.$hover.css("display", "block");
+                });
+                $(block).on('mouseleave', self, function (e) {
+                    e.data.timer = setTimeout(function () {
+                        e.data.$hover.css("display", "none");
+                    }, 100);
+                    e.data.$hover.one('mouseenter', e.data, function (e) {
+                        clearTimeout(e.data.timer);
+                    });
+                });
+            });
+        }
+    }]);
+
+    return choiceContainerTeacher;
+}();
+},{"./config.js":3}],3:[function(require,module,exports){
 "use strict";
 
 // //本地调试目录
@@ -166,10 +279,17 @@ var config = exports.config = {
     "getCount": baseURL + "count_history.html",
     //继续点名
     "continueCount": commenURL + "count/count_qrcode.html",
-    //查看详情
-    "getCountDetail": commenURL + "count/count_detail.html"
+    //查看点名详情
+    "getCountDetail": commenURL + "count/count_detail.html",
+
+    //获取选择题题目详情
+    "getChoiceDetail": mkdebugURL + "tk.html",
+    //一次作业中的全部选择题
+    "getAllChoice": mkdebugURL + "zy_choice.html",
+    //编程题详情
+    "getProgramDetail": mkdebugURL + "tk.html"
 };
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -264,7 +384,10 @@ var countContainer = exports.countContainer = function () {
 					e.data.$hover.find('#ch').one('click', c, function (e) {
 						location.href = _config.config.getCountDetail + "?count_id=" + e.data.id;
 					});
-
+					// $('#deleteCount').one('click',c,function(e){
+					// 	location.href=config.getCountDetail+"?count_id="+e.data.id;
+					// });
+					$("#qwe").val(c.id);
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {
@@ -281,7 +404,7 @@ var countContainer = exports.countContainer = function () {
 
 	return countContainer;
 }();
-},{"./config.js":2}],4:[function(require,module,exports){
+},{"./config.js":3}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -442,7 +565,7 @@ var errorCanvas = exports.errorCanvas = function () {
 
     return errorCanvas;
 }();
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var _avatar = require('./avatar.js');
@@ -464,6 +587,8 @@ var _patch2 = _interopRequireDefault(_patch);
 var _countContainer = require('./countContainer.js');
 
 var _studentContainer = require('./studentContainer.js');
+
+var _choiceContainer = require('./choiceContainer.js');
 
 var _graColorTable = require('./graColorTable');
 
@@ -561,6 +686,12 @@ function main() {
 		$this.data("pi.studentContainer", new _studentContainer.studentContainer($this, $hover));
 	});
 
+	$('[class="piChoiceContainerTeacher"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerTeacher($this, $hover));
+	});
+
 	$('#studentFinder').each(function () {
 		var $this = $(this);
 		var s = $('[class="piStudentCourseContainer"]').data("pi.studentContainer");
@@ -574,7 +705,7 @@ window.onresize = setRem;
 // 	var $this   = $(this);
 // 	$this.data("pi.404canvas",new errorCanvas($this));
 // })
-},{"./avatar.js":1,"./countContainer.js":3,"./errorCanvas.js":4,"./graColorTable":6,"./menu.js":7,"./modal.js":8,"./navTab.js":9,"./patch.js":10,"./studentContainer.js":11,"./user.js":12}],6:[function(require,module,exports){
+},{"./avatar.js":1,"./choiceContainer.js":2,"./countContainer.js":4,"./errorCanvas.js":5,"./graColorTable":7,"./menu.js":8,"./modal.js":9,"./navTab.js":10,"./patch.js":11,"./studentContainer.js":12,"./user.js":13}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -612,7 +743,7 @@ var graColorTable = exports.graColorTable = function graColorTable(colorList) {
     }
   }
 };
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -675,7 +806,7 @@ var menu = exports.menu = function () {
 
 	return menu;
 }();
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -761,7 +892,7 @@ var modal = exports.modal = function () {
 
     return modal;
 }();
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -808,7 +939,7 @@ var navTabBtnGroup = exports.navTabBtnGroup = function () {
 
 	return navTabBtnGroup;
 }();
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -851,7 +982,7 @@ function patchAll() {
         $this.css("width", $this.attr("data-progL") + "%");
     });
 }
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -979,7 +1110,7 @@ var studentContainer = exports.studentContainer = function () {
                     e.data.$hover.find('#submitChange').off('click');
                     e.data.$hover.find('#submitChange').one('click', c, function (e) {
                         //$.get(config.changeStudent,{"student":e.data.id,"class_id":"1001"},function(){ location.href =config.changeStudent;});
-                        location.href = _config.config.changeStudent + "?student=" + e.data.id + "&" + "class_id=1001";
+                        location.href = _config.config.changeStudent + "?student=" + e.data.id;
                     });
                 });
                 $(block).on('mouseleave', self, function (e) {
@@ -997,7 +1128,7 @@ var studentContainer = exports.studentContainer = function () {
 
     return studentContainer;
 }();
-},{"./config.js":2}],12:[function(require,module,exports){
+},{"./config.js":3}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1227,4 +1358,4 @@ var User = exports.User = function () {
 
 	return User;
 }();
-},{}]},{},[5])
+},{}]},{},[6])

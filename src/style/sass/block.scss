@@ -88,6 +88,19 @@
 		margin-top: 0.10rem;
 
 	}
+	 >a{
+ 		@extend .piButton;
+		display: block;
+		float: left;
+		width:0.8rem;
+		height:0.4rem;
+		line-height: 0.4rem;
+		margin-top: 0.1rem;
+		margin-right: 0.05rem;
+		 font-size: 0.18rem;
+		 text-align: center;
+
+	 }
 }
 
 

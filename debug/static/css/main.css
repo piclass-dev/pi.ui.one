@@ -410,7 +410,7 @@ body {
   background-size: 1rem 1rem;
 }
 
-.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .appBlock div > div > button + button, .appBlock div > div > button, .appBlock div + div > button, .download > a, .piCourseBlock > button {
+.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piHomeworkBlock > a, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .appBlock div > div > button + button, .appBlock div > div > button, .appBlock div + div > button, .download > a, .piCourseBlock > button {
   border: 0.01rem solid #c4c4c4;
   background-color: #fff;
   border-radius: 0.1rem;
@@ -420,10 +420,10 @@ body {
   box-shadow: inset 0rem -0.01rem 0rem 0rem rgba(0, 0, 0, 0.2);
   outline: none;
 }
-.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .appBlock div > div > button + button:hover, .appBlock div > div > button:hover, .appBlock div + div > button:hover, .download > a:hover, .piCourseBlock > button:hover {
+.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piHomeworkBlock > a:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .appBlock div > div > button + button:hover, .appBlock div > div > button:hover, .appBlock div + div > button:hover, .download > a:hover, .piCourseBlock > button:hover {
   border: 0.01rem solid #818181;
 }
-.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .appBlock div > div > button + button:active, .appBlock div > div > button:active, .appBlock div + div > button:active, .download > a:active, .piCourseBlock > button:active {
+.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piHomeworkBlock > a:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .appBlock div > div > button + button:active, .appBlock div > div > button:active, .appBlock div + div > button:active, .download > a:active, .piCourseBlock > button:active {
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
 }
 
@@ -649,14 +649,14 @@ body {
   min-height: 1px;
 }
 
-.cardBase, .cardMain, .download > div, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
+.cardBase, .cardMain, .choiceBlock, .download > div, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
   background-color: #fff;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
   border-radius: 0.05rem;
 }
 
-.cardMain, .download > div {
+.cardMain, .choiceBlock, .download > div {
   width: 100%;
   min-height: 1rem;
   margin-bottom: 0.1rem;
@@ -1050,6 +1050,17 @@ body {
   margin: auto;
   margin-top: 0.10rem;
 }
+.piHomeworkBlock > a {
+  display: block;
+  float: left;
+  width: 0.8rem;
+  height: 0.4rem;
+  line-height: 0.4rem;
+  margin-top: 0.1rem;
+  margin-right: 0.05rem;
+  font-size: 0.18rem;
+  text-align: center;
+}
 
 .piFileBlock, .piFileABlock, .piFileBBlock {
   box-sizing: border-box;
@@ -1157,7 +1168,7 @@ body {
   float: right;
 }
 
-.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piStudentCourseContainer {
+.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piChoiceContainerTeacher, .piStudentCourseContainer {
   width: 100%;
   overflow: scroll;
   overflow-x: hidden;
@@ -1183,6 +1194,41 @@ body {
   border-right: solid 0.01rem #ebebeb;
   border-top: solid 0.01rem #ebebeb;
   height: 4.6rem;
+}
+
+.piChoiceContainerTeacher {
+  margin: 0rem;
+  padding: 0.05rem;
+  min-height: 4.6rem;
+}
+
+.choiceBlock {
+  float: left;
+  width: 2.38rem;
+  height: 1rem;
+  margin: 0.05rem;
+  overflow: hidden;
+}
+.choiceBlock > textarea {
+  font-size: 0.15rem;
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+  border: 0rem;
+  outline: none;
+  overflow: hidden;
+}
+.choiceBlock > span {
+  display: block;
+  position: relative;
+  top: -0.65rem;
+  left: 0.05rem;
+  font-size: 0.16rem;
+  text-shadow: 0rem 0rem 0.05rem #ffffff;
+}
+.choiceBlock:hover {
+  border: 0.01rem solid #424147;
+  box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
 }
 
 .piStudentCourseContainer {
@@ -1610,6 +1656,10 @@ body {
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   color: #fff;
+  font-size: 0.2rem;
+}
+.countBlock:hover > textarea {
+  width: 100%;
 }
 
 .countDropdown {
@@ -1624,6 +1674,29 @@ body {
   box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
   padding-left: 0.05rem;
   padding-right: 0.05rem;
+}
+
+.choiceDropdown {
+  width: 5rem;
+  height: 3rem;
+  background-color: #fff;
+  border-radius: 0.1rem;
+  position: absolute;
+  display: none;
+  box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
+  font-size: 0.2rem;
+  overflow: hidden;
+}
+.choiceDropdown > textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  height: 2.4rem;
+  outline: none;
+}
+.choiceDropdown > span {
+  width: 100%;
+  text-align: center;
 }
 
 .piTable {

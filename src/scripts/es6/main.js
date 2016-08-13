@@ -1,3 +1,5 @@
+
+
  import {avatar} from './avatar.js';
  import {modal} from './modal.js';
  import {User} from './user.js';
@@ -7,6 +9,7 @@
  import patchAll from './patch.js'
  import {countContainer} from './countContainer.js'
  import {studentContainer,studentFinder} from './studentContainer.js'
+  import {choiceTeacher,choiceContainerTeacher} from './choiceContainer.js'
  import {colorMatch,rgbColor,graColorTable} from "./graColorTable";
 
 //rem calculate
@@ -102,6 +105,12 @@ $('[class="piStudentCourseContainer"]').each(function(){
 	var $this=$(this);
 	var $hover=$($this.attr('data-target'));
 	$this.data("pi.studentContainer",new studentContainer($this,$hover));
+})
+
+$('[class="piChoiceContainerTeacher"]').each(function(){
+	var $this=$(this);
+	var $hover=$($this.attr('data-target'));
+	$this.data("pi.choiceContainer",new  choiceContainerTeacher($this,$hover));
 })
 
 $('#studentFinder').each(function(){

@@ -39,6 +39,13 @@ var config = exports.config = {
     "getCount": baseURL + "count_history.html",
     //继续点名
     "continueCount": commenURL + "count/count_qrcode.html",
-    //查看详情
-    "getCountDetail": commenURL + "count/count_detail.html"
+    //查看点名详情
+    "getCountDetail": commenURL + "count/count_detail.html",
+
+    //获取选择题题目详情
+    "getChoiceDetail": mkdebugURL + "tk.html",
+    //一次作业中的全部选择题
+    "getAllChoice": mkdebugURL + "zy_choice.html",
+    //编程题详情
+    "getProgramDetail": mkdebugURL + "tk.html"
 };

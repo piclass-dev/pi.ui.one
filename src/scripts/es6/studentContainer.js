@@ -105,7 +105,7 @@ export class studentContainer {
                 e.data.$hover.find('#submitChange').off('click');
                 e.data.$hover.find('#submitChange').one('click',c,function(e){
                     //$.get(config.changeStudent,{"student":e.data.id,"class_id":"1001"},function(){ location.href =config.changeStudent;});
-                    location.href=config.changeStudent+"?student="+e.data.id+"&"+"class_id=1001";
+                    location.href=config.changeStudent+"?student="+e.data.id;
                 })
 
             })

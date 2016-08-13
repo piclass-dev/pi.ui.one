@@ -92,7 +92,10 @@ var countContainer = exports.countContainer = function () {
 					e.data.$hover.find('#ch').one('click', c, function (e) {
 						location.href = _config.config.getCountDetail + "?count_id=" + e.data.id;
 					});
-
+					// $('#deleteCount').one('click',c,function(e){
+					// 	location.href=config.getCountDetail+"?count_id="+e.data.id;
+					// });
+					$("#qwe").val(c.id);
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {
