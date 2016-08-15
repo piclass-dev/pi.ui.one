@@ -121,7 +121,8 @@ function main() {
 	$('[class="piChoiceContainerTeacher"]').each(function () {
 		var $this = $(this);
 		var $hover = $($this.attr('data-target'));
-		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerTeacher($this, $hover));
+		var id = $this.attr('data-src');
+		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerTeacher($this, $hover, id));
 	});
 
 	$('#studentFinder').each(function () {

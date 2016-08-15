@@ -110,7 +110,8 @@ $('[class="piStudentCourseContainer"]').each(function(){
 $('[class="piChoiceContainerTeacher"]').each(function(){
 	var $this=$(this);
 	var $hover=$($this.attr('data-target'));
-	$this.data("pi.choiceContainer",new  choiceContainerTeacher($this,$hover));
+    var id=$this.attr('data-src');
+	$this.data("pi.choiceContainer",new  choiceContainerTeacher($this,$hover,id));
 })
 
 $('#studentFinder').each(function(){

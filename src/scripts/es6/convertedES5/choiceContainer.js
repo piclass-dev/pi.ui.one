@@ -20,17 +20,18 @@ var choiceTeacher = exports.choiceTeacher = function choiceTeacher(question, ans
 };
 
 var choiceContainerTeacher = exports.choiceContainerTeacher = function () {
-    function choiceContainerTeacher(element, hover) {
+    function choiceContainerTeacher(element, hover, id) {
         _classCallCheck(this, choiceContainerTeacher);
 
         var self = this;
         this.$element = element;
         this.$hover = hover;
+        this.zyId = id;
         this.left;
         this.top;
         this.timer;
         this.choices = new Array();
-        $.getJSON(_config.config.getAllChoice, function (data) {
+        $.getJSON(_config.config.getAllChoice + "?zy_id=" + this.zyId, function (data) {
             for (var i = 0; i <= data.info.length - 1; i++) {
                 var choice = new choiceTeacher(data.info[i].question, data.info[i].ans, data.info[i].id);
                 self.choices.push(choice);
@@ -58,6 +59,7 @@ var choiceContainerTeacher = exports.choiceContainerTeacher = function () {
             $('[class="choiceBlock"]').each(function (i, block) {
 
                 $(block).data("pi.choiceBlock", self.choices[i]);
+                $(block).attr("id", self.choices[i].deleteId);
 
                 $(block).on('mouseenter', self, function (e) {
                     clearTimeout(e.data.timer);
@@ -66,6 +68,9 @@ var choiceContainerTeacher = exports.choiceContainerTeacher = function () {
                     var y = this.getBoundingClientRect().bottom + document.documentElement.scrollTop;
                     //y = y + parseInt($(this).css("height").replace("px", "")) + 10 + document.body.scrollTop;
                     x = x - parseInt(e.data.$hover.css("width").replace("px", ""));
+                    if (x < 0) {
+                        var x = this.getBoundingClientRect().left + document.documentElement.scrollLeft;
+                    }
                     e.data.$hover.css("left", x);
                     e.data.$hover.css("top", y);
 
@@ -93,7 +98,7 @@ var choiceContainerTeacher = exports.choiceContainerTeacher = function () {
                     // $('#deleteCount').one('click', c, function(e) {
                     //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
                     // });
-                    $("#qwe").val(c.id);
+                    $("#qwe").val(c.deleteId);
                     e.data.$hover.css("display", "block");
                 });
                 $(block).on('mouseleave', self, function (e) {

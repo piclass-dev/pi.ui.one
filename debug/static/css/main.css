@@ -824,6 +824,10 @@ body {
   padding-left: 0.1rem;
 }
 
+.small {
+  width: 0.8rem;
+}
+
 .piFormTextareaRow {
   height: 1.75rem;
 }
