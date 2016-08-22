@@ -36,6 +36,9 @@
 	padding: 0.05rem;
 	min-height: 4.6rem;
 }
+.piChoiceContainerStudent{
+	@extend .piChoiceContainerTeacher;
+}
 .choiceBlock{
 	@extend .cardMain;
 	float: left;

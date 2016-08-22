@@ -125,6 +125,13 @@ function main() {
 		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerTeacher($this, $hover, id));
 	});
 
+	$('[class="piChoiceContainerStudent"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		var id = $this.attr('data-src');
+		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerStudent($this, $hover, id));
+	});
+
 	$('#studentFinder').each(function () {
 		var $this = $(this);
 		var s = $('[class="piStudentCourseContainer"]').data("pi.studentContainer");

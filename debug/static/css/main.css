@@ -1172,7 +1172,7 @@ body {
   float: right;
 }
 
-.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piChoiceContainerTeacher, .piStudentCourseContainer {
+.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piChoiceContainerTeacher, .piChoiceContainerStudent, .piStudentCourseContainer {
   width: 100%;
   overflow: scroll;
   overflow-x: hidden;
@@ -1200,7 +1200,7 @@ body {
   height: 4.6rem;
 }
 
-.piChoiceContainerTeacher {
+.piChoiceContainerTeacher, .piChoiceContainerStudent {
   margin: 0rem;
   padding: 0.05rem;
   min-height: 4.6rem;

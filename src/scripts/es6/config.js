@@ -45,6 +45,8 @@ var config = exports.config = {
     "getChoiceDetail":mkdebugURL+"tk.html",
     //一次作业中的全部选择题
     "getAllChoice":mkdebugURL+"zy_choice.html",
+    //做选择题
+    "ansChoice":commenURL+"choice/student_answer.html",
     //编程题详情
     "getProgramDetail":mkdebugURL+"tk.html",
 };

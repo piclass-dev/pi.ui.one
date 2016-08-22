@@ -9,7 +9,7 @@
  import patchAll from './patch.js'
  import {countContainer} from './countContainer.js'
  import {studentContainer,studentFinder} from './studentContainer.js'
-  import {choiceTeacher,choiceContainerTeacher} from './choiceContainer.js'
+  import {choiceTeacher,choiceContainerTeacher,choiceContainerStudent} from './choiceContainer.js'
  import {colorMatch,rgbColor,graColorTable} from "./graColorTable";
 
 //rem calculate
@@ -112,6 +112,13 @@ $('[class="piChoiceContainerTeacher"]').each(function(){
 	var $hover=$($this.attr('data-target'));
     var id=$this.attr('data-src');
 	$this.data("pi.choiceContainer",new  choiceContainerTeacher($this,$hover,id));
+})
+
+$('[class="piChoiceContainerStudent"]').each(function(){
+	var $this=$(this);
+	var $hover=$($this.attr('data-target'));
+    var id=$this.attr('data-src');
+	$this.data("pi.choiceContainer",new  choiceContainerStudent($this,$hover,id));
 })
 
 $('#studentFinder').each(function(){
