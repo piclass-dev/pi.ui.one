@@ -86,13 +86,11 @@ var avatar = exports.avatar = function () {
 		value: function drawAngular(x1, y1, x2, y2, x3, y3, color) {
 			var c = this.ctx;
 			c.fillStyle = color;
-			c.strokeStyle = color;
 			c.beginPath();
 			c.moveTo(x1 * this.step, y1 * this.step);
 			c.lineTo(x2 * this.step, y2 * this.step);
 			c.lineTo(x3 * this.step, y3 * this.step);
 			c.fill();
-			c.stroke();
 		}
 	}, {
 		key: "drawCourse",
@@ -124,308 +122,18 @@ var avatar = exports.avatar = function () {
 
 	return avatar;
 }();
-},{"./user":13}],2:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.choiceContainerTeacher = exports.choiceContainerStudent = exports.choiceTeacher = exports.choiceStudent = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _config = require('./config.js');
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var choiceStudent = exports.choiceStudent = function choiceStudent(question, ans, score, zyid, id1, id2) {
-    _classCallCheck(this, choiceStudent);
-
-    this.question = question;
-    this.ans = ans;
-    this.score = score;
-    this.zyid = zyid;
-    this.id1 = id1;
-    this.id2 = id2;
-};
-
-var choiceTeacher = exports.choiceTeacher = function choiceTeacher(question, ans, id) {
-    _classCallCheck(this, choiceTeacher);
-
-    this.question = question;
-    this.ans = ans;
-    this.deleteId = id;
-};
-
-var choiceContainerStudent = exports.choiceContainerStudent = function () {
-    function choiceContainerStudent(element, hover, id) {
-        _classCallCheck(this, choiceContainerStudent);
-
-        var self = this;
-        this.$element = element;
-        this.$hover = hover;
-        this.zyId = id;
-        this.left;
-        this.top;
-        this.timer;
-        this.choices = new Array();
-        $.getJSON(_config.config.getAllChoice + "?zy_id=" + this.zyId, function (data) {
-            for (var i = 0; i <= data.info.length - 1; i++) {
-                var choice = new choiceStudent(data.info[i].question, data.info[i].student_ans, data.info[i].score, data.info[i].zy_id, data.info[i].id1, data.info[i].id2);
-                self.choices.push(choice);
-            }
-            self.addBlock();
-            self.regi();
-        });
-    }
-
-    _createClass(choiceContainerStudent, [{
-        key: 'addBlock',
-        value: function addBlock() {
-            this.choices.forEach(function (choice) {
-                this.$element.append('<div class="choiceBlock"><textarea disabled="disabled">' + choice.question + '</textarea></div>');
-            }, this);
-        }
-    }, {
-        key: 'regi',
-        value: function regi() {
-            var self = this;
-            this.$hover.on('mouseleave', this, function (e) {
-                e.data.$hover.css("display", "none");
-            });
-
-            $('[class="choiceBlock"]').each(function (i, block) {
-
-                $(block).data("pi.choiceBlock", self.choices[i]);
-                $(block).attr("id", self.choices[i].deleteId);
-                if (self.choices[i].ans != null) {
-                    $(block).css("border", "0.02rem solid rgb(135, 218, 131)");
-                }
-
-                $(block).on('mouseenter', self, function (e) {
-                    clearTimeout(e.data.timer);
-
-                    var x = this.getBoundingClientRect().right + document.documentElement.scrollLeft;
-                    var y = this.getBoundingClientRect().bottom + document.documentElement.scrollTop + document.body.scrollTop;
-                    //y = y + parseInt($(this).css("height").replace("px", "")) + 10 + document.body.scrollTop;
-                    x = x - parseInt(e.data.$hover.css("width").replace("px", ""));
-                    if (x < 0) {
-                        var x = this.getBoundingClientRect().left + document.documentElement.scrollLeft;
-                    }
-                    e.data.$hover.css("left", x);
-                    e.data.$hover.css("top", y);
-
-                    var c = $(this).data("pi.choiceBlock");
-
-                    e.data.$hover.find('#detailtext').html("题目：" + c.question);
-                    // var a = c.present / c.all + '';
-                    // var b = a.slice(0, 4);
-
-                    e.data.$hover.find('#currentanswer').html("当前答案：" + c.ans);
-                    if (c.ans == null) {
-                        e.data.$hover.find('#currentanswer').html("当前答案：未答题");
-                    }
-                    // e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
-                    // e.data.$hover.find('#notice').html(c.notice);
-                    // if (c.state === "1") {
-                    //     e.data.$hover.find('#ch').html("查看详情");
-                    //     e.data.$hover.find('#contin').css("display", "none");
-                    // } else {
-                    //     e.data.$hover.find('#ch').html("查看详情/手工修改");
-                    //     e.data.$hover.find('#contin').css("display", "block");
-                    //     e.data.$hover.find('#contin').one('click', c, function(e) {
-                    //         location.href = config.continueCount + "?count_id=" + e.data.id;
-                    //     });
-                    // }
-                    $("#answer").one('click', c, function (e) {
-                        location.href = _config.config.ansChoice + "?zy_id=" + e.data.zyid + "&id1=" + e.data.id1 + "&id2=" + e.data.id2;
-                    });
-                    // $('#deleteCount').one('click', c, function(e) {
-                    //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
-                    // });
-                    // $("#qwe").val(c.deleteId);
-                    e.data.$hover.css("display", "block");
-                });
-                $(block).on('mouseleave', self, function (e) {
-                    e.data.timer = setTimeout(function () {
-                        e.data.$hover.css("display", "none");
-                    }, 100);
-                    e.data.$hover.one('mouseenter', e.data, function (e) {
-                        clearTimeout(e.data.timer);
-                    });
-                });
-            });
-        }
-    }]);
-
-    return choiceContainerStudent;
-}();
-
-var choiceContainerTeacher = exports.choiceContainerTeacher = function () {
-    function choiceContainerTeacher(element, hover, id) {
-        _classCallCheck(this, choiceContainerTeacher);
-
-        var self = this;
-        this.$element = element;
-        this.$hover = hover;
-        this.zyId = id;
-        this.left;
-        this.top;
-        this.timer;
-        this.choices = new Array();
-        $.getJSON(_config.config.getAllChoice + "?zy_id=" + this.zyId, function (data) {
-            for (var i = 0; i <= data.info.length - 1; i++) {
-                var choice = new choiceTeacher(data.info[i].question, data.info[i].ans, data.info[i].id);
-                self.choices.push(choice);
-            }
-            self.addBlock();
-            self.regi();
-        });
-    }
-
-    _createClass(choiceContainerTeacher, [{
-        key: 'addBlock',
-        value: function addBlock() {
-            this.choices.forEach(function (choice) {
-                this.$element.append('<div class="choiceBlock"><textarea disabled="disabled">' + choice.question + '</textarea></div>');
-            }, this);
-        }
-    }, {
-        key: 'regi',
-        value: function regi() {
-            var self = this;
-            this.$hover.on('mouseleave', this, function (e) {
-                e.data.$hover.css("display", "none");
-            });
-
-            $('[class="choiceBlock"]').each(function (i, block) {
-
-                $(block).data("pi.choiceBlock", self.choices[i]);
-                $(block).attr("id", self.choices[i].deleteId);
-
-                $(block).on('mouseenter', self, function (e) {
-                    clearTimeout(e.data.timer);
-
-                    var x = this.getBoundingClientRect().right + document.documentElement.scrollLeft;
-                    var y = this.getBoundingClientRect().bottom + document.documentElement.scrollTop + document.body.scrollTop;
-                    //y = y + parseInt($(this).css("height").replace("px", "")) + 10 + document.body.scrollTop;
-                    x = x - parseInt(e.data.$hover.css("width").replace("px", ""));
-                    if (x < 0) {
-                        var x = this.getBoundingClientRect().left + document.documentElement.scrollLeft;
-                    }
-                    e.data.$hover.css("left", x);
-                    e.data.$hover.css("top", y);
-
-                    var c = $(this).data("pi.choiceBlock");
-
-                    e.data.$hover.find('#detailtext').html("题目：" + c.question);
-                    // var a = c.present / c.all + '';
-                    // var b = a.slice(0, 4);
-                    e.data.$hover.find('#rightanswer').html("正确答案：" + c.ans);
-                    // e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
-                    // e.data.$hover.find('#notice').html(c.notice);
-                    // if (c.state === "1") {
-                    //     e.data.$hover.find('#ch').html("查看详情");
-                    //     e.data.$hover.find('#contin').css("display", "none");
-                    // } else {
-                    //     e.data.$hover.find('#ch').html("查看详情/手工修改");
-                    //     e.data.$hover.find('#contin').css("display", "block");
-                    //     e.data.$hover.find('#contin').one('click', c, function(e) {
-                    //         location.href = config.continueCount + "?count_id=" + e.data.id;
-                    //     });
-                    // }
-                    // e.data.$hover.find('#ch').one('click', c, function(e) {
-                    //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
-                    // });
-                    // $('#deleteCount').one('click', c, function(e) {
-                    //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
-                    // });
-                    $("#qwe").val(c.deleteId);
-                    e.data.$hover.css("display", "block");
-                });
-                $(block).on('mouseleave', self, function (e) {
-                    e.data.timer = setTimeout(function () {
-                        e.data.$hover.css("display", "none");
-                    }, 100);
-                    e.data.$hover.one('mouseenter', e.data, function (e) {
-                        clearTimeout(e.data.timer);
-                    });
-                });
-            });
-        }
-    }]);
-
-    return choiceContainerTeacher;
-}();
-},{"./config.js":3}],3:[function(require,module,exports){
-"use strict";
-
-// //本地调试目录
-// var mkdebugURL="http://django.piclass.cn";
-// var serverBaseURL="";
-//
-// //实际使用前缀
-// var baseURL=mkdebugURL;
-//
-// //路径配置
-// export var config={
-//
-//
-//     //获取所有学生信息
-//     "getStudents":baseURL+"/myclass/student_list.html",
-//     //修改学生信息
-//     "changeStudent":baseURL+"/myclass/student_info.html",
-//
-//     //获取所有点名记录
-//     "getCount":baseURL+"/count/history.html",
-//
-// }
-
-var mkdebugURL = "http://django.piclass.cn/api/test/";
-var commenURL = "http://django.piclass.cn/";
-var serverBaseURL = "/api/";
-
-//实际使用前缀
-var baseURL = mkdebugURL;
-
-//路径配置
-var config = exports.config = {
-
-    //获取所有学生信息
-    "getStudents": baseURL + "student_list.html",
-    "changeStudent": "/myclass/student_info.html",
-
-    //获取所有点名记录
-    "getCount": baseURL + "count_history.html",
-    //继续点名
-    "continueCount": commenURL + "count/count_qrcode.html",
-    //查看点名详情
-    "getCountDetail": commenURL + "count/count_detail.html",
-
-    //获取选择题题目详情
-    "getChoiceDetail": mkdebugURL + "tk.html",
-    //一次作业中的全部选择题
-    "getAllChoice": mkdebugURL + "zy_choice.html",
-    //做选择题
-    "ansChoice": commenURL + "choice/student_answer.html",
-    //编程题详情
-    "getProgramDetail": mkdebugURL + "tk.html"
-};
-},{}],4:[function(require,module,exports){
+},{"./user":11}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.countContainer = exports.count = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _config = require('./config.js');
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var count = exports.count = function count(time, all, present, notice, id, state) {
+var count = exports.count = function count(time, all, present, notice, id) {
 	_classCallCheck(this, count);
 
 	this.time = time;
@@ -433,7 +141,6 @@ var count = exports.count = function count(time, all, present, notice, id, state
 	this.present = present;
 	this.notice = notice;
 	this.id = id;
-	this.state = state;
 };
 
 var countContainer = exports.countContainer = function () {
@@ -447,9 +154,9 @@ var countContainer = exports.countContainer = function () {
 		this.top;
 		this.timer;
 		this.counts = new Array();
-		$.getJSON(_config.config.getCount, function (data) {
+		$.getJSON("http://django.piclass.cn/test", function (data) {
 			for (var i = 0; i <= data.info.length - 1; i++) {
-				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id, data.info[i].state);
+				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id);
 				self.counts.push(countt);
 			}
 			self.addBlock();
@@ -488,28 +195,9 @@ var countContainer = exports.countContainer = function () {
 					var c = $(this).data("pi.countBlock");
 
 					e.data.$hover.find('#time').html("点名日期：" + c.time);
-					var a = c.present / c.all + '';
-					var b = a.slice(0, 4);
-					e.data.$hover.find('#presentRatio').html("出席率：" + b);
+					e.data.$hover.find('#presentRatio').html("出席率：" + c.present / c.all);
 					e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
 					e.data.$hover.find('#notice').html(c.notice);
-					if (c.state === "1") {
-						e.data.$hover.find('#ch').html("查看详情");
-						e.data.$hover.find('#contin').css("display", "none");
-					} else {
-						e.data.$hover.find('#ch').html("查看详情/手工修改");
-						e.data.$hover.find('#contin').css("display", "block");
-						e.data.$hover.find('#contin').one('click', c, function (e) {
-							location.href = _config.config.continueCount + "?count_id=" + e.data.id;
-						});
-					}
-					e.data.$hover.find('#ch').one('click', c, function (e) {
-						location.href = _config.config.getCountDetail + "?count_id=" + e.data.id;
-					});
-					// $('#deleteCount').one('click',c,function(e){
-					// 	location.href=config.getCountDetail+"?count_id="+e.data.id;
-					// });
-					$("#qwe").val(c.id);
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {
@@ -526,7 +214,7 @@ var countContainer = exports.countContainer = function () {
 
 	return countContainer;
 }();
-},{"./config.js":3}],5:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -687,7 +375,7 @@ var errorCanvas = exports.errorCanvas = function () {
 
     return errorCanvas;
 }();
-},{}],6:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var _avatar = require('./avatar.js');
@@ -709,8 +397,6 @@ var _patch2 = _interopRequireDefault(_patch);
 var _countContainer = require('./countContainer.js');
 
 var _studentContainer = require('./studentContainer.js');
-
-var _choiceContainer = require('./choiceContainer.js');
 
 var _graColorTable = require('./graColorTable');
 
@@ -749,8 +435,7 @@ function main() {
 	var colorList2 = new Array();
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(157, 47, 124), 40));
-	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 61, 98), 100));
-	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(127, 47, 134), 180));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(176, 71, 188), 100));
 	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(54, 46, 99), 255));
 	var mainGra2 = new _graColorTable.graColorTable(colorList2);
 	//create avatar obj
@@ -808,20 +493,6 @@ function main() {
 		$this.data("pi.studentContainer", new _studentContainer.studentContainer($this, $hover));
 	});
 
-	$('[class="piChoiceContainerTeacher"]').each(function () {
-		var $this = $(this);
-		var $hover = $($this.attr('data-target'));
-		var id = $this.attr('data-src');
-		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerTeacher($this, $hover, id));
-	});
-
-	$('[class="piChoiceContainerStudent"]').each(function () {
-		var $this = $(this);
-		var $hover = $($this.attr('data-target'));
-		var id = $this.attr('data-src');
-		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerStudent($this, $hover, id));
-	});
-
 	$('#studentFinder').each(function () {
 		var $this = $(this);
 		var s = $('[class="piStudentCourseContainer"]').data("pi.studentContainer");
@@ -835,7 +506,7 @@ window.onresize = setRem;
 // 	var $this   = $(this);
 // 	$this.data("pi.404canvas",new errorCanvas($this));
 // })
-},{"./avatar.js":1,"./choiceContainer.js":2,"./countContainer.js":4,"./errorCanvas.js":5,"./graColorTable":7,"./menu.js":8,"./modal.js":9,"./navTab.js":10,"./patch.js":11,"./studentContainer.js":12,"./user.js":13}],7:[function(require,module,exports){
+},{"./avatar.js":1,"./countContainer.js":2,"./errorCanvas.js":3,"./graColorTable":5,"./menu.js":6,"./modal.js":7,"./navTab.js":8,"./patch.js":9,"./studentContainer.js":10,"./user.js":11}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -873,7 +544,7 @@ var graColorTable = exports.graColorTable = function graColorTable(colorList) {
     }
   }
 };
-},{}],8:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -936,7 +607,7 @@ var menu = exports.menu = function () {
 
 	return menu;
 }();
-},{}],9:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -964,6 +635,7 @@ var modal = exports.modal = function () {
         //about size and position
         this.modalWidth = parseInt(this.$target.css("width").replace("px", ""));
         this.modalHeight = parseInt(this.$target.css("height").replace("px", ""));
+        //this.top=100;
 
         this.regi();
     }
@@ -982,6 +654,7 @@ var modal = exports.modal = function () {
     }, {
         key: "show",
         value: function show() {
+
             this.stylePerpare();
             this.$target.css('display', 'block');
             this.$target.after('<div class="piModalBack"></div>');
@@ -1000,10 +673,11 @@ var modal = exports.modal = function () {
         key: "hide",
         value: function hide() {
             $('[class="piModalBack"]').remove();
-            this.$target.animate({
-                opacity: "0",
-                top: "-=0.5rem"
-            }, 400);
+            // this.$target.animate({
+            //     opacity:"0",
+            //     top:"-=0.5rem",
+            // },400)
+            this.$target.css("top", "100px");
             this.$target.css('display', 'none');
         }
     }, {
@@ -1022,7 +696,7 @@ var modal = exports.modal = function () {
 
     return modal;
 }();
-},{}],10:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1069,7 +743,7 @@ var navTabBtnGroup = exports.navTabBtnGroup = function () {
 
 	return navTabBtnGroup;
 }();
-},{}],11:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1090,39 +764,15 @@ function patchAll() {
         $("#countTime").val("");
         $("#countText").val("");
     });
-
-    $("#checkTimeNow").on('change', function () {
-        var myDate = new Date();
-        alert($("#checkTimeNow").val());
-        //alert(myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate())
-        // if()
-    });
-
-    //编程页清空信息
-    $("#clearError").on('click', function () {
-        $("#error").val("");
-    });
-    $("#clearOutput").on('click', function () {
-        $("#output").val("");
-    });
-
-    //文件块进度条
-    $('[data-toggle="prog"]').each(function () {
-        var $this = $(this);
-        $this.css("width", $this.attr("data-progL") + "%");
-    });
 }
-},{}],12:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.studentContainer = exports.studentFinder = exports.studentBlock = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _config = require("./config.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1185,7 +835,7 @@ var studentContainer = exports.studentContainer = function () {
         this.top;
         this.timer;
         this.students = new Array();
-        $.getJSON(_config.config.getStudents, function (data) {
+        $.getJSON("http://django.piclass.cn/myclass/student_list.html", function (data) {
             for (var i = 0; i <= data.student_list.length - 1; i++) {
                 var s = new studentBlock(data.student_list[i].username, data.student_list[i].name, data.student_list[i].score, data.student_list[i].score2, data.student_list[i].score3, data.student_list[i].notice, null);
                 self.students.push(s);
@@ -1236,12 +886,6 @@ var studentContainer = exports.studentContainer = function () {
                     e.data.$hover.find('#c3').html("作业成绩:" + c.homeworkScore);
                     e.data.$hover.find('#notice').html(c.notice);
                     e.data.$hover.css("display", "block");
-
-                    e.data.$hover.find('#submitChange').off('click');
-                    e.data.$hover.find('#submitChange').one('click', c, function (e) {
-                        //$.get(config.changeStudent,{"student":e.data.id,"class_id":"1001"},function(){ location.href =config.changeStudent;});
-                        location.href = _config.config.changeStudent + "?student=" + e.data.id;
-                    });
                 });
                 $(block).on('mouseleave', self, function (e) {
                     //	e.data.$hover.css("display","none");
@@ -1258,7 +902,7 @@ var studentContainer = exports.studentContainer = function () {
 
     return studentContainer;
 }();
-},{"./config.js":3}],13:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1488,4 +1132,4 @@ var User = exports.User = function () {
 
 	return User;
 }();
-},{}]},{},[6])
+},{}]},{},[4])

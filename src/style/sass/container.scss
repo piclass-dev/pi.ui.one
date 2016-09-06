@@ -30,44 +30,6 @@
 	border-top:solid 0.01rem $UIline;
 	height:4.6rem;
 }
-.piChoiceContainerTeacher{
-	@extend .piContiner;
-	margin: 0rem;
-	padding: 0.05rem;
-	min-height: 4.6rem;
-}
-.piChoiceContainerStudent{
-	@extend .piChoiceContainerTeacher;
-}
-.choiceBlock{
-	@extend .cardMain;
-	float: left;
-	width:2.38rem;
-	height: 1rem;
-	margin: 0.05rem;
-	overflow: hidden;
-	>textarea{
-		font-size: 0.15rem;
-		opacity: 0.3;
-		width:100%;
-		height:100%;
-		border:0rem;
-		outline: none;
-		overflow: hidden;
-	}
-	>span{
-		display: block;
-		position: relative;
-		top:-0.65rem;
-		left:0.05rem;
-		font-size: 0.16rem;
-		text-shadow: 0rem 0rem 0.05rem #ffffff;
-	}
-	&:hover{
-		border: 0.01rem solid $UIdark;
-		box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0,0,0,0.50);
-	}
-}
 
 .piStudentCourseContainer{
 	@extend .piContiner;

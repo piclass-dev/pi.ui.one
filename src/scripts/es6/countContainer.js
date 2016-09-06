@@ -1,13 +1,11 @@
-import {config} from './config.js';
 
 export class count{
-	constructor(time,all,present,notice,id,state){
+	constructor(time,all,present,notice,id){
 		this.time=time;
 		this.all=all;
 		this.present=present;
 		this.notice=notice;
 		this.id=id;
-		this.state=state;
 	}
 
 
@@ -22,9 +20,9 @@ export class countContainer{
 		this.top;
 		this.timer;
 		this.counts=new Array();
-		$.getJSON(config.getCount,function(data){
+		$.getJSON("http://django.piclass.cn/test",function(data){
     		for(var i=0;i<=data.info.length-1;i++){
-    		    var countt=new count(data.info[i].time,data.info[i].all,data.info[i].present,data.info[i].notice,data.info[i].count_id,data.info[i].state);
+    		    var countt=new count(data.info[i].time,data.info[i].all,data.info[i].present,data.info[i].notice,data.info[i].count_id);
     		    self.counts.push(countt);
     		}
     		self.addBlock();
@@ -64,28 +62,9 @@ export class countContainer{
 		    	var c=$(this).data("pi.countBlock");
 
 		    	e.data.$hover.find('#time').html("点名日期："+c.time);
-				var a=c.present/c.all+'';
-				var b=a.slice(0,4);
-		    	e.data.$hover.find('#presentRatio').html("出席率："+b);
+		    	e.data.$hover.find('#presentRatio').html("出席率："+c.present/c.all);
 		    	e.data.$hover.find('#present').html("出席人数："+c.present+"/"+c.all);
 		    	e.data.$hover.find('#notice').html(c.notice);
-				if(c.state==="1"){
-					e.data.$hover.find('#ch').html("查看详情");
-					e.data.$hover.find('#contin').css("display","none");
-				}else{
-					e.data.$hover.find('#ch').html("查看详情/手工修改");
-					e.data.$hover.find('#contin').css("display","block");
-					e.data.$hover.find('#contin').one('click',c,function(e){
-						location.href=config.continueCount+"?count_id="+e.data.id;
-					});
-				}
-				e.data.$hover.find('#ch').one('click',c,function(e){
-					location.href=config.getCountDetail+"?count_id="+e.data.id;
-				});
-				// $('#deleteCount').one('click',c,function(e){
-				// 	location.href=config.getCountDetail+"?count_id="+e.data.id;
-				// });
-				$("#qwe").val(c.id);
 		    	e.data.$hover.css("display","block");
 		    })
 		    $(block).on('mouseleave',self,function(e){

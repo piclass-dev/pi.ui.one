@@ -3,11 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.studentContainer = exports.studentFinder = exports.studentBlock = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _config = require("./config.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -70,7 +67,7 @@ var studentContainer = exports.studentContainer = function () {
         this.top;
         this.timer;
         this.students = new Array();
-        $.getJSON(_config.config.getStudents, function (data) {
+        $.getJSON("http://django.piclass.cn/myclass/student_list.html", function (data) {
             for (var i = 0; i <= data.student_list.length - 1; i++) {
                 var s = new studentBlock(data.student_list[i].username, data.student_list[i].name, data.student_list[i].score, data.student_list[i].score2, data.student_list[i].score3, data.student_list[i].notice, null);
                 self.students.push(s);
@@ -121,12 +118,6 @@ var studentContainer = exports.studentContainer = function () {
                     e.data.$hover.find('#c3').html("作业成绩:" + c.homeworkScore);
                     e.data.$hover.find('#notice').html(c.notice);
                     e.data.$hover.css("display", "block");
-
-                    e.data.$hover.find('#submitChange').off('click');
-                    e.data.$hover.find('#submitChange').one('click', c, function (e) {
-                        //$.get(config.changeStudent,{"student":e.data.id,"class_id":"1001"},function(){ location.href =config.changeStudent;});
-                        location.href = _config.config.changeStudent + "?student=" + e.data.id;
-                    });
                 });
                 $(block).on('mouseleave', self, function (e) {
                     //	e.data.$hover.css("display","none");

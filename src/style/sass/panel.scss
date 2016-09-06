@@ -3,7 +3,7 @@
 .piPanel{
 	@extend .cardBase;
     width:100%;
-    min-height:0.45rem;
+    min-height:0.5rem;
 	margin-bottom:$gutter;
 
 }
@@ -20,23 +20,4 @@
 
 .piPanelBody{
     //height:300px;//#
-}
-
-.piPanelPara{
-	display: block;
-	font-size: 0.2rem;
-	margin:0.2rem;
-}
-
-.piPanelTextarea{
-	display: block;
-	height: 3rem;
-	border: 0rem;
-	width:90%;
-	outline: none;
-	resize: none;
-    box-sizing:border-box;
-	font-size: 0.2rem;
-	margin:0.2rem;
-	overflow:visible;
 }

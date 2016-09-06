@@ -1,5 +1,3 @@
-
-
  import {avatar} from './avatar.js';
  import {modal} from './modal.js';
  import {User} from './user.js';
@@ -9,7 +7,6 @@
  import patchAll from './patch.js'
  import {countContainer} from './countContainer.js'
  import {studentContainer,studentFinder} from './studentContainer.js'
-  import {choiceTeacher,choiceContainerTeacher,choiceContainerStudent} from './choiceContainer.js'
  import {colorMatch,rgbColor,graColorTable} from "./graColorTable";
 
 //rem calculate
@@ -47,8 +44,7 @@ var mainGra=new graColorTable(colorList);
 var colorList2=new Array();
 colorList2.push(new colorMatch(new rgbColor(255,111,98),0));
 colorList2.push(new colorMatch(new rgbColor(157,47,124),40));
-colorList2.push(new colorMatch(new rgbColor(255,61,98),100));
-colorList2.push(new colorMatch(new rgbColor(127,47,134),180));
+colorList2.push(new colorMatch(new rgbColor(176,71,188),100));
 colorList2.push(new colorMatch(new rgbColor(54,46,99),255));
 var mainGra2=new graColorTable(colorList2);
 //create avatar obj
@@ -77,7 +73,7 @@ $('[data-toggle="modal"]').each(function(){
 $('[data-toggle="piNavBtnGroup"]').each(function(){
 	var $this =$(this);
 	var $buttonList=$this.find('*');
-	var $active=$this.find('.piBtnGroupActive');
+	var $active=$this.find('.piBtnGroupActive')
 	var $MatchList=new Array;
 	$buttonList.each(function(){
 		var $Match={"button":$(this),
@@ -105,20 +101,6 @@ $('[class="piStudentCourseContainer"]').each(function(){
 	var $this=$(this);
 	var $hover=$($this.attr('data-target'));
 	$this.data("pi.studentContainer",new studentContainer($this,$hover));
-})
-
-$('[class="piChoiceContainerTeacher"]').each(function(){
-	var $this=$(this);
-	var $hover=$($this.attr('data-target'));
-    var id=$this.attr('data-src');
-	$this.data("pi.choiceContainer",new  choiceContainerTeacher($this,$hover,id));
-})
-
-$('[class="piChoiceContainerStudent"]').each(function(){
-	var $this=$(this);
-	var $hover=$($this.attr('data-target'));
-    var id=$this.attr('data-src');
-	$this.data("pi.choiceContainer",new  choiceContainerStudent($this,$hover,id));
 })
 
 $('#studentFinder').each(function(){

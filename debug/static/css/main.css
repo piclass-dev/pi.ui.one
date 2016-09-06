@@ -410,7 +410,7 @@ body {
   background-size: 1rem 1rem;
 }
 
-.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piHomeworkBlock > a, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .appBlock div > div > button + button, .appBlock div > div > button, .appBlock div + div > button, .download > a, .piCourseBlock > button {
+.piButton, .piNavBtnGroup > button, .piFormClearRow .piFormBtn, .piFormBtn, .piHomeworkBlock > button, .piFileABlock > button, .piFileBBlock > .download, .piFileBBlock > .delete, .piCourseBlock > button {
   border: 0.01rem solid #c4c4c4;
   background-color: #fff;
   border-radius: 0.1rem;
@@ -420,10 +420,10 @@ body {
   box-shadow: inset 0rem -0.01rem 0rem 0rem rgba(0, 0, 0, 0.2);
   outline: none;
 }
-.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piHomeworkBlock > a:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .appBlock div > div > button + button:hover, .appBlock div > div > button:hover, .appBlock div + div > button:hover, .download > a:hover, .piCourseBlock > button:hover {
+.piButton:hover, .piNavBtnGroup > button:hover, .piFormBtn:hover, .piHomeworkBlock > button:hover, .piFileABlock > button:hover, .piFileBBlock > .download:hover, .piFileBBlock > .delete:hover, .piCourseBlock > button:hover {
   border: 0.01rem solid #818181;
 }
-.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piHomeworkBlock > a:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .appBlock div > div > button + button:active, .appBlock div > div > button:active, .appBlock div + div > button:active, .download > a:active, .piCourseBlock > button:active {
+.piButton:active, .piNavBtnGroup > button:active, .piFormBtn:active, .piHomeworkBlock > button:active, .piFileABlock > button:active, .piFileBBlock > .download:active, .piFileBBlock > .delete:active, .piCourseBlock > button:active {
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
 }
 
@@ -436,7 +436,6 @@ body {
   float: left;
   margin: 0rem;
   margin-left: -0.01rem;
-  border-radius: 0rem;
 }
 .piNavBtnGroup :first-child {
   border-radius: 0.1rem 0rem 0rem 0.1rem;
@@ -491,32 +490,22 @@ body {
 
 html {
   font-size: 100px;
-  font-family: 'microsoft yahei','PingFang SC','Inziu Iosevka SC',sans-serif;
 }
 
 body {
   margin: 0px;
 }
 
-.block, .wideBlock {
+.block {
   margin: auto;
   width: 10.2rem;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
 }
-.block:after, .wideBlock:after {
+.block:after {
   content: '';
   clear: both;
   display: block;
-}
-
-.wideBlock {
-  width: 90%;
-}
-@media (max-width: 1200px) {
-  .wideBlock {
-    width: 100%;
-  }
 }
 
 .row {
@@ -649,14 +638,14 @@ body {
   min-height: 1px;
 }
 
-.cardBase, .cardMain, .choiceBlock, .download > div, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
+.cardBase, .cardMain, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
   background-color: #fff;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
   border-radius: 0.05rem;
 }
 
-.cardMain, .choiceBlock, .download > div {
+.cardMain {
   width: 100%;
   min-height: 1rem;
   margin-bottom: 0.1rem;
@@ -824,10 +813,6 @@ body {
   padding-left: 0.1rem;
 }
 
-.small {
-  width: 0.8rem;
-}
-
 .piFormTextareaRow {
   height: 1.75rem;
 }
@@ -943,7 +928,7 @@ body {
 
 .piPanel {
   width: 100%;
-  min-height: 0.45rem;
+  min-height: 0.5rem;
   margin-bottom: 0.1rem;
 }
 
@@ -954,25 +939,6 @@ body {
   padding-top: 0.05rem;
   padding-bottom: 0.05rem;
   border-bottom: 0.01rem solid #ebebeb;
-}
-
-.piPanelPara {
-  display: block;
-  font-size: 0.2rem;
-  margin: 0.2rem;
-}
-
-.piPanelTextarea {
-  display: block;
-  height: 3rem;
-  border: 0rem;
-  width: 90%;
-  outline: none;
-  resize: none;
-  box-sizing: border-box;
-  font-size: 0.2rem;
-  margin: 0.2rem;
-  overflow: visible;
 }
 
 .piHomeworkBlock {
@@ -1030,6 +996,7 @@ body {
 }
 .piHomeworkBlock > ul > li > div > span {
   display: block;
+  float: left;
   width: 40%;
   margin: 0rem;
   font-size: 0.16rem;
@@ -1039,11 +1006,11 @@ body {
 }
 .piHomeworkBlock > ul > li > div > div {
   float: right;
-  width: 0%;
+  width: 50%;
   height: 0.15rem;
   background-color: #a7dd7f;
   border-radius: 10rem;
-  margin-top: -0.18rem;
+  margin-top: 0.03rem;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
 }
 .piHomeworkBlock > button {
@@ -1053,17 +1020,6 @@ body {
   width: 1.4rem;
   margin: auto;
   margin-top: 0.10rem;
-}
-.piHomeworkBlock > a {
-  display: block;
-  float: left;
-  width: 0.8rem;
-  height: 0.4rem;
-  line-height: 0.4rem;
-  margin-top: 0.1rem;
-  margin-right: 0.05rem;
-  font-size: 0.18rem;
-  text-align: center;
 }
 
 .piFileBlock, .piFileABlock, .piFileBBlock {
@@ -1162,17 +1118,119 @@ body {
   height: 0.4rem;
   float: left;
   margin-right: 0.08rem;
-  margin: 0rem;
 }
 .piFileBBlock > .delete {
   display: block;
   font-size: 0.2rem;
   width: 40%;
   height: 0.4rem;
-  float: right;
+  float: left;
 }
 
-.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piChoiceContainerTeacher, .piChoiceContainerStudent, .piStudentCourseContainer {
+.piCourseBlock {
+  width: 7.1rem;
+  height: 1rem;
+  margin: auto;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+  background: #FFFFFF;
+  border: 0.01rem solid #c4c4c4;
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.piCourseBlock > canvas {
+  border: 0.01rem solid #979797;
+  box-shadow: inset 0px -0.02rem 0rem 0rem rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  width: 0.99rem;
+  height: 0.99rem;
+  box-sizing: border-box;
+  float: left;
+}
+.piCourseBlock > button {
+  font-size: 0.24rem;
+  width: 2.4rem;
+  height: 0.8rem;
+  float: left;
+  margin-top: 0.09rem;
+  margin-left: 0.1rem;
+}
+.piCourseBlock :nth-child(3) {
+  width: 2.4rem;
+  height: 1rem;
+  box-sizing: border-box;
+  float: left;
+  padding-left: 0.2rem;
+  padding-top: 0.2rem;
+}
+.piCourseBlock :nth-child(3) > span {
+  display: block;
+  font-size: 0.18rem;
+  color: #818181;
+  margin: 0rem;
+  width: 100%;
+  height: 0.3rem;
+  line-height: 0.3rem;
+}
+.piCourseBlock :nth-child(4) {
+  width: 1.14rem;
+  float: right;
+}
+.piCourseBlock :nth-child(4) > div {
+  float: left;
+  background-color: #fff;
+  width: 0.57rem;
+  height: 0.5rem;
+  box-sizing: border-box;
+  border-left: 0.01rem solid #ebebeb;
+  border-bottom: 0.01rem solid #ebebeb;
+  padding: 0rem;
+}
+.piCourseBlock :nth-child(4) > div > span {
+  text-align: center;
+  display: block;
+  font-size: 0.16rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  color: #5b557a;
+  padding: 0rem;
+}
+.piCourseBlock :nth-child(4) > div > span:hover {
+  background-color: #f5f5f5;
+}
+.piCourseBlock :nth-child(4) > div > span:active {
+  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
+}
+.piCourseBlock :nth-child(4) > div > .changed {
+  color: #ff6f62;
+}
+
+.piCourseAdd {
+  width: 7.1rem;
+  height: 1rem;
+  margin: auto;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+  background: #FFFFFF;
+  border: 0.01rem solid #c4c4c4;
+  border-radius: 0.1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.piCourseAdd > p {
+  font-size: 0.2rem;
+  text-align: center;
+  color: #5b557a;
+  height: 1rem;
+  line-height: 1rem;
+  margin: 0rem;
+}
+.piCourseAdd > p > span {
+  color: #ff6f62;
+}
+
+.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piStudentCourseContainer {
   width: 100%;
   overflow: scroll;
   overflow-x: hidden;
@@ -1198,41 +1256,6 @@ body {
   border-right: solid 0.01rem #ebebeb;
   border-top: solid 0.01rem #ebebeb;
   height: 4.6rem;
-}
-
-.piChoiceContainerTeacher, .piChoiceContainerStudent {
-  margin: 0rem;
-  padding: 0.05rem;
-  min-height: 4.6rem;
-}
-
-.choiceBlock {
-  float: left;
-  width: 2.38rem;
-  height: 1rem;
-  margin: 0.05rem;
-  overflow: hidden;
-}
-.choiceBlock > textarea {
-  font-size: 0.15rem;
-  opacity: 0.3;
-  width: 100%;
-  height: 100%;
-  border: 0rem;
-  outline: none;
-  overflow: hidden;
-}
-.choiceBlock > span {
-  display: block;
-  position: relative;
-  top: -0.65rem;
-  left: 0.05rem;
-  font-size: 0.16rem;
-  text-shadow: 0rem 0rem 0.05rem #ffffff;
-}
-.choiceBlock:hover {
-  border: 0.01rem solid #424147;
-  box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
 }
 
 .piStudentCourseContainer {
@@ -1295,11 +1318,6 @@ body {
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
 }
 .piNameCard > div {
-  width: 100%;
-  position: relative;
-  top: -0.2rem;
-}
-.piNameCard > div > div {
   width: 1.5rem;
   height: 0.8rem;
   float: left;
@@ -1310,28 +1328,28 @@ body {
   border-left: 0.01rem solid #ebebeb;
   border-right: 0.01rem solid #ebebeb;
 }
-.piNameCard > div > div > h3 {
+.piNameCard > div > h3 {
   display: block;
   margin: 0rem;
   font-size: 0.24rem;
   height: 0.35rem;
   line-height: 0.35rem;
 }
-.piNameCard > div > div > p {
+.piNameCard > div > p {
   display: block;
   margin: 0rem;
   font-size: 0.18rem;
   height: 0.2rem;
   line-height: 0.2rem;
 }
-.piNameCard > div > div > span {
+.piNameCard > div > span {
   display: block;
   margin: 0rem;
   font-size: 0.18rem;
   height: 0.2rem;
   line-height: 0.2rem;
 }
-.piNameCard > div > img {
+.piNameCard > img {
   float: right;
   width: 0.5rem;
   height: 0.8rem;
@@ -1403,15 +1421,6 @@ body {
 .timeTable > div :nth-child(3) {
   margin-left: -0.59rem;
   margin-top: 0.684rem;
-}
-
-.mainBanner {
-  margin: auto;
-  margin-bottom: 0.3rem;
-  width: 12.8rem;
-  height: 1.6rem;
-  background-image: url("../img/bannerA.png");
-  background-size: 100% 100%;
 }
 
 .piFooterA {
@@ -1655,15 +1664,17 @@ body {
   border-radius: 10px;
 }
 .countBlock:hover {
+  background: #ebebeb;
+  border: 1px solid #5b557a;
+  box-shadow: inset 0px 0px 11px 0px #FFFFFF;
+  border-radius: 10px;
+}
+.countBlock:active {
   background: #5b557a;
   border: 1px solid #5b557a;
   box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   color: #fff;
-  font-size: 0.2rem;
-}
-.countBlock:hover > textarea {
-  width: 100%;
 }
 
 .countDropdown {
@@ -1678,29 +1689,6 @@ body {
   box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
   padding-left: 0.05rem;
   padding-right: 0.05rem;
-}
-
-.choiceDropdown {
-  width: 5rem;
-  height: 3rem;
-  background-color: #fff;
-  border-radius: 0.1rem;
-  position: absolute;
-  display: none;
-  box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
-  font-size: 0.2rem;
-  overflow: hidden;
-}
-.choiceDropdown > textarea {
-  width: 100%;
-  resize: none;
-  border: none;
-  height: 2.4rem;
-  outline: none;
-}
-.choiceDropdown > span {
-  width: 100%;
-  text-align: center;
 }
 
 .piTable {
@@ -1724,12 +1712,11 @@ body {
 }
 
 .appBlock {
-  margin-bottom: 0.1rem;
   font-size: 0.2rem;
   width: 5rem;
   height: 2.4rem;
 }
-.appBlock div {
+.appBlock :first-child {
   width: 60%;
   height: 2.4rem;
   float: left;
@@ -1737,77 +1724,17 @@ body {
   margin-right: 2%;
   box-sizing: border-box;
 }
-.appBlock div > img {
+.appBlock :first-child > img {
   width: 100%;
   height: 1.87rem;
 }
-.appBlock div > div {
+.appBlock :first-child > div {
   width: 100%;
   height: 0.48rem;
 }
-.appBlock div > div > button + button {
-  float: right;
-  height: 0.4rem;
-  width: 0.4rem;
-  margin-right: 0.10rem;
-}
-.appBlock div > div > button {
-  float: right;
-  height: 0.4rem;
-  width: 1.3rem;
-  margin-right: 0.05rem;
-}
-.appBlock div > div > div {
-  width: 0.8rem;
-  margin-left: 0.15rem;
-  border: 0rem;
-}
-.appBlock div > div > div > span {
-  display: block;
-  float: left;
-  font-size: 0.14rem;
-  color: #c4c4c4;
-}
-.appBlock div + div {
+.appBlock :last-child {
   float: right;
   width: 38%;
-  margin: 0rem;
-  border: 0rem;
-}
-.appBlock div + div > h3 {
-  display: block;
-  width: 100%;
-  height: 0.5rem;
-  line-height: 0.5rem;
-  margin: 0rem;
-  text-align: center;
-}
-.appBlock div + div > span {
-  border-top: 0.01rem solid #ebebeb;
-  width: 100%;
-  display: block;
-  text-align: center;
-  font-size: 0.16rem;
-  color: #c4c4c4;
-  height: 0.25rem;
-  line-height: 0.25rem;
-  margin: 0rem;
-}
-.appBlock div + div > p {
-  border-top: 0.01rem solid #ebebeb;
-  border-bottom: 0.01rem solid #ebebeb;
-  width: 100%;
-  display: block;
-  font-size: 0.16rem;
-  color: #c4c4c4;
-  margin: 0rem;
-  padding-top: 0.05rem;
-  height: 1.05rem;
-}
-.appBlock div + div > button {
-  margin-top: 0.07rem;
-  width: 1.85rem;
-  height: 0.4rem;
 }
 
 .studentBlock {
@@ -1849,208 +1776,6 @@ body {
   padding-right: 0.05rem;
 }
 
-.downloadBlock {
-  width: 100%;
-}
-.downloadBlock > h2 {
-  display: block;
-  margin: 0rem;
-  width: 100%;
-  height: 0.6rem;
-  line-height: 0.6rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-top: 0.01rem #c4c4c4 solid;
-  border-bottom: 0.01rem #ebebeb solid;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  font-size: 0.24rem;
-  box-sizing: border-box;
-  color: #818181;
-}
-.downloadBlock > div {
-  width: 100%;
-  margin: auto;
-}
-
-.download {
-  width: 2rem;
-  height: 2.6rem;
-  float: left;
-  margin: 0.2rem;
-}
-.download > div {
-  overflow: hidden;
-  height: 2rem;
-}
-.download > div:hover > p {
-  opacity: 1;
-}
-.download > div > p {
-  opacity: 0;
-  display: block;
-  position: relative;
-  top: -2.2rem;
-  padding: 0.05rem;
-  box-sizing: border-box;
-  width: 2rem;
-  font-size: 0.18rem;
-  background-color: rgba(255, 255, 255, 0.8);
-  height: 1rem;
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.2s;
-}
-.download > div > img {
-  width: 2rem;
-  height: 1.6rem;
-}
-.download > div > div {
-  position: relative;
-  top: -0.34rem;
-  background-color: #424147;
-  font-size: 0.2rem;
-  text-align: center;
-  overflow: hidden;
-  height: 0.4rem;
-  line-height: 0.4rem;
-  color: #fff;
-}
-.download > a {
-  margin: auto;
-  display: block;
-  font-size: 0.2rem;
-  line-height: 0.4rem;
-  text-align: center;
-  width: 1.6rem;
-  height: 0.4rem;
-}
-
-.piCode {
-  width: 100%;
-  height: 4.31rem;
-  border-radius: 0.1rem;
-  margin-bottom: 0.1rem;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
-}
-
-.codeOutput {
-  height: 1rem;
-  margin: 0.05rem;
-  font-size: 0.16rem;
-  width: 95%;
-}
-
-.codeError {
-  color: #ff6f62;
-}
-
-.piCourseBlock {
-  width: 7.1rem;
-  height: 1rem;
-  margin: auto;
-  margin-top: 0.1rem;
-  margin-bottom: 0.1rem;
-  background: #FFFFFF;
-  border: 0.01rem solid #c4c4c4;
-  border-radius: 0.1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-.piCourseBlock > canvas {
-  border: 0.01rem solid #979797;
-  box-shadow: inset 0px -0.02rem 0rem 0rem rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  width: 0.8rem;
-  height: 0.8rem;
-  margin-top: 0.09rem;
-  margin-left: 0.09rem;
-  box-sizing: border-box;
-  float: left;
-}
-.piCourseBlock > button {
-  font-size: 0.24rem;
-  width: 2.4rem;
-  height: 0.8rem;
-  float: left;
-  margin-top: 0.09rem;
-  margin-left: 0.1rem;
-}
-.piCourseBlock :nth-child(3) {
-  width: 2.4rem;
-  height: 1rem;
-  box-sizing: border-box;
-  float: left;
-  padding-left: 0.2rem;
-  padding-top: 0.2rem;
-}
-.piCourseBlock :nth-child(3) > span {
-  display: block;
-  font-size: 0.18rem;
-  color: #818181;
-  margin: 0rem;
-  width: 100%;
-  height: 0.3rem;
-  line-height: 0.3rem;
-}
-.piCourseBlock :nth-child(4) {
-  width: 1.14rem;
-  float: right;
-}
-.piCourseBlock :nth-child(4) > div {
-  float: left;
-  background-color: #fff;
-  width: 0.57rem;
-  height: 0.5rem;
-  box-sizing: border-box;
-  border-left: 0.01rem solid #ebebeb;
-  border-bottom: 0.01rem solid #ebebeb;
-  padding: 0rem;
-}
-.piCourseBlock :nth-child(4) > div > span {
-  text-align: center;
-  display: block;
-  font-size: 0.16rem;
-  height: 0.5rem;
-  line-height: 0.5rem;
-  color: #5b557a;
-  padding: 0rem;
-}
-.piCourseBlock :nth-child(4) > div > span:hover {
-  background-color: #f5f5f5;
-}
-.piCourseBlock :nth-child(4) > div > span:active {
-  box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0, 0, 0, 0.5);
-}
-.piCourseBlock :nth-child(4) > div > .changed {
-  color: #ff6f62;
-}
-
-.piCourseAdd {
-  width: 7.1rem;
-  height: 1rem;
-  margin: auto;
-  margin-top: 0.1rem;
-  margin-bottom: 0.1rem;
-  background: #FFFFFF;
-  border: 0.01rem solid #c4c4c4;
-  border-radius: 0.1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-.piCourseAdd > p {
-  font-size: 0.2rem;
-  text-align: center;
-  color: #5b557a;
-  height: 1rem;
-  line-height: 1rem;
-  margin: 0rem;
-}
-.piCourseAdd > p > a {
-  color: #ff6f62;
-}
-.piCourseAdd > p > a:active {
-  color: #5b557a;
-}
-
 .btn-pri {
   border-color: #5b557a;
   color: #5b557a;
@@ -2085,7 +1810,6 @@ body {
 
 ::-webkit-scrollbar {
   width: 5px;
-  height: 5px;
 }
 
 /* 这是针对缺省样式 (必须的) */

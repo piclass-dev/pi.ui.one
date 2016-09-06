@@ -85,13 +85,11 @@ var avatar = exports.avatar = function () {
 		value: function drawAngular(x1, y1, x2, y2, x3, y3, color) {
 			var c = this.ctx;
 			c.fillStyle = color;
-			c.strokeStyle = color;
 			c.beginPath();
 			c.moveTo(x1 * this.step, y1 * this.step);
 			c.lineTo(x2 * this.step, y2 * this.step);
 			c.lineTo(x3 * this.step, y3 * this.step);
 			c.fill();
-			c.stroke();
 		}
 	}, {
 		key: "drawCourse",

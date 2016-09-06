@@ -1,6 +1,6 @@
 // 载入外挂
 
-var gulp = require('gulp'),
+var gulp = require('gulp'),  
    sass = require('gulp-ruby-sass'),
    autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
@@ -25,7 +25,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 
 // 样式
-gulp.task('style', function() {
+gulp.task('style', function() {  
   // return gulp.src()
   //   .pipe(sass({ style: 'expanded', }))
   return sass('src/style/sass/main.scss', {
@@ -41,7 +41,7 @@ gulp.task('style', function() {
 });
 
 // 脚本
-gulp.task('scripts', function() {
+gulp.task('scripts', function() {  
   return gulp.src('src/scripts/js/*.js')
    //  .pipe(jshint('.jshintrc'))
    // .pipe(jshint.reporter('default'))
@@ -81,7 +81,7 @@ gulp.task('pack', ['es6to5'], function() {
 // });
 
 // 图片
-gulp.task('images', function() {
+gulp.task('images', function() {  
   return gulp.src('src/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest('dist/images'))
@@ -89,13 +89,13 @@ gulp.task('images', function() {
 });
 
 // 清理
-gulp.task('clean', function() {
+gulp.task('clean', function() {  
   return gulp.src(['dist/styles', 'dist/scripts', 'dist/images'], {read: false})
     .pipe(clean());
 });
 
 // 预设任务
-gulp.task('default', ['clean'], function() {
+gulp.task('default', ['clean'], function() {  
     gulp.start('styles', 'scripts', 'images');
 });
 

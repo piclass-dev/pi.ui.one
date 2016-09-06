@@ -13,7 +13,7 @@ export class modal{
         //about size and position
         this.modalWidth=parseInt(this.$target.css("width").replace("px",""));
         this.modalHeight=parseInt(this.$target.css("height").replace("px",""));
-
+        //this.top=100;
 
         this.regi();
     }
@@ -24,10 +24,10 @@ export class modal{
         var widthAll=document.body.clientWidth;
         var left=(widthAll-this.modalWidth)/2;
         this.$target.css("left",left);
-
     }
 
     show(){
+
         this.stylePerpare();
         this.$target.css('display','block');
         this.$target.after('<div class="piModalBack"></div>');
@@ -45,10 +45,11 @@ export class modal{
 
     hide(){
         $('[class="piModalBack"]').remove();
-        this.$target.animate({
-            opacity:"0",
-            top:"-=0.5rem",
-        },400)
+        // this.$target.animate({
+        //     opacity:"0",
+        //     top:"-=0.5rem",
+        // },400)
+        this.$target.css("top","100px")
         this.$target.css('display','none');
     }
 

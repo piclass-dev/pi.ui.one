@@ -1,7 +1,6 @@
 .piTable{
 	width:100%;
 	font-size:0.2rem;
-	//min-height: 3rem;
 	>tbody{
 		    box-shadow:0rem -0.01rem 0rem 0rem $UIline;
 		    tr:nth-child(odd){
@@ -18,5 +17,5 @@
 		    }
 		}
 	}
-
+	
 }
