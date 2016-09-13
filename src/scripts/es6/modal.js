@@ -1,5 +1,8 @@
-//modal
-//mk
+///modal 模态框
+//
+//使用：在触发modal出现的button元素上添加 data-toggle="modal" data-target="#｛｛X｝｝"
+//X为modal块的id。在modal块内关闭该modal的button元素上添加 data-dismiss="modal"
+//
 
 export class modal{
     constructor(element,target,deleteTarget){
@@ -13,7 +16,6 @@ export class modal{
         //about size and position
         this.modalWidth=parseInt(this.$target.css("width").replace("px",""));
         this.modalHeight=parseInt(this.$target.css("height").replace("px",""));
-        //this.top=100;
 
         this.regi();
     }
@@ -45,10 +47,6 @@ export class modal{
 
     hide(){
         $('[class="piModalBack"]').remove();
-        // this.$target.animate({
-        //     opacity:"0",
-        //     top:"-=0.5rem",
-        // },400)
         this.$target.css("top","100px")
         this.$target.css('display','none');
     }

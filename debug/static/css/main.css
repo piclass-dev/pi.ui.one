@@ -638,14 +638,14 @@ body {
   min-height: 1px;
 }
 
-.cardBase, .cardMain, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
+.cardBase, .cardMain, .choiceBlock, .piForm, .piFormClearRow .piForm, .piPanel, .piHomeworkBlock, .piFileBlock, .piFileABlock, .piFileBBlock, .piFileBlock > div > img, .piFileABlock > div > img, .piFileBBlock > div > img, .piFileBlock > div > div > div > canvas, .piFileABlock > div > div > div > canvas, .piFileBBlock > div > div > div > canvas, .piFileBlock > div > div > div > div, .piFileABlock > div > div > div > div, .piFileBBlock > div > div > div > div, .piNameCard, .piNameCard > canvas, .appBlock {
   background-color: #fff;
   border: 1px solid #C4C4C4;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.07);
   border-radius: 0.05rem;
 }
 
-.cardMain {
+.cardMain, .choiceBlock {
   width: 100%;
   min-height: 1rem;
   margin-bottom: 0.1rem;
@@ -1230,7 +1230,7 @@ body {
   color: #ff6f62;
 }
 
-.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piStudentCourseContainer {
+.piContiner, .piCourseContainer, .piFileContainer, .piCountContainer, .piChoiceContainerTeacher, .piChoiceContainerStudent, .piStudentCourseContainer {
   width: 100%;
   overflow: scroll;
   overflow-x: hidden;
@@ -1256,6 +1256,42 @@ body {
   border-right: solid 0.01rem #ebebeb;
   border-top: solid 0.01rem #ebebeb;
   height: 4.6rem;
+}
+
+.piChoiceContainerTeacher, .piChoiceContainerStudent {
+  margin: 0rem;
+  padding: 0.05rem;
+  min-height: 4.6rem;
+}
+
+.choiceBlock {
+  box-sizing: border-box;
+  float: left;
+  width: 2.38rem;
+  height: 1rem;
+  margin: 0.05rem;
+  overflow: hidden;
+}
+.choiceBlock > textarea {
+  font-size: 0.15rem;
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+  border: 0rem;
+  outline: none;
+  overflow: hidden;
+}
+.choiceBlock > span {
+  display: block;
+  position: relative;
+  top: -0.65rem;
+  left: 0.05rem;
+  font-size: 0.16rem;
+  text-shadow: 0rem 0rem 0.05rem #ffffff;
+}
+.choiceBlock:hover {
+  border: 0.01rem solid #424147;
+  box-shadow: 0rem 0.13rem 0.28rem 0rem rgba(0, 0, 0, 0.5);
 }
 
 .piStudentCourseContainer {
