@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="../static/js/jquery-3.1.0.js"></script>
+    <script type="text/javascript" src="../static/js/main.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<title></title>
+</head>
+
+<body>
+    <nav class="piTopNavMain">
+        <div class="piTopNavLogo"></div>
+        <ul>
+            <li><a href="#" id="#1">主页</a></li>
+            <li><a href="#" id="#2">下载站</a></li>
+            <li><a href="#" id="#3">应用工具</a></li>
+            <li><a href="#" id="#4">题库</a>
+                <div class="new"></div>
+            </li>
+
+            <canvas class="piTopNavAvatar" data-toggle="avatar" data-src="MK" data-srcType="user" data-au="menu" data-target="#navMenu"></canvas>
+            <div class="menuBody" id="navMenu">
+                <ul>
+                    <li><span>MK</span></li>
+                </ul>
+                <ul>
+                    <li><a href="">修改个人信息</a></li>
+                    <li><a href="">修改密码</a></li>
+                    <li><a href="">退出登录</a></li>
+                </ul>
+            </div>
+        </ul>
+    </nav>
+    <div style="height:1rem;"></div>
+
+    <div class="block">
+        <div class="row">
+            <div class="b9">
+                <div class="piPanel">
+                    <div class="piChoiceContainerTeacher" data-target="#detail" data-src="5006" >
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="choiceDropdown" id="detail">
+        <textarea disabled="disabled" id="detailtext">ertertert</textarea>
+        <div class="piFormRow">
+            <span class="piFormText" id="rightanswer">dfgdfgdfg</span>
+            <button data-toggle="modal" data-target="#m" class="piFormBtn pullright btn-warning">删除此题</button>
+        </div>
+    </div>
+
+    <div class="piModal" id="m">
+        <div class="piFormClearRow">
+            <button class="piFormBtn pullright" data-dismiss="modal">取消</button>
+        </div>
+        <div class="piFormClearRow"></div>
+        <div class="piFormRow" action="index.html" method="post">
+            <span class="piFormText">您确定要删除该题目么</span>
+            <button class="piFormBtn btn-warning" id="deleteCount">删除</button>
+        </div>
+        <div class="piFormRow">
+            <input type="text" name="name" value="" id="qwe" style="display:none">
+        </div>
+        <div class="piFormClearRow"></div>
+    </div>
+
+
+
+</body>
+
+</html>

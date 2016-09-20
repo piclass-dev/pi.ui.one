@@ -5,6 +5,7 @@
 
 html{
 	font-size:100px;
+	font-family:'microsoft yahei','PingFang SC','Inziu Iosevka SC',sans-serif;//
 }
 body{
 	margin:0px;
@@ -30,6 +31,15 @@ $gridNum:12;
     }
 
 }
+
+.wideBlock{
+	@extend .block;
+	width:90%;
+	@media(max-width: 1200px){
+		width:100%;
+	}
+}
+
 .row{
     margin-left: -$gutter/2;
     margin-right: -$gutter/2;
@@ -51,6 +61,6 @@ $gridNum:12;
 	box-sizing:border-box;
 	//background-color:#666;
 	min-height:1px;
-	
+
     }
 }

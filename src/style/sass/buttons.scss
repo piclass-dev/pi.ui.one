@@ -3,7 +3,7 @@
 	background-color: #fff;
 	border-radius:0.1rem;
     outline:none;
-    
+
     text-decoration: none;
     color:$UIdark;
     box-shadow:inset 0rem -0.01rem 0rem 0rem rgba(0,0,0,0.2);
@@ -13,7 +13,7 @@
     }
     &:active{
         box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.50);
-        
+
     }
 }
 
@@ -29,6 +29,7 @@
         float:left;
         margin:0rem;
         margin-left: -0.01rem;
+		border-radius: 0rem;
     }
     :first-child{
         border-radius:0.1rem 0rem 0rem 0.1rem;
@@ -45,7 +46,3 @@
     box-shadow: inset 0rem 0.02rem 0.04rem 0rem rgba(0,0,0,0.50) !important;
     background-color:$UIline !important;
 }
-
-
-
-

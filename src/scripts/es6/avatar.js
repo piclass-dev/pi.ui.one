@@ -19,10 +19,10 @@ export class avatar{
 	    	this.drawCourse();
 	    }
 
- 		
+
  		//alert(this.User.signature);
 	}
-    
+
     perpareColor(){
     	for(var i=0;i<=24;i++){
 	        this.colorsSig[i]=this.User.signature.slice(i,i+2);
@@ -68,17 +68,19 @@ export class avatar{
 	drawAngular(x1,y1,x2,y2,x3,y3,color){
     	var c=this.ctx;
     	c.fillStyle=color;
+		c.strokeStyle=color;
     	c.beginPath();
     	c.moveTo(x1*this.step,y1*this.step);
     	c.lineTo(x2*this.step,y2*this.step);
     	c.lineTo(x3*this.step,y3*this.step);
     	c.fill();
+		c.stroke();
     }
 
 	drawCourse(){
         this.perpareColor();
         this.step=this.canvas.height/10;
-        
+
         this.drawAngular(0,0,5,0,3,3,this.colors[0]);
         this.drawAngular(0,0,2,2,0,5,this.colors[1]);
         this.drawAngular(0,5,2,2,5,5,this.colors[2]);
@@ -99,10 +101,7 @@ export class avatar{
         this.drawAngular(5,10,7,7,10,10,this.colors[14]);
         this.drawAngular(10,10,10,5,8,8,this.colors[15]);
 	}
-    
+
 
 
 }
-
-
- 

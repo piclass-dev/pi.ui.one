@@ -86,11 +86,13 @@ var avatar = exports.avatar = function () {
 		value: function drawAngular(x1, y1, x2, y2, x3, y3, color) {
 			var c = this.ctx;
 			c.fillStyle = color;
+			c.strokeStyle = color;
 			c.beginPath();
 			c.moveTo(x1 * this.step, y1 * this.step);
 			c.lineTo(x2 * this.step, y2 * this.step);
 			c.lineTo(x3 * this.step, y3 * this.step);
 			c.fill();
+			c.stroke();
 		}
 	}, {
 		key: "drawCourse",
@@ -122,18 +124,308 @@ var avatar = exports.avatar = function () {
 
 	return avatar;
 }();
-},{"./user":11}],2:[function(require,module,exports){
+},{"./user":13}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.choiceContainerTeacher = exports.choiceContainerStudent = exports.choiceTeacher = exports.choiceStudent = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _config = require('./config.js');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var choiceStudent = exports.choiceStudent = function choiceStudent(question, ans, score, zyid, id1, id2) {
+    _classCallCheck(this, choiceStudent);
+
+    this.question = question;
+    this.ans = ans;
+    this.score = score;
+    this.zyid = zyid;
+    this.id1 = id1;
+    this.id2 = id2;
+};
+
+var choiceTeacher = exports.choiceTeacher = function choiceTeacher(question, ans, id) {
+    _classCallCheck(this, choiceTeacher);
+
+    this.question = question;
+    this.ans = ans;
+    this.deleteId = id;
+};
+
+var choiceContainerStudent = exports.choiceContainerStudent = function () {
+    function choiceContainerStudent(element, hover, id) {
+        _classCallCheck(this, choiceContainerStudent);
+
+        var self = this;
+        this.$element = element;
+        this.$hover = hover;
+        this.zyId = id;
+        this.left;
+        this.top;
+        this.timer;
+        this.choices = new Array();
+        $.getJSON(_config.config.getAllChoice + "?zy_id=" + this.zyId, function (data) {
+            for (var i = 0; i <= data.info.length - 1; i++) {
+                var choice = new choiceStudent(data.info[i].question, data.info[i].student_ans, data.info[i].score, data.info[i].zy_id, data.info[i].id1, data.info[i].id2);
+                self.choices.push(choice);
+            }
+            self.addBlock();
+            self.regi();
+        });
+    }
+
+    _createClass(choiceContainerStudent, [{
+        key: 'addBlock',
+        value: function addBlock() {
+            this.choices.forEach(function (choice) {
+                this.$element.append('<div class="choiceBlock"><textarea disabled="disabled">' + choice.question + '</textarea></div>');
+            }, this);
+        }
+    }, {
+        key: 'regi',
+        value: function regi() {
+            var self = this;
+            this.$hover.on('mouseleave', this, function (e) {
+                e.data.$hover.css("display", "none");
+            });
+
+            $('[class="choiceBlock"]').each(function (i, block) {
+
+                $(block).data("pi.choiceBlock", self.choices[i]);
+                $(block).attr("id", self.choices[i].deleteId);
+                if (self.choices[i].ans != null) {
+                    $(block).css("border", "0.02rem solid rgb(135, 218, 131)");
+                }
+
+                $(block).on('mouseenter', self, function (e) {
+                    clearTimeout(e.data.timer);
+
+                    var x = this.getBoundingClientRect().right + document.documentElement.scrollLeft;
+                    var y = this.getBoundingClientRect().bottom + document.documentElement.scrollTop + document.body.scrollTop;
+                    //y = y + parseInt($(this).css("height").replace("px", "")) + 10 + document.body.scrollTop;
+                    x = x - parseInt(e.data.$hover.css("width").replace("px", ""));
+                    if (x < 0) {
+                        var x = this.getBoundingClientRect().left + document.documentElement.scrollLeft;
+                    }
+                    e.data.$hover.css("left", x);
+                    e.data.$hover.css("top", y);
+
+                    var c = $(this).data("pi.choiceBlock");
+
+                    e.data.$hover.find('#detailtext').html("题目：" + c.question);
+                    // var a = c.present / c.all + '';
+                    // var b = a.slice(0, 4);
+
+                    e.data.$hover.find('#currentanswer').html("当前答案：" + c.ans);
+                    if (c.ans == null) {
+                        e.data.$hover.find('#currentanswer').html("当前答案：未答题");
+                    }
+                    // e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
+                    // e.data.$hover.find('#notice').html(c.notice);
+                    // if (c.state === "1") {
+                    //     e.data.$hover.find('#ch').html("查看详情");
+                    //     e.data.$hover.find('#contin').css("display", "none");
+                    // } else {
+                    //     e.data.$hover.find('#ch').html("查看详情/手工修改");
+                    //     e.data.$hover.find('#contin').css("display", "block");
+                    //     e.data.$hover.find('#contin').one('click', c, function(e) {
+                    //         location.href = config.continueCount + "?count_id=" + e.data.id;
+                    //     });
+                    // }
+                    $("#answer").one('click', c, function (e) {
+                        location.href = _config.config.ansChoice + "?zy_id=" + e.data.zyid + "&id1=" + e.data.id1 + "&id2=" + e.data.id2;
+                    });
+                    // $('#deleteCount').one('click', c, function(e) {
+                    //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
+                    // });
+                    // $("#qwe").val(c.deleteId);
+                    e.data.$hover.css("display", "block");
+                });
+                $(block).on('mouseleave', self, function (e) {
+                    e.data.timer = setTimeout(function () {
+                        e.data.$hover.css("display", "none");
+                    }, 100);
+                    e.data.$hover.one('mouseenter', e.data, function (e) {
+                        clearTimeout(e.data.timer);
+                    });
+                });
+            });
+        }
+    }]);
+
+    return choiceContainerStudent;
+}();
+
+var choiceContainerTeacher = exports.choiceContainerTeacher = function () {
+    function choiceContainerTeacher(element, hover, id) {
+        _classCallCheck(this, choiceContainerTeacher);
+
+        var self = this;
+        this.$element = element;
+        this.$hover = hover;
+        this.zyId = id;
+        this.left;
+        this.top;
+        this.timer;
+        this.choices = new Array();
+        $.getJSON(_config.config.getAllChoice + "?zy_id=" + this.zyId, function (data) {
+            for (var i = 0; i <= data.info.length - 1; i++) {
+                var choice = new choiceTeacher(data.info[i].question, data.info[i].ans, data.info[i].id);
+                self.choices.push(choice);
+            }
+            self.addBlock();
+            self.regi();
+        });
+    }
+
+    _createClass(choiceContainerTeacher, [{
+        key: 'addBlock',
+        value: function addBlock() {
+            this.choices.forEach(function (choice) {
+                this.$element.append('<div class="choiceBlock"><textarea disabled="disabled">' + choice.question + '</textarea></div>');
+            }, this);
+        }
+    }, {
+        key: 'regi',
+        value: function regi() {
+            var self = this;
+            this.$hover.on('mouseleave', this, function (e) {
+                e.data.$hover.css("display", "none");
+            });
+
+            $('[class="choiceBlock"]').each(function (i, block) {
+
+                $(block).data("pi.choiceBlock", self.choices[i]);
+                $(block).attr("id", self.choices[i].deleteId);
+
+                $(block).on('mouseenter', self, function (e) {
+                    clearTimeout(e.data.timer);
+
+                    var x = this.getBoundingClientRect().right + document.documentElement.scrollLeft;
+                    var y = this.getBoundingClientRect().bottom + document.documentElement.scrollTop + document.body.scrollTop;
+                    //y = y + parseInt($(this).css("height").replace("px", "")) + 10 + document.body.scrollTop;
+                    x = x - parseInt(e.data.$hover.css("width").replace("px", ""));
+                    if (x < 0) {
+                        var x = this.getBoundingClientRect().left + document.documentElement.scrollLeft;
+                    }
+                    e.data.$hover.css("left", x);
+                    e.data.$hover.css("top", y);
+
+                    var c = $(this).data("pi.choiceBlock");
+
+                    e.data.$hover.find('#detailtext').html("题目：" + c.question);
+                    // var a = c.present / c.all + '';
+                    // var b = a.slice(0, 4);
+                    e.data.$hover.find('#rightanswer').html("正确答案：" + c.ans);
+                    // e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
+                    // e.data.$hover.find('#notice').html(c.notice);
+                    // if (c.state === "1") {
+                    //     e.data.$hover.find('#ch').html("查看详情");
+                    //     e.data.$hover.find('#contin').css("display", "none");
+                    // } else {
+                    //     e.data.$hover.find('#ch').html("查看详情/手工修改");
+                    //     e.data.$hover.find('#contin').css("display", "block");
+                    //     e.data.$hover.find('#contin').one('click', c, function(e) {
+                    //         location.href = config.continueCount + "?count_id=" + e.data.id;
+                    //     });
+                    // }
+                    // e.data.$hover.find('#ch').one('click', c, function(e) {
+                    //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
+                    // });
+                    // $('#deleteCount').one('click', c, function(e) {
+                    //     location.href = config.getCountDetail + "?count_id=" + e.data.id;
+                    // });
+                    $("#qwe").val(c.deleteId);
+                    e.data.$hover.css("display", "block");
+                });
+                $(block).on('mouseleave', self, function (e) {
+                    e.data.timer = setTimeout(function () {
+                        e.data.$hover.css("display", "none");
+                    }, 100);
+                    e.data.$hover.one('mouseenter', e.data, function (e) {
+                        clearTimeout(e.data.timer);
+                    });
+                });
+            });
+        }
+    }]);
+
+    return choiceContainerTeacher;
+}();
+},{"./config.js":3}],3:[function(require,module,exports){
+"use strict";
+
+// //本地调试目录
+// var mkdebugURL="http://django.piclass.cn";
+// var serverBaseURL="";
+//
+// //实际使用前缀
+// var baseURL=mkdebugURL;
+//
+// //路径配置
+// export var config={
+//
+//
+//     //获取所有学生信息
+//     "getStudents":baseURL+"/myclass/student_list.html",
+//     //修改学生信息
+//     "changeStudent":baseURL+"/myclass/student_info.html",
+//
+//     //获取所有点名记录
+//     "getCount":baseURL+"/count/history.html",
+//
+// }
+
+var mkdebugURL = "http://django.piclass.cn/api/test/";
+var commenURL = "http://django.piclass.cn/";
+var serverBaseURL = "/api/";
+
+//实际使用前缀
+var baseURL = mkdebugURL;
+
+//路径配置
+var config = exports.config = {
+
+    //获取所有学生信息
+    "getStudents": baseURL + "student_list.html",
+    "changeStudent": "/myclass/student_info.html",
+
+    //获取所有点名记录
+    "getCount": baseURL + "count_history.html",
+    //继续点名
+    "continueCount": commenURL + "count/count_qrcode.html",
+    //查看点名详情
+    "getCountDetail": commenURL + "count/count_detail.html",
+
+    //获取选择题题目详情
+    "getChoiceDetail": mkdebugURL + "tk.html",
+    //一次作业中的全部选择题
+    "getAllChoice": mkdebugURL + "zy_choice.html",
+    //做选择题
+    "ansChoice": commenURL + "choice/student_answer.html",
+    //编程题详情
+    "getProgramDetail": mkdebugURL + "tk.html"
+};
+},{}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.countContainer = exports.count = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _config = require('./config.js');
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var count = exports.count = function count(time, all, present, notice, id) {
+var count = exports.count = function count(time, all, present, notice, id, state) {
 	_classCallCheck(this, count);
 
 	this.time = time;
@@ -141,6 +433,7 @@ var count = exports.count = function count(time, all, present, notice, id) {
 	this.present = present;
 	this.notice = notice;
 	this.id = id;
+	this.state = state;
 };
 
 var countContainer = exports.countContainer = function () {
@@ -154,9 +447,9 @@ var countContainer = exports.countContainer = function () {
 		this.top;
 		this.timer;
 		this.counts = new Array();
-		$.getJSON("http://django.piclass.cn/test", function (data) {
+		$.getJSON(_config.config.getCount, function (data) {
 			for (var i = 0; i <= data.info.length - 1; i++) {
-				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id);
+				var countt = new count(data.info[i].time, data.info[i].all, data.info[i].present, data.info[i].notice, data.info[i].count_id, data.info[i].state);
 				self.counts.push(countt);
 			}
 			self.addBlock();
@@ -195,9 +488,28 @@ var countContainer = exports.countContainer = function () {
 					var c = $(this).data("pi.countBlock");
 
 					e.data.$hover.find('#time').html("点名日期：" + c.time);
-					e.data.$hover.find('#presentRatio').html("出席率：" + c.present / c.all);
+					var a = c.present / c.all + '';
+					var b = a.slice(0, 4);
+					e.data.$hover.find('#presentRatio').html("出席率：" + b);
 					e.data.$hover.find('#present').html("出席人数：" + c.present + "/" + c.all);
 					e.data.$hover.find('#notice').html(c.notice);
+					if (c.state === "1") {
+						e.data.$hover.find('#ch').html("查看详情");
+						e.data.$hover.find('#contin').css("display", "none");
+					} else {
+						e.data.$hover.find('#ch').html("查看详情/手工修改");
+						e.data.$hover.find('#contin').css("display", "block");
+						e.data.$hover.find('#contin').one('click', c, function (e) {
+							location.href = _config.config.continueCount + "?count_id=" + e.data.id;
+						});
+					}
+					e.data.$hover.find('#ch').one('click', c, function (e) {
+						location.href = _config.config.getCountDetail + "?count_id=" + e.data.id;
+					});
+					// $('#deleteCount').one('click',c,function(e){
+					// 	location.href=config.getCountDetail+"?count_id="+e.data.id;
+					// });
+					$("#qwe").val(c.id);
 					e.data.$hover.css("display", "block");
 				});
 				$(block).on('mouseleave', self, function (e) {
@@ -214,7 +526,7 @@ var countContainer = exports.countContainer = function () {
 
 	return countContainer;
 }();
-},{}],3:[function(require,module,exports){
+},{"./config.js":3}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -375,7 +687,7 @@ var errorCanvas = exports.errorCanvas = function () {
 
     return errorCanvas;
 }();
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 var _avatar = require('./avatar.js');
@@ -398,140 +710,132 @@ var _countContainer = require('./countContainer.js');
 
 var _studentContainer = require('./studentContainer.js');
 
+var _choiceContainer = require('./choiceContainer.js');
+
 var _graColorTable = require('./graColorTable');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//计算rem fontsize rootzhi值
+//rem calculate
 function setRem() {
-    var width = document.body.clientWidth;
-    var ratio = width / 12.8;
-    var fontSize = ratio + "px";
-    if (width <= 1280) {
-        $('html').css("font-size", "100px");
-    } else {
-        $('html').css("font-size", fontSize);
-    }
+	var width = document.body.clientWidth;
+	var ratio = width / 12.8;
+	var fontSize = ratio + "px";
+	if (width <= 1280) {
+		$('html').css("font-size", "100px");
+	} else {
+		$('html').css("font-size", fontSize);
+	}
 }
 
-//dom加载完成后的人物，重设rem，加载非组件js，注册所有组件
 function main() {
 
-    setRem(); //重设rem
-    (0, _patch2.default)(); //加载非组件js
+	setRem();
+	(0, _patch2.default)();
 
+	$($('html').attr("data-type")).attr("class", "current");
 
-    $($('html').attr("data-type")).attr("class", "current"); //导航栏当前页面提示
+	//create colorTable
+	var colorList = new Array();
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
+	colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
+	// this.colorList.push(new colorMatch(new rgbColor(255,111,98),0));
+	// this.colorList.push(new colorMatch(new rgbColor(91,85,122),255));
+	var mainGra = new _graColorTable.graColorTable(colorList);
 
-    //create colorTable
-    //用于用户头像颜色
-    var colorList = new Array();
-    colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
-    colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(165, 87, 109), 80));
-    colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(91, 85, 122), 200));
-    colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(72, 89, 110), 220));
-    colorList.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(36, 45, 55), 255));
-    var mainGra = new _graColorTable.graColorTable(colorList);
+	var colorList2 = new Array();
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(157, 47, 124), 40));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 61, 98), 100));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(127, 47, 134), 180));
+	colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(54, 46, 99), 255));
+	var mainGra2 = new _graColorTable.graColorTable(colorList2);
+	//create avatar obj
+	$('[data-toggle="avatar"]').each(function () {
+		var $this = $(this);
+		var name = $this.attr('data-src');
+		var type = $this.attr('data-srcType');
+		var user = new _user.User(name, type);
+		if (type == "user") {
+			$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra, type));
+		} else if (type == "course") {
+			$this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra2, type));
+		}
+	});
 
-    //用于课程头像颜色
-    var colorList2 = new Array();
-    colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(255, 111, 98), 0));
-    colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(157, 47, 124), 40));
-    colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(176, 71, 188), 100));
-    colorList2.push(new _graColorTable.colorMatch(new _graColorTable.rgbColor(54, 46, 99), 255));
-    var mainGra2 = new _graColorTable.graColorTable(colorList2);
+	// create modal object
+	$('[data-toggle="modal"]').each(function () {
+		var $this = $(this);
+		var $target = $($this.attr('data-target'));
+		var $deleteTarget = $target.find('[data-dismiss="modal"]');
+		$this.data("pi.modal", new _modal.modal($this, $target, $deleteTarget));
+	});
 
-    ////以下注册所有组件
+	//creat nav0tab obj
+	$('[data-toggle="piNavBtnGroup"]').each(function () {
+		var $this = $(this);
+		var $buttonList = $this.find('*');
+		var $active = $this.find('.piBtnGroupActive');
+		var $MatchList = new Array();
+		$buttonList.each(function () {
+			var $Match = { "button": $(this),
+				"target": $($(this).attr('data-target')) };
+			$MatchList.push($Match);
+		});
+		$this.data("pi-navTabBtnGroup", new _navTab.navTabBtnGroup($this, $MatchList, $active));
+	});
 
-    //create avatar obj  头像
-    $('[data-toggle="avatar"]').each(function () {
-        var $this = $(this);
-        var name = $this.attr('data-src');
-        var type = $this.attr('data-srcType');
-        var user = new _user.User(name, type);
-        if (type == "user") {
-            $this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra, type));
-        } else if (type == "course") {
-            $this.data("pi.avatar", new _avatar.avatar(user, $this, mainGra2, type));
-        }
-    });
+	//create menu obj
+	$('[data-au="menu"]').each(function () {
+		var $this = $(this);
+		var $target = $($this.attr('data-target'));
+		$this.data("pi.menu", new _menu.menu($this, $target));
+	});
 
-    // create modal object
-    $('[data-toggle="modal"]').each(function () {
-        var $this = $(this);
-        var $target = $($this.attr('data-target'));
-        var $deleteTarget = $target.find('[data-dismiss="modal"]');
-        $this.data("pi.modal", new _modal.modal($this, $target, $deleteTarget));
-    });
+	//create countContainer
+	$('[class="piCountContainer"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		$this.data("pi.countContainer", new _countContainer.countContainer($this, $hover));
+	});
 
-    //creat nav0tab obj
-    $('[data-toggle="piNavBtnGroup"]').each(function () {
-        var $this = $(this);
-        var $buttonList = $this.find('*');
-        var $active = $this.find('.piBtnGroupActive');
-        var $MatchList = new Array();
-        $buttonList.each(function () {
-            var $Match = {
-                "button": $(this),
-                "target": $($(this).attr('data-target'))
-            };
-            $MatchList.push($Match);
-        });
-        $this.data("pi-navTabBtnGroup", new _navTab.navTabBtnGroup($this, $MatchList, $active));
-    });
+	$('[class="piStudentCourseContainer"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		$this.data("pi.studentContainer", new _studentContainer.studentContainer($this, $hover));
+	});
 
-    //create menu obj
-    $('[data-au="menu"]').each(function () {
-        var $this = $(this);
-        var $target = $($this.attr('data-target'));
-        $this.data("pi.menu", new _menu.menu($this, $target));
-    });
+	$('[class="piChoiceContainerTeacher"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		var id = $this.attr('data-src');
+		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerTeacher($this, $hover, id));
+	});
 
-    //create countContainer
-    $('[class="piCountContainer"]').each(function () {
-        var $this = $(this);
-        var $hover = $($this.attr('data-target'));
-        $this.data("pi.countContainer", new _countContainer.countContainer($this, $hover));
-    });
+	$('[class="piChoiceContainerStudent"]').each(function () {
+		var $this = $(this);
+		var $hover = $($this.attr('data-target'));
+		var id = $this.attr('data-src');
+		$this.data("pi.choiceContainer", new _choiceContainer.choiceContainerStudent($this, $hover, id));
+	});
 
-    $('[class="piStudentCourseContainer"]').each(function () {
-        var $this = $(this);
-        var $hover = $($this.attr('data-target'));
-        $this.data("pi.studentContainer", new _studentContainer.studentContainer($this, $hover));
-    });
-
-    $('[class="piChoiceContainerTeacher"]').each(function () {
-        var $this = $(this);
-        var $hover = $($this.attr('data-target'));
-        var id = $this.attr('data-src');
-        $this.data("pi.choiceContainer", new choiceContainerTeacher($this, $hover, id));
-    });
-
-    $('[class="piChoiceContainerStudent"]').each(function () {
-        var $this = $(this);
-        var $hover = $($this.attr('data-target'));
-        var id = $this.attr('data-src');
-        $this.data("pi.choiceContainer", new choiceContainerStudent($this, $hover, id));
-    });
-
-    $('#studentFinder').each(function () {
-        var $this = $(this);
-        var s = $('[class="piStudentCourseContainer"]').data("pi.studentContainer");
-        $this.data("pi.studentFinder", new _studentContainer.studentFinder(s, $this));
-    });
+	$('#studentFinder').each(function () {
+		var $this = $(this);
+		var s = $('[class="piStudentCourseContainer"]').data("pi.studentContainer");
+		$this.data("pi.studentFinder", new _studentContainer.studentFinder(s, $this));
+	});
 };
-
 $(document).ready(main);
-
 window.onresize = setRem;
-
-/////backup for errorPage todo
 // //create errorcanvas
 // $('[class="pi404canvas"]').each(function(){
 // 	var $this   = $(this);
 // 	$this.data("pi.404canvas",new errorCanvas($this));
 // })
-},{"./avatar.js":1,"./countContainer.js":2,"./errorCanvas.js":3,"./graColorTable":5,"./menu.js":6,"./modal.js":7,"./navTab.js":8,"./patch.js":9,"./studentContainer.js":10,"./user.js":11}],5:[function(require,module,exports){
+},{"./avatar.js":1,"./choiceContainer.js":2,"./countContainer.js":4,"./errorCanvas.js":5,"./graColorTable":7,"./menu.js":8,"./modal.js":9,"./navTab.js":10,"./patch.js":11,"./studentContainer.js":12,"./user.js":13}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -569,72 +873,70 @@ var graColorTable = exports.graColorTable = function graColorTable(colorList) {
     }
   }
 };
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-////导航栏头像悬浮菜单
 
 var menu = exports.menu = function () {
-    function menu(element, target) {
-        _classCallCheck(this, menu);
+	function menu(element, target) {
+		_classCallCheck(this, menu);
 
-        this.$element = element;
-        this.$target = target;
-        this.timer;
-        this.init();
-        this.regi();
-    }
+		this.$element = element;
+		this.$target = target;
+		this.timer;
+		this.init();
+		this.regi();
+	}
 
-    //find position
+	//find position
 
 
-    _createClass(menu, [{
-        key: "init",
-        value: function init() {
-            var x = this.$element.get(0).getBoundingClientRect().right + document.documentElement.scrollLeft;
-            var y = this.$element.get(0).getBoundingClientRect().bottom + document.documentElement.scrollTop;
+	_createClass(menu, [{
+		key: "init",
+		value: function init() {
+			var x = this.$element.get(0).getBoundingClientRect().right + document.documentElement.scrollLeft;
+			var y = this.$element.get(0).getBoundingClientRect().bottom + document.documentElement.scrollTop;
 
-            y = y + 10;
-            x = x - parseInt(this.$target.css("width").replace("px", ""));
-            this.$target.css("left", x);
-            this.$target.css("top", y);
-        }
+			y = y + 10;
+			x = x - parseInt(this.$target.css("width").replace("px", ""));
+			this.$target.css("left", x);
+			this.$target.css("top", y);
+		}
 
-        //register event
+		//register event
 
-    }, {
-        key: "regi",
-        value: function regi() {
-            this.$target.css("display", "none");
-            this.$element.on('mouseenter', this, function (e) {
-                e.data.init();
-                e.data.$target.css("display", "block");
-            });
-            this.$element.on('mouseleave', this, function (e) {
-                e.data.timer = setTimeout(function () {
-                    e.data.$target.css("display", "none");
-                }, 100);
-                e.data.$target.one('mouseenter', e.data, function (e) {
-                    clearTimeout(e.data.timer);
-                });
-            });
-            this.$target.on('mouseleave', this, function (e) {
-                e.data.$target.css("display", "none");
-            });
-        }
-    }]);
+	}, {
+		key: "regi",
+		value: function regi() {
+			this.$target.css("display", "none");
+			this.$element.on('mouseenter', this, function (e) {
+				e.data.init();
+				e.data.$target.css("display", "block");
+			});
+			this.$element.on('mouseleave', this, function (e) {
+				e.data.timer = setTimeout(function () {
+					e.data.$target.css("display", "none");
+				}, 100);
+				e.data.$target.one('mouseenter', e.data, function (e) {
+					clearTimeout(e.data.timer);
+				});
+			});
+			this.$target.on('mouseleave', this, function (e) {
+				e.data.$target.css("display", "none");
+			});
+		}
+	}]);
 
-    return menu;
+	return menu;
 }();
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -645,11 +947,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-///modal 模态框
-//
-//使用：在触发modal出现的button元素上添加 data-toggle="modal" data-target="#｛｛X｝｝"
-//X为modal块的id。在modal块内关闭该modal的button元素上添加 data-dismiss="modal"
-//
+//modal
+//mk
 
 var modal = exports.modal = function () {
     function modal(element, target, deleteTarget) {
@@ -683,7 +982,6 @@ var modal = exports.modal = function () {
     }, {
         key: "show",
         value: function show() {
-
             this.stylePerpare();
             this.$target.css('display', 'block');
             this.$target.after('<div class="piModalBack"></div>');
@@ -702,7 +1000,10 @@ var modal = exports.modal = function () {
         key: "hide",
         value: function hide() {
             $('[class="piModalBack"]').remove();
-            this.$target.css("top", "100px");
+            this.$target.animate({
+                opacity: "0",
+                top: "-=0.5rem"
+            }, 400);
             this.$target.css('display', 'none');
         }
     }, {
@@ -721,56 +1022,54 @@ var modal = exports.modal = function () {
 
     return modal;
 }();
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-////选项卡切换
-//使用：
 var navTabBtnGroup = exports.navTabBtnGroup = function () {
-    function navTabBtnGroup(element, MatchList, active) {
-        _classCallCheck(this, navTabBtnGroup);
+	function navTabBtnGroup(element, MatchList, active) {
+		_classCallCheck(this, navTabBtnGroup);
 
-        this.vm = this;
-        this.$element = element;
-        this.$MatchList = MatchList;
-        this.$active = active;
-        this.regi();
-        $(this.$active.attr('data-target')).css('display', 'block');
-    }
+		this.vm = this;
+		this.$element = element;
+		this.$MatchList = MatchList;
+		this.$active = active;
+		this.regi();
+		$(this.$active.attr('data-target')).css('display', 'block');
+	}
 
-    _createClass(navTabBtnGroup, [{
-        key: 'show',
-        value: function show($button) {
-            var $target = $($button.attr('data-target'));
-            $(this.$active.attr('data-target')).css('display', 'none');
-            $(this.$active).removeClass("piBtnGroupActive");
-            $target.css('display', 'block');
-            this.$active = $button;
-            $(this.$active).addClass("piBtnGroupActive");
-        }
-    }, {
-        key: 'regi',
-        value: function regi() {
-            this.$MatchList.forEach(function (match) {
-                match.target.css('display', 'none');
-                match.button.on('click', this, function (e) {
-                    e.data.show(match.button);
-                });
-            }, this);
-        }
-    }]);
+	_createClass(navTabBtnGroup, [{
+		key: 'show',
+		value: function show($button) {
+			var $target = $($button.attr('data-target'));
+			$(this.$active.attr('data-target')).css('display', 'none');
+			$(this.$active).removeClass("piBtnGroupActive");
+			$target.css('display', 'block');
+			this.$active = $button;
+			$(this.$active).addClass("piBtnGroupActive");
+		}
+	}, {
+		key: 'regi',
+		value: function regi() {
+			this.$MatchList.forEach(function (match) {
+				match.target.css('display', 'none');
+				match.button.on('click', this, function (e) {
+					e.data.show(match.button);
+				});
+			}, this);
+		}
+	}]);
 
-    return navTabBtnGroup;
+	return navTabBtnGroup;
 }();
-},{}],9:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -791,15 +1090,39 @@ function patchAll() {
         $("#countTime").val("");
         $("#countText").val("");
     });
+
+    $("#checkTimeNow").on('change', function () {
+        var myDate = new Date();
+        alert($("#checkTimeNow").val());
+        //alert(myDate.getFullYear()+"-"+myDate.getMonth()+"-"+myDate.getDate())
+        // if()
+    });
+
+    //编程页清空信息
+    $("#clearError").on('click', function () {
+        $("#error").val("");
+    });
+    $("#clearOutput").on('click', function () {
+        $("#output").val("");
+    });
+
+    //文件块进度条
+    $('[data-toggle="prog"]').each(function () {
+        var $this = $(this);
+        $this.css("width", $this.attr("data-progL") + "%");
+    });
 }
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.studentContainer = exports.studentFinder = exports.studentBlock = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _config = require("./config.js");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -862,7 +1185,7 @@ var studentContainer = exports.studentContainer = function () {
         this.top;
         this.timer;
         this.students = new Array();
-        $.getJSON("http://django.piclass.cn/myclass/student_list.html", function (data) {
+        $.getJSON(_config.config.getStudents, function (data) {
             for (var i = 0; i <= data.student_list.length - 1; i++) {
                 var s = new studentBlock(data.student_list[i].username, data.student_list[i].name, data.student_list[i].score, data.student_list[i].score2, data.student_list[i].score3, data.student_list[i].notice, null);
                 self.students.push(s);
@@ -913,6 +1236,12 @@ var studentContainer = exports.studentContainer = function () {
                     e.data.$hover.find('#c3').html("作业成绩:" + c.homeworkScore);
                     e.data.$hover.find('#notice').html(c.notice);
                     e.data.$hover.css("display", "block");
+
+                    e.data.$hover.find('#submitChange').off('click');
+                    e.data.$hover.find('#submitChange').one('click', c, function (e) {
+                        //$.get(config.changeStudent,{"student":e.data.id,"class_id":"1001"},function(){ location.href =config.changeStudent;});
+                        location.href = _config.config.changeStudent + "?student=" + e.data.id;
+                    });
                 });
                 $(block).on('mouseleave', self, function (e) {
                     //	e.data.$hover.css("display","none");
@@ -929,7 +1258,7 @@ var studentContainer = exports.studentContainer = function () {
 
     return studentContainer;
 }();
-},{}],11:[function(require,module,exports){
+},{"./config.js":3}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1159,4 +1488,4 @@ var User = exports.User = function () {
 
 	return User;
 }();
-},{}]},{},[4])
+},{}]},{},[6])

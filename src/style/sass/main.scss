@@ -43,6 +43,10 @@ $fontSizeAll:0.16rem;
 @import "table.scss";
 @import "appBlock.scss";
 @import "student.scss";
+@import "downloadBlock.scss";
+@import "ace.scss";
+
+@import "blocks/courseBlock.scss";
 
 //mixins
 @import "mixin/button.scss";
@@ -50,6 +54,7 @@ $fontSizeAll:0.16rem;
 ::selection {color:#FFFFFF;background-color:$UIpurple;}
 ::-webkit-scrollbar {
 		  width: 5px;
+		  height:5px;
 	} /* 这是针对缺省样式 (必须的) */
 
 	::-webkit-scrollbar-track {

@@ -8,11 +8,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-///modal 模态框
-//
-//使用：在触发modal出现的button元素上添加 data-toggle="modal" data-target="#｛｛X｝｝"
-//X为modal块的id。在modal块内关闭该modal的button元素上添加 data-dismiss="modal"
-//
+//modal
+//mk
 
 var modal = exports.modal = function () {
     function modal(element, target, deleteTarget) {
@@ -46,7 +43,6 @@ var modal = exports.modal = function () {
     }, {
         key: "show",
         value: function show() {
-
             this.stylePerpare();
             this.$target.css('display', 'block');
             this.$target.after('<div class="piModalBack"></div>');
@@ -65,7 +61,10 @@ var modal = exports.modal = function () {
         key: "hide",
         value: function hide() {
             $('[class="piModalBack"]').remove();
-            this.$target.css("top", "100px");
+            this.$target.animate({
+                opacity: "0",
+                top: "-=0.5rem"
+            }, 400);
             this.$target.css('display', 'none');
         }
     }, {
