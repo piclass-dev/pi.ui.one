@@ -1212,6 +1212,7 @@ body {
   height: 1rem;
   margin: 0.05rem;
   overflow: hidden;
+  box-sizing: border-box;
 }
 .choiceBlock > textarea {
   font-size: 0.15rem;

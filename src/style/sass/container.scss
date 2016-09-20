@@ -46,6 +46,7 @@
 	height: 1rem;
 	margin: 0.05rem;
 	overflow: hidden;
+	box-sizing: border-box;
 	>textarea{
 		font-size: 0.15rem;
 		opacity: 0.3;
