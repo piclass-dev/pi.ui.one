@@ -1,155 +1,155 @@
 //首页顶图
-
-
 //首页个人信息
-.piNameCard{
+.piNameCard {
+  @extend .cardBase;
+  width: 2.5rem;
+  height: 3.6rem;
+  box-sizing: border-box;
+  margin-bottom: $gutter;
+
+  > canvas {
+    width: 2rem;
+    box-sizing: border-box;
+    height: 2rem;
     @extend .cardBase;
-	width:2.5rem;
-	height:3.6rem;
-	box-sizing:border-box;
-    margin-bottom: $gutter;
-	>canvas{
-		width:2rem;
-	    box-sizing:border-box;
-	    height: 2rem;
-        @extend .cardBase;
-        margin-top: 0.24rem;
-        margin-bottom: 0.24rem;
-        margin-left: 0.24rem;
-        box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);
+    margin-top: 0.24rem;
+    margin-bottom: 0.24rem;
+    margin-left: 0.24rem;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+  }
 
-	}
-    >div{
-        width:100%;
-        position: relative;
-        top:-0.2rem;
-        >div{
-            width: 1.5rem;
-            height: 0.8rem;
-            float: left;
-            margin:0rem;
-            margin-left:0.2rem;
-            padding: 0.05rem;
-            box-sizing:border-box;
-            border-left:0.01rem solid $UIline;
-            border-right:0.01rem solid $UIline;
-            >h3{
-                display: block;
-                margin: 0rem;
-                font-size: 0.24rem;
-                height: 0.35rem;
-                line-height: 0.35rem;
+  > div {
+    width: 100%;
+    position: relative;
+    top: -0.2rem;
 
-            }
-            >p{
-                display: block;
-                margin: 0rem;
-                font-size: 0.18rem;
-                height: 0.2rem;
-                line-height: 0.2rem;
-            }
-            >span{
-                display: block;
-                margin: 0rem;
-                font-size: 0.18rem;
-                height: 0.2rem;
-                line-height: 0.2rem;
+    > div {
+      width: 1.5rem;
+      height: 0.8rem;
+      float: left;
+      margin: 0 0 0 0.2rem;
+      padding: 0.05rem;
+      box-sizing: border-box;
+      border-left: 0.01rem solid $UIline;
+      border-right: 0.01rem solid $UIline;
 
-            }
-        }
+      > h3 {
+        display: block;
+        margin: 0;
+        font-size: 0.24rem;
+        height: 0.35rem;
+        line-height: 0.35rem;
+      }
 
-        >img{
-            float:right;
-            width: 0.5rem;
-            height: 0.8rem;
-            margin-right: 0.15rem;
-            border:0rem;
-        }
+      > p {
+        display: block;
+        margin: 0;
+        font-size: 0.18rem;
+        height: 0.2rem;
+        line-height: 0.2rem;
+      }
 
+      > span {
+        display: block;
+        margin: 0;
+        font-size: 0.18rem;
+        height: 0.2rem;
+        line-height: 0.2rem;
+      }
     }
 
+    > img {
+      float: right;
+      width: 0.5rem;
+      height: 0.8rem;
+      margin-right: 0.15rem;
+      border: 0;
+    }
+  }
 }
-
 //全页分隔hr
-.fullSep{
-	width:100%;
-	border:0.01rem solid $UIline;
-	margin-top:0.1rem;
-	margin-bottom:0.1rem;
+.fullSep {
+  width: 100%;
+  border: 0.01rem solid $UIline;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
 }
-
 //首页布告栏
-.bulletinMain{
-	width:100%;
-	min-height:1.5rem;
-	background-color:rgba(255,255,255,0.5);
-	padding:0.2rem;
-	box-sizing:border-box;
-	>h2{
-		display: block;
-        font-size: 0.2rem;
-        float:left;
-        width:1rem;
-        text-align: center;
-        margin-right:0.1rem;
-	}
-	>p{
-		display: block;
-		font-size: 0.16rem;
-		float: left;
-		line-height: 0.2rem;
-	}
-}
+.bulletinMain {
+  width: 100%;
+  min-height: 1.5rem;
+  background-color: rgba(255,255,255,0.5);
+  padding: 0.2rem;
+  box-sizing: border-box;
 
+  > h2 {
+    display: block;
+    font-size: 0.2rem;
+    float: left;
+    width: 1rem;
+    text-align: center;
+    margin-right: 0.1rem;
+  }
+
+  > p {
+    display: block;
+    font-size: 0.16rem;
+    float: left;
+    line-height: 0.2rem;
+  }
+}
 //首页svg 时间表
-.timeTable{
-	>h3{
-		font-size: 0.2rem;
-		margin-left: 0.4rem;
-		float: left;
-		margin-top:-1.1rem;
-	}
-	.timeTableSvg{
-	width:6.14rem;
-	height:0.77rem;
-	margin-top: 0.5rem;
-	float:left;
-	}
-	.pointerNow{
-		width:0.4rem;
-		height:0.4rem;
-		border-radius:0.2rem;
-		float:left;
-    	transition-timing-function: ease-in-out;
-    	transition-duration: 0.2s;
-    	&:hover{
-			background-color:$UIpurple;
-    	}
-	}
-	>div{
-		:nth-child(1){
-	     margin-left: -5.41rem;
-	     margin-top: 0.684rem;
-		}
-		:nth-child(2){
-	     margin-left: -3.83rem;
-	     margin-top: 0.684rem;
-	     background-color:$UIpurple;
-		}
-		:nth-child(3){
-	     margin-left: -0.59rem;
-	     margin-top: 0.684rem;
-		}
-	}
+.timeTable {
+  > h3 {
+    font-size: 0.2rem;
+    margin-left: 0.4rem;
+    float: left;
+    margin-top: -1.1rem;
+  }
 
+  .timeTableSvg {
+    width: 6.14rem;
+    height: 0.77rem;
+    margin-top: 0.5rem;
+    float: left;
+  }
+
+  .pointerNow {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 0.2rem;
+    float: left;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+
+    &:hover {
+      background-color: $UIpurple;
+    }
+  }
+
+  > div {
+    :nth-child(1) {
+      margin-left: -5.41rem;
+      margin-top: 0.684rem;
+    }
+
+    :nth-child(2) {
+      margin-left: -3.83rem;
+      margin-top: 0.684rem;
+      background-color: $UIpurple;
+    }
+
+    :nth-child(3) {
+      margin-left: -0.59rem;
+      margin-top: 0.684rem;
+    }
+  }
 }
 
-
-.mainBanner{
-    margin: auto;
-    margin-bottom: 0.3rem;
-    width:12.8rem;
-    height:1.6rem;
-    background-image: url("../img/bannerA.png");
-    background-size: 100% 100%;
+.mainBanner {
+  margin: auto auto 0.3rem;
+  width: 12.8rem;
+  height: 1.6rem;
+  background-image: url("../img/bannerA.png");
+  background-size: 100% 100%;
 }
